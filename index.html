@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jhonson (SON) | Digital Marketing Specialist & Growth Strategist</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              primary: '#00F298',
+              glow: '#00F298',
+              accent: '#38bdf8',
+            },
+            dark: {
+              base: '#0B0F17',
+              surface: '#111827',
+              card: '#161F30',
+              border: '#1F2937',
+              lighter: '#1E293B'
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar & Utilities */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0F17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2937;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #34d399;
+    }
+    .glass-card {
+      background: rgba(22, 31, 48, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card:hover {
+      border-color: rgba(0, 242, 152, 0.3);
+    }
+    .neon-glow {
+      box-shadow: 0 0 35px -5px rgba(0, 242, 152, 0.25);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #FFFFFF 30%, #94A3B8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .brand-gradient {
+      background: linear-gradient(135deg, #00F298 0%, #38BDF8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-dark-base text-slate-200 font-sans selection:bg-brand-500 selection:text-black antialiased relative overflow-x-hidden">
+
+  <!-- Background Ambient Glow -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px]"></div>
+    <div class="absolute top-1/3 -right-40 w-96 h-96 bg-brand-accent/10 rounded-full blur-[140px]"></div>
+    <div class="absolute bottom-20 left-1/3 w-[500px] h-[500px] bg-brand-500/5 rounded-full blur-[160px]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-20"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-dark-base/80 border-b border-dark-border/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-brand-accent flex items-center justify-center text-dark-base font-extrabold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          J
+        </div>
+        <div>
+          <span class="font-display font-bold text-lg text-white tracking-tight">Jhonson<span class="text-brand-primary">.dm</span></span>
+          <span class="block text-[10px] text-slate-400 -mt-1 tracking-wider uppercase font-medium">Growth Marketer</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-brand-primary transition-colors">Tentang</a>
+        <a href="#simulator" class="hover:text-brand-primary transition-colors flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-brand-primary animate-ping"></span>
+          ROI Simulator
+        </a>
+        <a href="#skills" class="hover:text-brand-primary transition-colors">Keahlian & Tools</a>
+        <a href="#portfolio" class="hover:text-brand-primary transition-colors">Studi Kasus</a>
+        <a href="#certifications" class="hover:text-brand-primary transition-colors">Sertifikasi</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-primary to-brand-accent text-dark-base font-bold text-sm hover:shadow-lg hover:shadow-brand-primary/25 hover:scale-105 active:scale-95 transition-all">
+          <span>Hubungi Saya</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-dark-card border border-dark-border text-slate-300 hover:text-white" aria-label="Toggle Navigation">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-6 bg-dark-card border-b border-dark-border space-y-3">
+      <a href="#about" class="block py-2 text-slate-300 hover:text-brand-primary">Tentang</a>
+      <a href="#simulator" class="block py-2 text-slate-300 hover:text-brand-primary">ROI Simulator</a>
+      <a href="#skills" class="block py-2 text-slate-300 hover:text-brand-primary">Keahlian & Tools</a>
+      <a href="#portfolio" class="block py-2 text-slate-300 hover:text-brand-primary">Studi Kasus</a>
+      <a href="#certifications" class="block py-2 text-slate-300 hover:text-brand-primary">Sertifikasi</a>
+      <a href="#contact" class="block w-full text-center py-2.5 rounded-xl bg-brand-primary text-dark-base font-bold text-sm">Hubungi Saya</a>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-28">
+
+    <!-- HERO SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 lg:pt-16 lg:pb-28">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left: Text & Pitch -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <!-- Availability Pill -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-xs font-semibold text-brand-primary">
+            <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
+            Tersedia untuk Peran Full-Time & Proyek • Growth & Performance Specialist
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
+            Mengubah Angka & Ide Menjadi 
+            <span class="block brand-gradient font-display mt-1">Pertumbuhan Omzet Nyata.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+            Halo! Saya <strong class="text-white font-semibold">Jhonson</strong>, praktisi <span class="text-brand-primary font-medium">Digital Marketing & Growth Strategist</span>. Berfokus pada integrasi data, efisiensi <em>Performance Ads (Meta & Google)</em>, optimasi <em>Conversion Rate</em>, serta strategi konten viral yang terukur.
+          </p>
+
+          <!-- Core Value Badges -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-3 pt-2">
+            <span class="px-3.5 py-1.5 rounded-lg bg-dark-card border border-dark-border text-xs text-slate-300 flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+              Data-Driven Strategy
+            </span>
+            <span class="px-3.5 py-1.5 rounded-lg bg-dark-card border border-dark-border text-xs text-slate-300 flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 9.586 14.586 6H12z" clip-rule="evenodd"/></svg>
+              High ROAS Focus
+            </span>
+            <span class="px-3.5 py-1.5 rounded-lg bg-dark-card border border-dark-border text-xs text-slate-300 flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              Full-Funnel Execution
+            </span>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            <a href="#portfolio" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-brand-primary text-dark-base font-bold text-center hover:bg-emerald-400 hover:shadow-xl hover:shadow-brand-primary/25 transition-all">
+              Jelajahi Studi Kasus
+            </a>
+            <a href="#simulator" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-dark-card border border-dark-border text-slate-200 hover:border-brand-primary/50 text-center font-medium transition-all flex items-center justify-center gap-2">
+              <svg class="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              Coba Kalkulator ROI
+            </a>
+          </div>
+
+          <!-- Quick Stats Bar -->
+          <div class="pt-8 border-t border-dark-border/60 grid grid-cols-3 gap-4 text-center lg:text-left">
+            <div>
+              <div class="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight">4.2x</div>
+              <div class="text-xs text-slate-400 mt-0.5">Average ROAS Target</div>
+            </div>
+            <div>
+              <div class="text-2xl sm:text-3xl font-display font-bold text-brand-primary tracking-tight">+320%</div>
+              <div class="text-xs text-slate-400 mt-0.5">Organic Reach Uplift</div>
+            </div>
+            <div>
+              <div class="text-2xl sm:text-3xl font-display font-bold text-brand-accent tracking-tight">-35%</div>
+              <div class="text-xs text-slate-400 mt-0.5">Cost Per Acquisition</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Profile Photo Showcase Card -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-sm sm:max-w-md">
+            
+            <!-- Glow background around picture -->
+            <div class="absolute -inset-1.5 bg-gradient-to-tr from-brand-primary via-emerald-500 to-brand-accent rounded-3xl blur-xl opacity-30 animate-pulse-slow"></div>
+            
+            <!-- Image Frame -->
+            <div class="relative rounded-3xl overflow-hidden bg-dark-card border border-slate-700/60 shadow-2xl">
+              <!-- Real Profile Image -->
+              <div class="relative aspect-[4/5] overflow-hidden group">
+                <img 
+                  src="foto-profil.jpg" 
+                  alt="Foto Profil Jhonson" 
+                  class="w-full h-full object-cover object-top filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=80';"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-base via-transparent to-transparent opacity-80"></div>
+              </div>
+
+              <!-- Card Caption Overlay -->
+              <div class="p-5 bg-dark-card/90 backdrop-blur-md border-t border-dark-border/80">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="font-display font-bold text-lg text-white">Jhonson</h3>
+                    <p class="text-xs text-slate-400">Digital Marketing Specialist</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="inline-block px-2.5 py-1 rounded bg-brand-500/10 text-brand-primary border border-brand-500/20 text-[11px] font-semibold">
+                      Growth & Performance
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Mini metric ticker -->
+                <div class="mt-4 pt-3 border-t border-dark-border flex items-center justify-between text-xs text-slate-400">
+                  <span class="flex items-center gap-1.5">
+                    <span class="text-brand-primary">✓</span> Certified GA4
+                  </span>
+                  <span class="flex items-center gap-1.5">
+                    <span class="text-brand-accent">✓</span> Meta Ads Ready
+                  </span>
+                  <span class="flex items-center gap-1.5">
+                    <span class="text-emerald-400">✓</span> SEO Analytics
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Micro Badge 1 -->
+            <div class="absolute -top-4 -right-4 glass-card p-3 rounded-2xl shadow-xl hidden sm:flex items-center gap-3 border border-brand-primary/30 animate-float">
+              <div class="w-9 h-9 rounded-xl bg-brand-primary/20 flex items-center justify-center text-brand-primary">
+                📊
+              </div>
+              <div class="pr-2">
+                <div class="text-[11px] font-bold text-white">ROAS 4.8x</div>
+                <div class="text-[10px] text-slate-400">Scale Campaign</div>
+              </div>
+            </div>
+
+            <!-- Floating Micro Badge 2 -->
+            <div class="absolute -bottom-6 -left-6 glass-card p-3.5 rounded-2xl shadow-xl hidden sm:flex items-center gap-3 border border-slate-700">
+              <div class="w-9 h-9 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400">
+                🎯
+              </div>
+              <div>
+                <div class="text-[11px] font-bold text-white">CAC Optimization</div>
+                <div class="text-[10px] text-emerald-400 font-semibold">Effisiensi +38%</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE SECTION 1: CAMPAIGN ROI / ROAS SIMULATOR -->
+    <section id="simulator" class="py-20 bg-dark-surface/50 border-y border-dark-border/60 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="px-3.5 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-wider border border-brand-primary/20">
+            Fitur Interaktif
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 font-display">
+            Interactive Campaign ROI Calculator
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Sebagai digital marketer, setiap rupiah anggaran harus bisa diproyeksikan hasilnya. Gunakan kalkulator interaktif ini untuk melihat bagaimana saya memodelkan funnel iklan, rasio konversi, dan proyeksi ROAS.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Controls Panel -->
+          <div class="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl space-y-6">
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <svg class="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+              Parameter Simulasi Kampanye
+            </h3>
+
+            <!-- Slider 1: Ad Budget -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-sm">
+                <label for="budgetRange" class="font-medium text-slate-300">Budget Iklan Bulanan</label>
+                <span id="budgetDisplay" class="font-bold text-brand-primary font-mono text-base">Rp 10.000.000</span>
+              </div>
+              <input type="range" id="budgetRange" min="2000000" max="100000000" step="1000000" value="10000000" 
+                     class="w-full h-2 bg-dark-lighter rounded-lg appearance-none cursor-pointer accent-brand-primary">
+              <div class="flex justify-between text-[11px] text-slate-500 font-mono">
+                <span>Rp 2 Jt</span>
+                <span>Rp 50 Jt</span>
+                <span>Rp 100 Jt</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Average CPC -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-sm">
+                <label for="cpcRange" class="font-medium text-slate-300">Biaya per Klik (CPC)</label>
+                <span id="cpcDisplay" class="font-bold text-brand-accent font-mono text-base">Rp 1.200</span>
+              </div>
+              <input type="range" id="cpcRange" min="400" max="5000" step="100" value="1200" 
+                     class="w-full h-2 bg-dark-lighter rounded-lg appearance-none cursor-pointer accent-brand-accent">
+              <div class="flex justify-between text-[11px] text-slate-500 font-mono">
+                <span>Rp 400 (Murah/Sosmed)</span>
+                <span>Rp 2.500</span>
+                <span>Rp 5.000 (Kompetitif/Google)</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: Conversion Rate -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-sm">
+                <label for="crRange" class="font-medium text-slate-300">Landing Page Conversion Rate (CR)</label>
+                <span id="crDisplay" class="font-bold text-emerald-400 font-mono text-base">3.0%</span>
+              </div>
+              <input type="range" id="crRange" min="0.5" max="10" step="0.1" value="3.0" 
+                     class="w-full h-2 bg-dark-lighter rounded-lg appearance-none cursor-pointer accent-emerald-400">
+              <div class="flex justify-between text-[11px] text-slate-500 font-mono">
+                <span>0.5% (Standar Rendah)</span>
+                <span>3.0% (Optimized)</span>
+                <span>10.0% (High Converting)</span>
+              </div>
+            </div>
+
+            <!-- Slider 4: Average Order Value (AOV) -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-sm">
+                <label for="aovRange" class="font-medium text-slate-300">Rata-rata Nilai Transaksi (AOV)</label>
+                <span id="aovDisplay" class="font-bold text-yellow-400 font-mono text-base">Rp 250.000</span>
+              </div>
+              <input type="range" id="aovRange" min="50000" max="2500000" step="50000" value="250000" 
+                     class="w-full h-2 bg-dark-lighter rounded-lg appearance-none cursor-pointer accent-yellow-400">
+              <div class="flex justify-between text-[11px] text-slate-500 font-mono">
+                <span>Rp 50 Ribu</span>
+                <span>Rp 1 Jt</span>
+                <span>Rp 2.5 Jt</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Live Output Dashboard -->
+          <div class="lg:col-span-5 space-y-5">
+            <div class="glass-card p-6 sm:p-8 rounded-3xl border border-brand-primary/30 relative overflow-hidden">
+              <div class="absolute -right-8 -top-8 w-32 h-32 bg-brand-primary/10 rounded-full blur-2xl"></div>
+
+              <div class="flex items-center justify-between pb-4 border-b border-dark-border">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Hasil Proyeksi Real-Time</span>
+                <span id="roasStatusBadge" class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  Profitable
+                </span>
+              </div>
+
+              <!-- Main Hero Output: Revenue & ROAS -->
+              <div class="my-6">
+                <div class="text-xs text-slate-400">Proyeksi Total Revenue</div>
+                <div id="projectedRevenue" class="text-3xl sm:text-4xl font-extrabold text-white font-mono mt-1">
+                  Rp 62.500.000
+                </div>
+                
+                <div class="mt-4 flex items-center justify-between p-3.5 rounded-xl bg-dark-base border border-dark-border">
+                  <div>
+                    <span class="text-xs text-slate-400">Target Return On Ad Spend</span>
+                    <div id="projectedROAS" class="text-2xl font-bold font-display text-brand-primary">6.25x ROAS</div>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-xs text-slate-400">Estimasi Gross Profit</span>
+                    <div id="projectedProfit" class="text-base font-bold font-mono text-emerald-400">+Rp 52.500.000</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Funnel Breakdown Metrics -->
+              <div class="grid grid-cols-2 gap-3 pt-2">
+                <div class="p-3 rounded-xl bg-dark-base/60 border border-dark-border">
+                  <span class="text-[11px] text-slate-400 block">Estimasi Traffic / Klik</span>
+                  <span id="estimatedClicks" class="text-lg font-bold text-slate-100 font-mono">8.333</span>
+                  <span class="text-[10px] text-slate-500 block">pengunjung</span>
+                </div>
+                <div class="p-3 rounded-xl bg-dark-base/60 border border-dark-border">
+                  <span class="text-[11px] text-slate-400 block">Estimasi Pesanan (Orders)</span>
+                  <span id="estimatedOrders" class="text-lg font-bold text-brand-accent font-mono">250</span>
+                  <span class="text-[10px] text-slate-500 block">transaksi / leads</span>
+                </div>
+              </div>
+
+              <!-- Strategic Insight Box -->
+              <div class="mt-5 p-3.5 rounded-xl bg-brand-500/5 border border-brand-500/20 text-xs text-slate-300 leading-relaxed">
+                💡 <strong class="text-white">Growth Note:</strong> Dengan mengoptimalkan landing page (+1% CR) dan copy iklan, Anda bisa meningkatkan ROAS secara eksponensial tanpa perlu menaikkan anggaran iklan awal.
+              </div>
+
+            </div>
+
+            <!-- Quick Preset Buttons -->
+            <div class="flex items-center justify-between text-xs text-slate-400 px-2">
+              <span>Quick Presets:</span>
+              <div class="flex gap-2">
+                <button onclick="setPreset('ecommerce')" class="px-3 py-1.5 rounded-lg bg-dark-card border border-dark-border hover:border-brand-primary text-slate-300 transition-colors">E-Commerce</button>
+                <button onclick="setPreset('leadgen')" class="px-3 py-1.5 rounded-lg bg-dark-card border border-dark-border hover:border-brand-primary text-slate-300 transition-colors">B2B LeadGen</button>
+                <button onclick="setPreset('umkm')" class="px-3 py-1.5 rounded-lg bg-dark-card border border-dark-border hover:border-brand-primary text-slate-300 transition-colors">UMKM Retail</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-6">
+          <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider border border-blue-500/20">
+            Tentang Saya
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display">
+            Bukan Sekadar Posting Konten, Tapi Membangun Mesin Penjualan.
+          </h2>
+          <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p>
+              Sebagai lulusan baru dengan passion mendalam di ekosistem pemasaran digital, saya memadukan kemampuan analitik data dengan eksekusi kreatif visual. Saya percaya bahwa kampanye pemasaran terbaik lahir dari pemahaman audiens yang tajam dan pengujian berkelanjutan (A/B testing).
+            </p>
+            <p>
+              Selama masa studi dan berbagai proyek praktis, saya telah mengelola kampanye iklan berbayar (Meta & Google), merancang arsitektur konten organik TikTok/Instagram berbasis tren, serta memanfaatkan Google Analytics 4 untuk membaca perilaku user di dalam web.
+            </p>
+          </div>
+
+          <!-- 4 Pillars -->
+          <div class="grid grid-cols-2 gap-4 pt-4">
+            <div class="p-4 rounded-2xl bg-dark-card border border-dark-border">
+              <div class="text-brand-primary font-bold text-lg mb-1">01. Research</div>
+              <p class="text-xs text-slate-400">Analisis kompetitor, audience persona, dan identifikasi keyword berdaya beli tinggi.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-dark-card border border-dark-border">
+              <div class="text-brand-accent font-bold text-lg mb-1">02. Creative</div>
+              <p class="text-xs text-slate-400">Copywriting persuasif (AIDA/PAS) dan konsep video hook 3 detik yang menghentikan scroll.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-dark-card border border-dark-border">
+              <div class="text-emerald-400 font-bold text-lg mb-1">03. Execution</div>
+              <p class="text-xs text-slate-400">Setup funnel berjenjang (Top, Middle, Bottom) di Meta Ads Manager & Google Ads.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-dark-card border border-dark-border">
+              <div class="text-purple-400 font-bold text-lg mb-1">04. Analytics</div>
+              <p class="text-xs text-slate-400">Evaluasi metrik kritis (CAC, LTV, ROAS, CTR, CR) untuk scaling iklan tanpa bakar uang.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="lg:col-span-6 space-y-6">
+          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-dark-border">
+            <h3 class="text-xl font-bold text-white mb-6 flex items-center justify-between">
+              <span>Pendidikan & Pengalaman</span>
+              <span class="text-xs text-brand-primary font-normal">Fresh Graduate Profile</span>
+            </h3>
+
+            <div class="relative border-l-2 border-dark-border ml-3 space-y-8 pl-6">
+              
+              <!-- Timeline Item 1 -->
+              <div class="relative group">
+                <div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand-primary border-4 border-dark-base group-hover:scale-125 transition-transform"></div>
+                <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                  <span>2024 - Sekarang</span>
+                  <span class="px-2 py-0.5 rounded bg-brand-500/10 text-brand-primary text-[10px] font-bold">Terbaru</span>
+                </div>
+                <h4 class="text-base font-bold text-white">Digital Marketing Intern & Freelance Project</h4>
+                <p class="text-xs text-slate-300 font-medium mt-0.5">E-Commerce & Digital Agency</p>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                  Merancang strategi kampanye Meta Ads, optimasi katalog produk, membuat materi copywriting iklan, serta menyusun laporan performa mingguan via Looker Studio.
+                </p>
+              </div>
+
+              <!-- Timeline Item 2 -->
+              <div class="relative group">
+                <div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand-accent border-4 border-dark-base group-hover:scale-125 transition-transform"></div>
+                <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                  <span>2020 - 2024</span>
+                  <span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 text-[10px]">Lulus Cum Laude</span>
+                </div>
+                <h4 class="text-base font-bold text-white">Sarjana Manajemen / Ilmu Komunikasi</h4>
+                <p class="text-xs text-slate-300 font-medium mt-0.5">Konsentrasi Marketing & Bisnis Digital</p>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                  Fokus riset tugas akhir pada: <em>"Analisis Pengaruh Video Marketing di TikTok dan Social Proof Terhadap Minat Beli Konsumen Generasi Z"</em>. IPK: 3.80/4.00.
+                </p>
+              </div>
+
+              <!-- Timeline Item 3 -->
+              <div class="relative group">
+                <div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-slate-500 border-4 border-dark-base group-hover:scale-125 transition-transform"></div>
+                <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                  <span>2022 - 2023</span>
+                  <span class="text-[10px] text-slate-500">Organisasi Kampus</span>
+                </div>
+                <h4 class="text-base font-bold text-white">Head of Media, Branding & Public Relations</h4>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                  Memimpin tim beranggotakan 8 orang dalam publikasi acara kampus, meningkatkan engagement akun media sosial organisasi sebesar 240% dan mengelola publikasi live event.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS & TOOLS SECTION -->
+    <section id="skills" class="py-20 bg-dark-surface/40 border-t border-dark-border/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold uppercase tracking-wider border border-emerald-500/20">
+            Keahlian & Ekosistem
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 font-display">
+            Tech Stack & Digital Marketing Competencies
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-3">
+            Kumpulan instrumen, platform, dan metodologi yang saya kuasai untuk mengeksekusi strategi pemasaran ujung ke ujung.
+          </p>
+
+          <!-- Filter Category Tabs -->
+          <div class="flex flex-wrap justify-center gap-2 mt-8" id="skillsTabContainer">
+            <button onclick="filterSkills('all')" class="skill-tab active px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-primary text-dark-base shadow-lg shadow-brand-primary/20" data-cat="all">Semua</button>
+            <button onclick="filterSkills('paid')" class="skill-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-dark-card border border-dark-border text-slate-300 hover:text-white" data-cat="paid">Paid Traffic (Ads)</button>
+            <button onclick="filterSkills('organic')" class="skill-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-dark-card border border-dark-border text-slate-300 hover:text-white" data-cat="organic">SEO & Content</button>
+            <button onclick="filterSkills('analytics')" class="skill-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-dark-card border border-dark-border text-slate-300 hover:text-white" data-cat="analytics">Data & Analytics</button>
+            <button onclick="filterSkills('tools')" class="skill-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-dark-card border border-dark-border text-slate-300 hover:text-white" data-cat="tools">Creative & Automation</button>
+          </div>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="skillsGrid">
+          
+          <!-- Skill Card 1 -->
+          <div class="skill-card p-6 rounded-2xl glass-card border border-dark-border hover:border-brand-primary/40 transition-all" data-category="paid">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold text-xl">
+                M
+              </div>
+              <span class="text-xs font-mono font-bold text-brand-primary">Advanced • 90%</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Meta Ads Manager</h3>
+            <p class="text-xs text-slate-400 mt-1">Facebook & Instagram Ads</p>
+            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+              Keahlian: Audience segmentation (LAL, Custom Audience), Pixel & CAPI setup, A/B testing ad creatives, retargeting funnel, dynamic catalog ads.
+            </p>
+            <div class="w-full bg-dark-lighter h-1.5 rounded-full mt-4 overflow-hidden">
+              <div class="bg-brand-primary h-full rounded-full" style="width: 90%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Card 2 -->
+          <div class="skill-card p-6 rounded-2xl glass-card border border-dark-border hover:border-brand-primary/40 transition-all" data-category="paid">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-xl bg-red-600/20 text-red-400 flex items-center justify-center font-bold text-xl">
+                G
+              </div>
+              <span class="text-xs font-mono font-bold text-brand-accent">Proficient • 85%</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Google Ads (SEM & Display)</h3>
+            <p class="text-xs text-slate-400 mt-1">Search, PMax & YouTube Ads</p>
+            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+              Keahlian: Keyword intent mapping, negative keyword pruning, Smart Bidding strategies (tCPA, tROAS), Performance Max, responsive search ads.
+            </p>
+            <div class="w-full bg-dark-lighter h-1.5 rounded-full mt-4 overflow-hidden">
+              <div class="bg-brand-accent h-full rounded-full" style="width: 85%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Card 3 -->
+          <div class="skill-card p-6 rounded-2xl glass-card border border-dark-border hover:border-brand-primary/40 transition-all" data-category="analytics">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xl">
+                GA
+              </div>
+              <span class="text-xs font-mono font-bold text-amber-400">Certified • 88%</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Google Analytics 4 & GTM</h3>
+            <p class="text-xs text-slate-400 mt-1">Tracking & User Journey</p>
+            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+              Keahlian: Custom events tracking via Google Tag Manager, eCommerce funnel tracking, attribution modeling, audience path analysis.
+            </p>
+            <div class="w-full bg-dark-lighter h-1.5 rounded-full mt-4 overflow-hidden">
+              <div class="bg-amber-400 h-full rounded-full" style="width: 88%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Card 4 -->
+          <div class="skill-card p-6 rounded-2xl glass-card border border-dark-border hover:border-brand-primary/40 transition-all" data-category="organic">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center font-bold text-xl">
+                SEO
+              </div>
+              <span class="text-xs font-mono font-bold text-purple-400">80%</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">SEO & Content Strategy</h3>
+            <p class="text-xs text-slate-400 mt-1">Search Engine Optimization</p>
+            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+              Keahlian: On-page SEO, Topic clustering, Google Search Console diagnostic, keyword research (Ahrefs / SEMrush), copywriting ramah SEO & user.
+            </p>
+            <div class="w-full bg-dark-lighter h-1.5 rounded-full mt-4 overflow-hidden">
+              <div class="bg-purple-400 h-full rounded-full" style="width: 80%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Card 5 -->
+          <div class="skill-card p-6 rounded-2xl glass-card border border-dark-border hover:border-brand-primary/40 transition-all" data-category="analytics">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xl">
+                LS
+              </div>
+              <span class="text-xs font-mono font-bold text-blue-400">92%</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Looker Studio & Excel Analytics</h3>
+            <p class="text-xs text-slate-400 mt-1">Interactive Executive Dashboard</p>
+            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+              Keahlian: Pembuatan dashboard otomatis terintegrasi multi-channel (Ads + GA4 + CRM), cohort analysis, perhitungan blended ROAS, data cleaning.
+            </p>
+            <div class="w-full bg-dark-lighter h-1.5 rounded-full mt-4 overflow-hidden">
+              <div class="bg-blue-400 h-full rounded-full" style="width: 92%"></div>
+            </div>
+          </div>
+
+          <!-- Skill Card 6 -->
+          <div class="skill-card p-6 rounded-2xl glass-card border border-dark-border hover:border-brand-primary/40 transition-all" data-category="tools">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-xl">
+                ⚡
+              </div>
+              <span class="text-xs font-mono font-bold text-pink-400">Creative Suite</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Canva, CapCut & Copywriting</h3>
+            <p class="text-xs text-slate-400 mt-1">Viral Creative Assets</p>
+            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+              Keahlian: Produksi cepat video UGC untuk TikTok/Reels, hook 3-detik pertama, scriptwriting terstruktur, desain ad banner berkonversi tinggi.
+            </p>
+            <div class="w-full bg-dark-lighter h-1.5 rounded-full mt-4 overflow-hidden">
+              <div class="bg-pink-400 h-full rounded-full" style="width: 85%"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PORTFOLIO / CASE STUDIES SECTION -->
+    <section id="portfolio" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="px-3.5 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-wider border border-brand-primary/20">
+            Karya & Bukti Nyata
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 font-display">
+            Studi Kasus Kampanye & Portofolio
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-2">
+            Klik pada setiap kartu proyek untuk membaca rincian strategi, funnel, dan dampak terukur.
+          </p>
+        </div>
+
+        <div class="mt-6 md:mt-0 flex gap-2">
+          <span class="text-xs text-slate-400 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-primary"></span> Teruji dengan Metrik Riil
+          </span>
+        </div>
+      </div>
+
+      <!-- Case Studies Cards Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Case Study 1 -->
+        <div class="glass-card rounded-3xl overflow-hidden border border-dark-border hover:border-brand-primary/50 transition-all flex flex-col group">
+          <div class="p-6 bg-gradient-to-br from-brand-500/10 via-dark-card to-dark-card border-b border-dark-border relative">
+            <span class="px-2.5 py-1 rounded-md bg-dark-base/80 text-brand-primary text-xs font-bold border border-brand-primary/30">
+              E-Commerce Fashion
+            </span>
+            <div class="mt-4">
+              <div class="text-3xl font-extrabold text-white font-mono tracking-tight">4.5x ROAS</div>
+              <div class="text-xs text-emerald-400 font-medium">Uplift dari 1.8x ROAS sebelumnya</div>
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="text-lg font-bold text-white group-hover:text-brand-primary transition-colors">
+                Restrukturisasi Meta Ads Funnel untuk Brand Fashion Lokal
+              </h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                <strong>Masalah:</strong> Brand mengalami kenaikan Cost per Acquisition (CPA) dan audience fatigue di ad account utama.<br>
+                <strong>Solusi:</strong> Menerapkan Broad Targeting dengan dynamic creative testing (DCT) di Top of Funnel, dipadukan retargeting katalog dinamis (DPA) untuk abandonment cart.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-dark-border/60">
+              <div class="grid grid-cols-2 gap-2 text-xs mb-4">
+                <div class="bg-dark-base p-2 rounded-lg">
+                  <span class="text-slate-400 block text-[10px]">Total Revenue</span>
+                  <strong class="text-white">Rp 142.000.000</strong>
+                </div>
+                <div class="bg-dark-base p-2 rounded-lg">
+                  <span class="text-slate-400 block text-[10px]">CPA Efficiency</span>
+                  <strong class="text-emerald-400">-32% Lebih Hemat</strong>
+                </div>
+              </div>
+              
+              <button onclick="openModal('case1')" class="w-full py-2.5 rounded-xl bg-dark-lighter hover:bg-brand-primary hover:text-dark-base text-slate-200 text-xs font-bold transition-all text-center">
+                Lihat Detail Strategi & Grafik Funnel →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 2 -->
+        <div class="glass-card rounded-3xl overflow-hidden border border-dark-border hover:border-brand-primary/50 transition-all flex flex-col group">
+          <div class="p-6 bg-gradient-to-br from-blue-500/10 via-dark-card to-dark-card border-b border-dark-border relative">
+            <span class="px-2.5 py-1 rounded-md bg-dark-base/80 text-brand-accent text-xs font-bold border border-brand-accent/30">
+              Viral Social Campaign
+            </span>
+            <div class="mt-4">
+              <div class="text-3xl font-extrabold text-white font-mono tracking-tight">1.4M+ Views</div>
+              <div class="text-xs text-blue-400 font-medium">Dalam 30 Hari Tanpa Budget Iklan Masif</div>
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="text-lg font-bold text-white group-hover:text-brand-accent transition-colors">
+                UGC Strategy & Trend Jacking F&B Cafe Chain
+              </h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                <strong>Masalah:</strong> Brand baru buka cabang baru namun minim foot traffic karena persaingan ketat di area target.<br>
+                <strong>Solusi:</strong> Meluncurkan serial video TikTok berbasis "Behind The Scenes Menu Rahasia" berkolaborasi dengan 15 micro-creator kuliner lokal.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-dark-border/60">
+              <div class="grid grid-cols-2 gap-2 text-xs mb-4">
+                <div class="bg-dark-base p-2 rounded-lg">
+                  <span class="text-slate-400 block text-[10px]">Follower Growth</span>
+                  <strong class="text-white">+8.400 Followers</strong>
+                </div>
+                <div class="bg-dark-base p-2 rounded-lg">
+                  <span class="text-slate-400 block text-[10px]">Store Visit Spike</span>
+                  <strong class="text-blue-400">+65% Kunjungan</strong>
+                </div>
+              </div>
+
+              <button onclick="openModal('case2')" class="w-full py-2.5 rounded-xl bg-dark-lighter hover:bg-brand-accent hover:text-dark-base text-slate-200 text-xs font-bold transition-all text-center">
+                Lihat Detail Strategi & Grafik Funnel →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 3 -->
+        <div class="glass-card rounded-3xl overflow-hidden border border-dark-border hover:border-brand-primary/50 transition-all flex flex-col group">
+          <div class="p-6 bg-gradient-to-br from-purple-500/10 via-dark-card to-dark-card border-b border-dark-border relative">
+            <span class="px-2.5 py-1 rounded-md bg-dark-base/80 text-purple-400 text-xs font-bold border border-purple-500/30">
+              B2B & High-Intent Leads
+            </span>
+            <div class="mt-4">
+              <div class="text-3xl font-extrabold text-white font-mono tracking-tight">420+ Leads</div>
+              <div class="text-xs text-purple-400 font-medium">Cost per Lead Turun Rp 45.000 -> Rp 22.000</div>
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
+                Google Search Intent & Landing Page CRO Sprint
+              </h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                <strong>Masalah:</strong> Banyak klik yang tidak menghasilkan kontak WhatsApp/form submission (bounce rate tinggi di 78%).<br>
+                <strong>Solusi:</strong> Redesain landing page menjadi mobile-first dengan social proof instan dan pengetatan exact match keyword search.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-dark-border/60">
+              <div class="grid grid-cols-2 gap-2 text-xs mb-4">
+                <div class="bg-dark-base p-2 rounded-lg">
+                  <span class="text-slate-400 block text-[10px]">Conversion Rate</span>
+                  <strong class="text-white">Dari 1.4% ke 5.8%</strong>
+                </div>
+                <div class="bg-dark-base p-2 rounded-lg">
+                  <span class="text-slate-400 block text-[10px]">Deal Closing Rate</span>
+                  <strong class="text-purple-400">28% dari Total Leads</strong>
+                </div>
+              </div>
+
+              <button onclick="openModal('case3')" class="w-full py-2.5 rounded-xl bg-dark-lighter hover:bg-purple-400 hover:text-dark-base text-slate-200 text-xs font-bold transition-all text-center">
+                Lihat Detail Strategi & Grafik Funnel →
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CERTIFICATIONS & BADGES -->
+    <section id="certifications" class="py-16 bg-dark-surface/50 border-y border-dark-border/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="px-3.5 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-wider border border-brand-primary/20">
+            Kredensial & Validasi
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2 font-display">
+            Sertifikasi Industri Resmi
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          
+          <div class="p-5 rounded-2xl bg-dark-card border border-dark-border flex flex-col items-center text-center">
+            <div class="w-12 h-12 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-lg mb-3">
+              GA4
+            </div>
+            <h4 class="text-sm font-bold text-white">Google Analytics 4</h4>
+            <p class="text-[11px] text-slate-400 mt-1">Google Skillshop Verified</p>
+            <span class="mt-3 text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full font-medium">Valid Credential</span>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-dark-card border border-dark-border flex flex-col items-center text-center">
+            <div class="w-12 h-12 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-lg mb-3">
+              Meta
+            </div>
+            <h4 class="text-sm font-bold text-white">Meta Certified Associate</h4>
+            <p class="text-[11px] text-slate-400 mt-1">Digital Marketing Associate</p>
+            <span class="mt-3 text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full font-medium">Valid Credential</span>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-dark-card border border-dark-border flex flex-col items-center text-center">
+            <div class="w-12 h-12 rounded-full bg-orange-500/10 text-orange-400 flex items-center justify-center font-bold text-lg mb-3">
+              Hub
+            </div>
+            <h4 class="text-sm font-bold text-white">HubSpot Inbound</h4>
+            <p class="text-[11px] text-slate-400 mt-1">Inbound Marketing Certified</p>
+            <span class="mt-3 text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full font-medium">Valid Credential</span>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-dark-card border border-dark-border flex flex-col items-center text-center">
+            <div class="w-12 h-12 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center font-bold text-lg mb-3">
+              GAds
+            </div>
+            <h4 class="text-sm font-bold text-white">Google Ads Search</h4>
+            <p class="text-[11px] text-slate-400 mt-1">Search & Display Assessment</p>
+            <span class="mt-3 text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full font-medium">Valid Credential</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT & AUDIT REQUEST SECTION -->
+    <section id="contact" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Pitch & Quick Connect -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="px-3.5 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-wider border border-brand-primary/20">
+            Ayo Berkolaborasi
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display">
+            Siap Mengakselerasi Pertumbuhan Brand Anda?
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+            Apakah Anda mencari marketer berdedikasi penuh (Full-time), konsultan kampanye, atau ingin melakukan <strong>Audit Iklan Gratis</strong> untuk melihat potensi kebocoran budget iklan Anda? Mari diskusikan sekarang!
+          </p>
+
+          <div class="space-y-4 pt-2">
+            
+            <a href="https://wa.me/6281234567890?text=Halo%20Jhonson,%20saya%20melihat%20portofolio%20digital%20marketing%20Anda%20dan%20tertarik%20untuk%20diskusi." target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-dark-card border border-dark-border hover:border-emerald-500/50 hover:bg-emerald-950/20 transition-all group">
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xl group-hover:scale-110 transition-transform">
+                💬
+              </div>
+              <div>
+                <span class="text-xs text-slate-400 block">Fast Response (WhatsApp)</span>
+                <span class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">+62 812-3456-7890 (Chat Jhonson)</span>
+              </div>
+            </a>
+
+            <a href="mailto:jhonson.marketing@example.com?subject=Inquiry%20Digital%20Marketing%20Opportunities" class="flex items-center gap-4 p-4 rounded-2xl bg-dark-card border border-dark-border hover:border-brand-accent/50 hover:bg-blue-950/20 transition-all group">
+              <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xl group-hover:scale-110 transition-transform">
+                ✉️
+              </div>
+              <div>
+                <span class="text-xs text-slate-400 block">Kirim Email Resmi</span>
+                <span class="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">jhonson.marketing@example.com</span>
+              </div>
+            </a>
+
+            <div class="flex items-center gap-4 p-4 rounded-2xl bg-dark-card border border-dark-border">
+              <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xl">
+                📍
+              </div>
+              <div>
+                <span class="text-xs text-slate-400 block">Lokasi & Ketersediaan</span>
+                <span class="text-sm font-bold text-white">Indonesia • Siap Kerja Remote / On-Site</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Interactive Consultation & Message Form -->
+        <div class="lg:col-span-7">
+          <div class="glass-card p-6 sm:p-10 rounded-3xl border border-dark-border relative">
+            <h3 class="text-xl font-bold text-white mb-2">Formulir Pesan & Permintaan Audit</h3>
+            <p class="text-xs text-slate-400 mb-6">Kirimkan rincian kebutuhan Anda, form ini akan langsung menyiapkan pesan format WhatsApp terstruktur.</p>
+
+            <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama Anda / Perusahaan *</label>
+                  <input type="text" id="senderName" required placeholder="Contoh: Budi (PT Sejahtera)" 
+                         class="w-full px-4 py-3 rounded-xl bg-dark-base border border-dark-border text-white text-sm focus:outline-none focus:border-brand-primary transition-colors">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nomor WhatsApp / Email *</label>
+                  <input type="text" id="senderContact" required placeholder="Contoh: 0812xxxx atau email" 
+                         class="w-full px-4 py-3 rounded-xl bg-dark-base border border-dark-border text-white text-sm focus:outline-none focus:border-brand-primary transition-colors">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Kategori Kebutuhan</label>
+                <select id="serviceCategory" class="w-full px-4 py-3 rounded-xl bg-dark-base border border-dark-border text-white text-sm focus:outline-none focus:border-brand-primary transition-colors">
+                  <option value="Rekrutmen Full-Time / Kontrak">Rekrutmen Karyawan (Full-Time / Kontrak)</option>
+                  <option value="Jasa Performance Ads (Meta & Google)">Setup & Optimasi Iklan (Meta/Google Ads)</option>
+                  <option value="Social Media & Content Strategy">Social Media Management & Konten Viral</option>
+                  <option value="Audit Kampanye & Landing Page CRO">Permintaan Audit Akun Iklan Gratis</option>
+                  <option value="Lainnya / Diskusi Lepas">Lainnya / Ngobrol Seputar Proyek</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Deskripsi Singkat / Pertanyaan *</label>
+                <textarea id="senderMessage" rows="4" required placeholder="Ceritakan target brand Anda, tantangan pemasaran saat ini, atau ekspektasi yang diharapkan..." 
+                          class="w-full px-4 py-3 rounded-xl bg-dark-base border border-dark-border text-white text-sm focus:outline-none focus:border-brand-primary transition-colors"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-primary to-brand-accent text-dark-base font-bold text-sm hover:shadow-xl hover:shadow-brand-primary/25 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2">
+                <span>Kirim Pesan & Terhubung Langsung</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+
+              <div id="formSuccessToast" class="hidden p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs text-center font-medium">
+                ✓ Pesan berhasil disiapkan! Mengalihkan ke WhatsApp untuk mengirim pesan instan...
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-dark-border bg-dark-base py-12 relative z-10 text-center text-xs text-slate-500 space-y-4">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-6 h-6 rounded-lg bg-brand-primary text-dark-base font-bold flex items-center justify-center text-xs">J</span>
+        <span class="text-slate-300 font-semibold">Jhonson (SON)</span> — Digital Marketing Specialist
+      </div>
+
+      <div class="flex items-center gap-6 text-slate-400">
+        <a href="#about" class="hover:text-white transition-colors">Tentang</a>
+        <a href="#simulator" class="hover:text-white transition-colors">Simulator</a>
+        <a href="#skills" class="hover:text-white transition-colors">Keahlian</a>
+        <a href="#portfolio" class="hover:text-white transition-colors">Studi Kasus</a>
+        <a href="#contact" class="hover:text-white transition-colors">Kontak</a>
+      </div>
+
+      <div>
+        © 2026 Jhonson. Dibuat dengan pendekatan performa & strategi bertumbuh.
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL FOR DETAILED CASE STUDY VIEW -->
+  <div id="caseModal" class="fixed inset-0 z-50 hidden bg-dark-base/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-3xl border border-dark-border p-6 sm:p-8 space-y-6 relative">
+      <button onclick="closeModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-dark-lighter text-slate-400 hover:text-white" aria-label="Tutup Modal">
+        ✕
+      </button>
+
+      <div id="modalContent">
+        <!-- Content injected dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- 1. INTERACTIVE CAMPAIGN ROI CALCULATOR ---
+    const budgetRange = document.getElementById('budgetRange');
+    const cpcRange = document.getElementById('cpcRange');
+    const crRange = document.getElementById('crRange');
+    const aovRange = document.getElementById('aovRange');
+
+    const budgetDisplay = document.getElementById('budgetDisplay');
+    const cpcDisplay = document.getElementById('cpcDisplay');
+    const crDisplay = document.getElementById('crDisplay');
+    const aovDisplay = document.getElementById('aovDisplay');
+
+    const projectedRevenue = document.getElementById('projectedRevenue');
+    const projectedROAS = document.getElementById('projectedROAS');
+    const projectedProfit = document.getElementById('projectedProfit');
+    const estimatedClicks = document.getElementById('estimatedClicks');
+    const estimatedOrders = document.getElementById('estimatedOrders');
+    const roasStatusBadge = document.getElementById('roasStatusBadge');
+
+    function formatRupiah(number) {
+      return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
+    }
+
+    function calculateMetrics() {
+      const budget = parseFloat(budgetRange.value);
+      const cpc = parseFloat(cpcRange.value);
+      const crPercent = parseFloat(crRange.value);
+      const aov = parseFloat(aovRange.value);
+
+      budgetDisplay.innerText = formatRupiah(budget);
+      cpcDisplay.innerText = formatRupiah(cpc);
+      crDisplay.innerText = crPercent.toFixed(1) + '%';
+      aovDisplay.innerText = formatRupiah(aov);
+
+      // Math
+      const clicks = Math.round(budget / cpc);
+      const orders = Math.round(clicks * (crPercent / 100));
+      const revenue = Math.round(orders * aov);
+      const roas = budget > 0 ? (revenue / budget).toFixed(2) : '0.00';
+      const grossProfit = revenue - budget;
+
+      estimatedClicks.innerText = clicks.toLocaleString('id-ID');
+      estimatedOrders.innerText = orders.toLocaleString('id-ID');
+      projectedRevenue.innerText = formatRupiah(revenue);
+      projectedROAS.innerText = roas + 'x ROAS';
+      
+      if (grossProfit >= 0) {
+        projectedProfit.innerText = '+' + formatRupiah(grossProfit);
+        projectedProfit.className = 'text-base font-bold font-mono text-emerald-400';
+      } else {
+        projectedProfit.innerText = '-' + formatRupiah(Math.abs(grossProfit));
+        projectedProfit.className = 'text-base font-bold font-mono text-red-400';
+      }
+
+      // Status Badge
+      const roasNum = parseFloat(roas);
+      if (roasNum >= 4.0) {
+        roasStatusBadge.innerText = 'High Scaling (Optimal)';
+        roasStatusBadge.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+      } else if (roasNum >= 2.0) {
+        roasStatusBadge.innerText = 'Profitable (Stabil)';
+        roasStatusBadge.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40';
+      } else if (roasNum >= 1.0) {
+        roasStatusBadge.innerText = 'Break-Even';
+        roasStatusBadge.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-300 border border-yellow-500/40';
+      } else {
+        roasStatusBadge.innerText = 'Perlu Optimasi Funnel';
+        roasStatusBadge.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-red-500/20 text-red-300 border border-red-500/40';
+      }
+    }
+
+    [budgetRange, cpcRange, crRange, aovRange].forEach(slider => {
+      slider.addEventListener('input', calculateMetrics);
+    });
+
+    // Preset configurations
+    window.setPreset = function(type) {
+      if (type === 'ecommerce') {
+        budgetRange.value = 15000000;
+        cpcRange.value = 1100;
+        crRange.value = 3.5;
+        aovRange.value = 220000;
+      } else if (type === 'leadgen') {
+        budgetRange.value = 8000000;
+        cpcRange.value = 2400;
+        crRange.value = 6.0;
+        aovRange.value = 1200000;
+      } else if (type === 'umkm') {
+        budgetRange.value = 3000000;
+        cpcRange.value = 600;
+        crRange.value = 2.8;
+        aovRange.value = 95000;
+      }
+      calculateMetrics();
+    };
+
+    // Run first calculation on load
+    calculateMetrics();
+
+
+    // --- 2. SKILLS FILTER ---
+    window.filterSkills = function(category) {
+      const tabs = document.querySelectorAll('.skill-tab');
+      tabs.forEach(t => {
+        if (t.getAttribute('data-cat') === category) {
+          t.className = 'skill-tab active px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-primary text-dark-base shadow-lg shadow-brand-primary/20';
+        } else {
+          t.className = 'skill-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-dark-card border border-dark-border text-slate-300 hover:text-white';
+        }
+      });
+
+      const cards = document.querySelectorAll('.skill-card');
+      cards.forEach(card => {
+        const itemCat = card.getAttribute('data-category');
+        if (category === 'all' || itemCat === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    };
+
+
+    // --- 3. CASE STUDY MODAL DETAILS ---
+    const caseDetails = {
+      case1: {
+        title: "Restrukturisasi Meta Ads Funnel E-Commerce Fashion",
+        tag: "Performance Marketing • Meta Ads",
+        metrics: "4.5x ROAS (Omzet Rp 142 Jt) | CPA Turun 32%",
+        html: `
+          <div class="space-y-4 text-slate-300 text-sm">
+            <div class="p-3 bg-dark-base rounded-xl border border-dark-border text-xs text-brand-primary font-mono">
+              Objektif: Meningkatkan efisiensi belanja iklan dan memulihkan margin keuntungan brand pakaian.
+            </div>
+            <h4 class="font-bold text-white text-base">Tantangan Awal:</h4>
+            <p>Struktur campaign sebelumnya terlalu terfragmentasi dengan 14 ad set berbeda yang menyebabkan audience overlapping dan ad fatigue dalam waktu 2 minggu.</p>
+            
+            <h4 class="font-bold text-white text-base">Solusi Strategis yang Diterapkan:</h4>
+            <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-300">
+              <li><strong>Konsolidasi Akun:</strong> Menerapkan arsitektur <em>Simplified Account Structure</em> dengan 1 CBO Campaign Top of Funnel (Broad Targeting) dan 1 Dynamic Catalog Ads (Retargeting 14 Hari).</li>
+              <li><strong>Creative Testing Framework:</strong> Merilis 3 format visual per minggu (UGC Try-On, Carousel Detail Jahitan, dan Statis Review Pelanggan).</li>
+              <li><strong>Landing Page Speed Optimization:</strong> Menurunkan loading time dari 4.2 detik menjadi 1.8 detik di mobile browser.</li>
+            </ul>
+
+            <h4 class="font-bold text-white text-base">Hasil Akhir:</h4>
+            <p>Dalam 45 hari periode optimasi, akumulasi belanja iklan Rp 31.500.000 berhasil menghasilkan omzet kotor Rp 142.000.000 (ROAS 4.51x), membuktikan bahwa simplifikasi struktur iklan mampu memberi algoritma Meta data belajar yang optimal.</p>
+          </div>
+        `
+      },
+      case2: {
+        title: "UGC Viral Strategy & Foot Traffic Cafe F&B",
+        tag: "Social Media Growth • TikTok & Instagram Reels",
+        metrics: "1.4 Juta Organik Views | +8.400 Followers | +65% Kunjungan",
+        html: `
+          <div class="space-y-4 text-slate-300 text-sm">
+            <div class="p-3 bg-dark-base rounded-xl border border-dark-border text-xs text-brand-accent font-mono">
+              Objektif: Menjadikan cafe baru viral di kalangan Gen Z tanpa bergantung pada budget influencer mahal.
+            </div>
+            <h4 class="font-bold text-white text-base">Tantangan:</h4>
+            <p>Area lokasi cafe berada di second-tier road dengan tingkat kompetisi tinggi dari brand kopi ternama.</p>
+            
+            <h4 class="font-bold text-white text-base">Solusi Strategis yang Diterapkan:</h4>
+            <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-300">
+              <li><strong>Hook 3-Detik Teruji:</strong> Menggunakan hook emosional seperti <em>"Tempat nugas hidden gem di Jakarta yang colokannya ada di tiap meja..."</em> untuk memaksimalkan watch-time.</li>
+              <li><strong>Micro-KOL Seeding:</strong> Barter kolaborasi dengan 15 micro-creator lokal dengan kriteria engagement rate di atas 7%.</li>
+              <li><strong>Interactive Geo-Tagging:</strong> Membuat promosi diskon 10% jika pengunjung posting Instagram Story dengan tag lokasi cafe.</li>
+            </ul>
+
+            <h4 class="font-bold text-white text-base">Hasil:</h4>
+            <p>Dua video berhasil tembus FYP dengan total 1.400.000+ views, membawa antrean organik harian di store hingga mengalami kenaikan omzet 65% selama 2 bulan berturut-turut.</p>
+          </div>
+        `
+      },
+      case3: {
+        title: "Google Search Intent & Conversion Rate Sprint",
+        tag: "Lead Generation • B2B & High Value Service",
+        metrics: "420+ Qualified Leads | CR Naik dari 1.4% ke 5.8%",
+        html: `
+          <div class="space-y-4 text-slate-300 text-sm">
+            <div class="p-3 bg-dark-base rounded-xl border border-dark-border text-xs text-purple-400 font-mono">
+              Objektif: Mendapatkan kontak klien bisnis yang siap membeli dengan biaya akuisisi seminimal mungkin.
+            </div>
+            <h4 class="font-bold text-white text-base">Tantangan:</h4>
+            <p>Banyak klik dari pencarian kata kunci yang terlalu luas (Broad) sehingga menghabiskan saldo iklan untuk user yang hanya mencari tutorial gratisan.</p>
+            
+            <h4 class="font-bold text-white text-base">Solusi Strategis yang Diterapkan:</h4>
+            <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-300">
+              <li><strong>High-Intent Keyword Pruning:</strong> Menambahkan 85+ negative keywords dan memfokuskan pencarian pada frasa berdaya beli (e.g., <em>"jasa vendor X profesional", "harga paket layanan Y"</em>).</li>
+              <li><strong>Landing Page Friction Reduction:</strong> Mengganti form panjang 8 kolom menjadi form ringkas 3 kolom dengan tombol direct WhatsApp CTA sticky di mobile.</li>
+              <li><strong>Ad Copy Match:</strong> Menyelaraskan teks judul iklan persis dengan headline halaman website (Message Match).</li>
+            </ul>
+
+            <h4 class="font-bold text-white text-base">Hasil:</h4>
+            <p>Cost per Lead turun drastis dari Rp 45.000 menjadi Rp 22.000 dengan rasio closing sales tim klien meningkat menjadi 28% karena lead yang masuk adalah prospek dengan intent tinggi.</p>
+          </div>
+        `
+      }
+    };
+
+    window.openModal = function(id) {
+      const data = caseDetails[id];
+      if (!data) return;
+      const modal = document.getElementById('caseModal');
+      const content = document.getElementById('modalContent');
+      content.innerHTML = `
+        <div class="space-y-2 pb-4 border-b border-dark-border">
+          <span class="text-xs font-bold text-brand-primary uppercase tracking-wider">${data.tag}</span>
+          <h3 class="text-xl sm:text-2xl font-bold text-white font-display">${data.title}</h3>
+          <div class="text-xs font-mono text-emerald-400 font-semibold">${data.metrics}</div>
+        </div>
+        <div class="pt-2">${data.html}</div>
+      `;
+      modal.classList.remove('hidden');
+    };
+
+    window.closeModal = function() {
+      document.getElementById('caseModal').classList.add('hidden');
+    };
+
+    // Close on outside click
+    document.getElementById('caseModal').addEventListener('click', (e) => {
+      if (e.target.id === 'caseModal') closeModal();
+    });
+
+
+    // --- 4. FORM SUBMISSION -> WHATSAPP LINK ---
+    window.handleFormSubmit = function(e) {
+      e.preventDefault();
+      const name = document.getElementById('senderName').value;
+      const contact = document.getElementById('senderContact').value;
+      const category = document.getElementById('serviceCategory').value;
+      const message = document.getElementById('senderMessage').value;
+      const toast = document.getElementById('formSuccessToast');
+
+      toast.classList.remove('hidden');
+
+      const waText = encodeURIComponent(
+        `Halo Jhonson,\n\nNama: ${name}\nKontak: ${contact}\nKebutuhan: ${category}\nPesan: ${message}\n\nSaya melihat web portofolio Anda dan ingin berdiskusi lebih lanjut!`
+      );
+
+      setTimeout(() => {
+        window.open(`https://wa.me/6281234567890?text=${waText}`, '_blank');
+      }, 800);
+    };
+
+    // --- 5. MOBILE MENU TOGGLE ---
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
