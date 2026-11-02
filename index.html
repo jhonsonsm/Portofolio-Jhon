@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth overflow-x-hidden">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jhonson Samuel Manurung | Digital Marketing & Creative Content</title>
+  <meta name="description" content="Portofolio resmi Jhonson Samuel Manurung. Fresh Graduate S1 Bisnis Digital UNIMED dengan keahlian Digital Marketing, Social Media Strategy, Web Architecture, dan Creative Storytelling.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["'Plus Jakarta Sans'", "sans-serif"],
+            display: ["'Playfair Display'", "serif"],
+            mono: ["'JetBrains Mono'", "monospace"],
+            heading: ["'Space Grotesk'", "sans-serif"],
+          },
+          colors: {
+            brand: {
+              50: "#F8FAFC",
+              100: "#F1F5F9",
+              200: "#E2E8F0",
+              800: "#1E293B",
+              900: "#0F172A",
+              950: "#090D16",
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #FAFAF9;
+      color: #0F172A;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Spotlight Effect */
+    .spotlight-overlay {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.05), transparent 80%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .dark-section:hover ~ .spotlight-overlay,
+    .dark-section:hover .spotlight-overlay {
+      opacity: 1;
+    }
+
+    /* Lanyard sway physics */
+    @keyframes lanyardSway {
+      0%, 100% { transform: rotate(-2.5deg); }
+      50% { transform: rotate(2.5deg); }
+    }
+    .lanyard-rig {
+      transform-origin: 50% -60px;
+      animation: lanyardSway 5.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+    .lanyard-rig:hover {
+      animation-play-state: paused;
+    }
+
+    /* 3D Flip Card for Lanyard */
+    .flip-card {
+      perspective: 1000px;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+    }
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 1.25rem;
+    }
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* 3D Glassmorphic Neon Tiles */
+    .neon-tile {
+      background: linear-gradient(145deg, rgba(22, 27, 34, 0.85) 0%, rgba(13, 17, 23, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      transform-style: preserve-3d;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    .neon-tile::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 1.25rem;
+      padding: 1.5px;
+      background: linear-gradient(135deg, var(--neon-color, #38BDF8), transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.4;
+      transition: opacity 0.35s ease;
+    }
+    .neon-tile:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 35px -10px var(--neon-glow, rgba(56, 189, 248, 0.35)),
+                  0 0 20px 2px var(--neon-glow, rgba(56, 189, 248, 0.25));
+    }
+    .neon-tile:hover::before {
+      opacity: 1;
+    }
+
+    /* Infinite Marquee */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    /* Text Masking / Kinetic Reveal */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-on-scroll.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered On-Load Cinematic Fade-In Animations */
+    @keyframes heroFadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(32px) scale(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes heroFadeScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.92);
+        filter: blur(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px);
+      }
+    }
+
+    @keyframes heroFadeSlideRight {
+      0% {
+        opacity: 0;
+        transform: translateX(45px);
+        filter: blur(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0px);
+      }
+    }
+
+    .animate-hero-fade {
+      opacity: 1;
+    }
+    .animate-hero-backdrop {
+      opacity: 0;
+      animation: heroFadeScale 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    }
+    .animate-hero-portrait {
+      opacity: 0;
+      animation: heroFadeSlideRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+    }
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+      position: relative;
+    }
+
+    .delay-100 { animation-delay: 0.15s; }
+    .delay-200 { animation-delay: 0.3s; }
+    .delay-300 { animation-delay: 0.45s; }
+    .delay-400 { animation-delay: 0.6s; }
+    .delay-500 { animation-delay: 0.75s; }
+  </style>
+</head>
+<body class="selection:bg-slate-900 selection:text-white overflow-x-hidden w-full max-w-full">
+
+  <!-- ================= TOP NAVIGATION ================= -->
+  <header class="sticky top-0 z-50 bg-[#FAFAF9]/90 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3 group min-w-0">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-heading font-bold text-base sm:text-lg shadow-sm group-hover:scale-105 transition-transform flex-shrink-0">
+          JM
+        </div>
+        <div class="flex flex-col min-w-0">
+          <span class="font-heading font-bold text-slate-900 text-xs sm:text-sm tracking-tight leading-tight truncate">Jhonson Samuel M.</span>
+          <span class="text-[10px] sm:text-[11px] text-slate-500 font-mono truncate">Digital Marketing & Web</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-slate-950 transition-colors">Tentang</a>
+        <a href="#experience" class="hover:text-slate-950 transition-colors">Pengalaman</a>
+        <a href="#certificates" class="hover:text-slate-950 transition-colors">Sertifikasi</a>
+        <a href="#skripsi" class="hover:text-slate-950 transition-colors">Skripsi & HAKI</a>
+        <a href="#tech-stack" class="hover:text-slate-950 transition-colors">Tools 3D</a>
+        <a href="#contact" class="hover:text-slate-950 transition-colors">Kontak</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <a href="CV_Jhonson_Samuel_Manurung.pdf" download class="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-slate-900 text-white text-[11px] sm:text-xs font-semibold hover:bg-slate-800 shadow-md transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+          <i data-lucide="file-down" class="w-3.5 h-3.5"></i>
+          <span>CV (PDF)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION (PURE DYNAMIC 3D ANIMATED HERO) ================= -->
+  <section id="about" class="relative pt-8 sm:pt-12 pb-16 sm:pb-20 overflow-hidden bg-[#070A12] text-white border-b border-slate-800">
+    
+    <!-- Ambient Aurora Mesh Background & Glowing Nebulas -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden max-w-full">
+      <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[500px] sm:w-[900px] h-[350px] sm:h-[550px] bg-gradient-to-b from-purple-600/25 via-indigo-600/15 to-transparent rounded-full blur-3xl opacity-80 animate-pulse" style="animation-duration: 8s;"></div>
+      <div class="absolute top-1/3 -left-32 w-64 sm:w-96 h-64 sm:h-96 bg-blue-600/15 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/4 -right-32 w-64 sm:w-96 h-64 sm:h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:28px_28px] opacity-40"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      
+      <!-- Top Status Tag -->
+      <div class="flex items-center justify-between mb-6 sm:mb-8 animate-hero-fade">
+        <div class="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] sm:text-xs font-semibold shadow-sm backdrop-blur-md">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+          </span>
+          <span>Fresh Graduate Bisnis Digital • UNIMED (IPK 3.70)</span>
+        </div>
+
+        <div class="hidden sm:flex items-center gap-3 text-xs text-slate-400 font-mono">
+          <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-400"></i> Medan, Indonesia</span>
+          <span>•</span>
+          <span class="text-purple-400 font-semibold">Available for Work</span>
+        </div>
+      </div>
+
+      <!-- Main Dynamic 3D Hero Stage -->
+      <div id="heroStage" class="relative rounded-[28px] sm:rounded-[40px] border border-purple-500/30 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 p-5 sm:p-10 lg:p-14 shadow-2xl shadow-purple-950/60 backdrop-blur-xl overflow-hidden min-h-[500px] lg:min-h-[640px] transition-transform duration-300">
+        
+        <!-- LAYER 1 (DESKTOP ONLY): Giant Luminous 3D Kinetic Text strictly behind subject on the right -->
+        <div id="heroBackdropText" class="hidden lg:flex absolute right-4 top-8 flex-col items-end text-right pointer-events-none select-none z-0 transition-transform duration-200 ease-out animate-hero-backdrop">
+          <div class="font-display font-black text-8xl lg:text-[110px] xl:text-[125px] tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-100 to-purple-400/40 drop-shadow-[0_15px_30px_rgba(168,85,247,0.35)]">
+            JHONSON
+          </div>
+          <div class="font-display font-black text-7xl lg:text-[95px] xl:text-[108px] tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-purple-200 via-purple-400/50 to-purple-950/20 -mt-4">
+            MANURUNG
+          </div>
+        </div>
+
+        <!-- LAYER 2 (DESKTOP ONLY): Cutout Portrait with Ambient Backlight Bloom & Parallax -->
+        <div id="heroSubjectLayer" class="hidden lg:block absolute right-0 lg:right-8 bottom-0 z-10 w-[340px] lg:w-[400px] pointer-events-none transition-transform duration-200 ease-out animate-hero-portrait">
+          <div class="absolute -inset-4 bg-gradient-to-t from-purple-600/35 via-indigo-500/20 to-transparent rounded-full blur-2xl"></div>
+          <img 
+            src="jhonson-hero-perfect.png" 
+            alt="Jhonson Samuel Manurung" 
+            class="relative z-10 w-full h-auto object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] filter brightness-[1.03]"
+          />
+          <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent z-20"></div>
+        </div>
+
+        <!-- LAYER 3: Clean, Unobstructed Narrative, Title & Interactive CTAs -->
+        <div class="relative z-20 w-full max-w-lg lg:max-w-xl space-y-5 sm:space-y-6 pt-1 sm:pt-4">
+          <div class="space-y-3 sm:space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-purple-500/20 border border-purple-500/40 text-purple-300 text-[11px] sm:text-xs font-mono font-semibold tracking-wider uppercase animate-hero-fade delay-100">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span>
+              <span>Digital Marketing & Web Strategist</span>
+            </div>
+            
+            <h1 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-snug drop-shadow-md animate-hero-fade delay-200">
+              Menghubungkan Strategi Bisnis, Konten & Logika Teknis.
+            </h1>
+
+            <!-- MOBILE-ONLY HERO PORTRAIT CARD (Clean Centered Frame, Zero Text Overlap) -->
+            <div class="lg:hidden flex justify-center py-2">
+              <div class="relative w-44 sm:w-52 aspect-[4/5] rounded-2xl overflow-hidden border border-purple-500/40 bg-gradient-to-t from-purple-950/90 via-slate-900 to-slate-950 shadow-xl shadow-purple-950/80">
+                <div class="absolute -inset-2 bg-gradient-to-t from-purple-600/30 to-transparent rounded-full blur-xl pointer-events-none"></div>
+                <img 
+                  src="jhonson-hero-perfect.png" 
+                  alt="Jhonson Samuel Manurung" 
+                  class="relative z-10 w-full h-full object-contain object-bottom filter brightness-[1.03]"
+                />
+                <div class="absolute bottom-2 left-2 right-2 z-20 px-2 py-0.5 rounded-lg bg-slate-950/85 backdrop-blur-md border border-white/10 text-center">
+                  <span class="text-[10px] font-mono font-semibold text-purple-300">Jhonson S. Manurung</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-slate-300 text-xs sm:text-base leading-relaxed text-left sm:text-justify max-w-md drop-shadow animate-hero-fade delay-300">
+              Lulusan S1 Bisnis Digital UNIMED dengan latar belakang Rekayasa Perangkat Lunak. Berpengalaman nyata dalam manajemen media sosial B2B logistik, perancangan web WordPress instansi, digitalisasi UMKM (Google Maps), serta pemanfaatan tools AI untuk riset dan alur kerja konten.
+            </p>
+          </div>
+
+          <!-- Quick Metrics Bar -->
+          <div class="grid grid-cols-3 gap-2 sm:gap-3 p-3 sm:p-4 rounded-2xl bg-slate-950/85 border border-slate-800/90 backdrop-blur-md max-w-md shadow-lg animate-hero-fade delay-400">
+            <div>
+              <div class="text-xl sm:text-2xl font-bold font-heading text-white">3.70<span class="text-xs text-purple-400 font-normal">/4.0</span></div>
+              <div class="text-[9px] sm:text-[10px] text-slate-400 mt-0.5">IPK Kelulusan</div>
+            </div>
+            <div class="border-x border-slate-800 px-2 sm:px-3">
+              <div class="text-xl sm:text-2xl font-bold font-heading text-white">25+</div>
+              <div class="text-[9px] sm:text-[10px] text-slate-400 mt-0.5">Aset Konten</div>
+            </div>
+            <div>
+              <div class="text-xl sm:text-2xl font-bold font-heading text-white">2 Portal</div>
+              <div class="text-[9px] sm:text-[10px] text-slate-400 mt-0.5">Web Dinas</div>
+            </div>
+          </div>
+
+          <!-- Interactive Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-2 animate-hero-fade delay-500">
+            <a href="#experience" class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-xs uppercase tracking-wider shadow-lg shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all text-center">
+              <span>Eksplorasi Pengalaman</span>
+              <i data-lucide="arrow-down" class="w-4 h-4"></i>
+            </a>
+            <div class="flex items-center gap-2.5">
+              <a href="CV_Jhonson_Samuel_Manurung.pdf" download class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-slate-800/90 hover:bg-slate-700 text-white border border-slate-700 font-semibold text-xs tracking-wider transition-all shadow text-center">
+                <i data-lucide="file-down" class="w-4 h-4 text-purple-400"></i>
+                <span>Unduh CV</span>
+              </a>
+              <a href="https://wa.me/6285358977145?text=Halo%20Jhonson,%20saya%20melihat%20portofolio%20website%20Anda" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-semibold transition-all text-center">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= INFINITE MARQUEE TICKER ================= -->
+  <div class="relative py-4 bg-slate-950 text-white overflow-hidden border-y border-slate-800 shadow-inner z-20">
+    <div class="marquee-track font-heading font-bold text-xs sm:text-sm tracking-widest uppercase text-slate-300">
+      <div class="flex items-center gap-8 px-4">
+        <span>DIGITAL MARKETING STRATEGY</span> <span class="text-blue-400">✦</span>
+        <span>B2B SOCIAL MEDIA MANAGEMENT</span> <span class="text-emerald-400">✦</span>
+        <span>WORDPRESS CMS ARCHITECTURE</span> <span class="text-purple-400">✦</span>
+        <span>CREATIVE STORYTELLING & SCRIPT</span> <span class="text-amber-400">✦</span>
+        <span>LOCAL SEO & GOOGLE MAPS</span> <span class="text-cyan-400">✦</span>
+        <span>AI WORKFLOW PRODUCTIVITY</span> <span class="text-pink-400">✦</span>
+        <span>VISUAL CONTENT & CANVA</span> <span class="text-indigo-400">✦</span>
+      </div>
+      <div class="flex items-center gap-8 px-4">
+        <span>DIGITAL MARKETING STRATEGY</span> <span class="text-blue-400">✦</span>
+        <span>B2B SOCIAL MEDIA MANAGEMENT</span> <span class="text-emerald-400">✦</span>
+        <span>WORDPRESS CMS ARCHITECTURE</span> <span class="text-purple-400">✦</span>
+        <span>CREATIVE STORYTELLING & SCRIPT</span> <span class="text-amber-400">✦</span>
+        <span>LOCAL SEO & GOOGLE MAPS</span> <span class="text-cyan-400">✦</span>
+        <span>AI WORKFLOW PRODUCTIVITY</span> <span class="text-pink-400">✦</span>
+        <span>VISUAL CONTENT & CANVA</span> <span class="text-indigo-400">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= INTERACTIVE LANYARD PASS SECTION (CLEAN & DEDICATED) ================= -->
+  <section class="bg-[#0A0E17] pt-0 pb-10 border-b border-slate-800/60 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+      
+      <div class="space-y-4 text-center md:text-left max-w-xl pt-6 md:pt-0">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold uppercase tracking-wider">
+          <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
+          <span>Tentang Saya • About Me</span>
+        </div>
+        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">
+          Kombinasi Pemikiran Bisnis & Eksekusi Teknis
+        </h3>
+        <p class="text-slate-300 text-sm leading-relaxed text-justify">
+          Saya adalah lulusan S1 Bisnis Digital dari Universitas Negeri Medan (IPK 3.70) dengan latar belakang Rekayasa Perangkat Lunak. Terbiasa memadukan analisis pasar, perancangan konten media sosial, dan struktur website yang rapi untuk membangun reputasi merek yang kredibel.
+        </p>
+
+        <!-- Quick Facts Highlights -->
+        <div class="grid grid-cols-2 gap-3 pt-2 text-left">
+          <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+            <div class="text-[11px] font-mono text-purple-400 font-semibold uppercase">Pendidikan</div>
+            <div class="text-xs font-bold text-white mt-0.5">S1 Bisnis Digital (UNIMED)</div>
+            <div class="text-[10px] text-slate-400">SMK Rekayasa Perangkat Lunak</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+            <div class="text-[11px] font-mono text-emerald-400 font-semibold uppercase">Fokus Keahlian</div>
+            <div class="text-xs font-bold text-white mt-0.5">Digital Marketing & Web</div>
+            <div class="text-[10px] text-slate-400">Content Strategy & AI Workflow</div>
+          </div>
+        </div>
+
+        <div class="pt-1 flex items-center justify-center md:justify-start gap-2 text-xs text-slate-400 font-mono">
+          <span class="text-purple-400">✦</span>
+          <span>Interaksi Kartu: Klik ID Pass untuk melihat verifikasi & kode QR.</span>
+        </div>
+      </div>
+
+      <!-- Suspended 3D Lanyard Interactive Rig (Seamlessly Anchored to Marquee Line) -->
+      <div class="relative flex justify-center pt-0 pb-2">
+        <div class="lanyard-rig cursor-pointer select-none" id="lanyardTrigger" title="Klik untuk membalikkan kartu (Flip 3D)">
+          <!-- Woven Strap flush anchored to the bottom border of the running text -->
+          <div class="w-6 h-16 bg-gradient-to-b from-slate-950 via-slate-800 to-slate-900 mx-auto shadow-2xl relative overflow-hidden border-x border-slate-700/60 -mt-1">
+            <div class="absolute inset-y-0 left-1 w-0.5 bg-purple-500/80"></div>
+            <div class="absolute inset-y-0 right-1 w-0.5 bg-purple-500/80"></div>
+            <div class="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_2px,rgba(255,255,255,0.06)_2px,rgba(255,255,255,0.06)_4px)]"></div>
+          </div>
+          <!-- Metallic Swivel Clasp -->
+          <div class="w-8 h-4 bg-gradient-to-r from-slate-400 via-white to-slate-500 mx-auto rounded-sm shadow-md relative z-10 border border-slate-400 flex items-center justify-center">
+            <div class="w-2 h-1 bg-slate-600 rounded-full"></div>
+          </div>
+
+          <!-- Flip Card Container -->
+          <div class="flip-card w-56 h-80 mt-1">
+            <div class="flip-card-inner">
+              
+              <!-- FRONT SIDE: Photo ID Pass -->
+              <div class="flip-card-front bg-slate-950/95 backdrop-blur-2xl p-4 shadow-2xl border border-purple-500/40 flex flex-col justify-between text-left">
+                <div class="flex items-center justify-between border-b border-purple-500/20 pb-2">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-[9px] font-mono uppercase tracking-widest text-purple-300 font-bold">OFFICIAL PASS</span>
+                  </div>
+                  <span class="text-[8px] font-mono text-slate-500">2026/EDITION</span>
+                </div>
+
+                <div class="my-auto text-center py-2">
+                  <div class="w-24 h-24 rounded-full mx-auto overflow-hidden border-2 border-purple-400 shadow-lg shadow-purple-500/20 mb-3 relative group">
+                    <img src="jhonson-badge-suit.jpg" alt="ID Card Photo" class="w-full h-full object-cover">
+                  </div>
+                  <div class="font-heading font-bold text-sm text-white">Jhonson S. Manurung</div>
+                  <div class="text-xs text-purple-300 font-medium mt-0.5">S.Bisnis • UNIMED</div>
+                  <div class="text-[10px] text-slate-400 mt-1">Digital Marketing & Web</div>
+                </div>
+
+                <div class="border-t border-purple-500/20 pt-2 flex items-center justify-between text-[9px] text-slate-400 font-mono">
+                  <span>ID: JSM-2026</span>
+                  <span class="text-purple-400 font-semibold flex items-center gap-1 hover:text-purple-300">
+                    <i data-lucide="rotate-cw" class="w-3 h-3"></i> KLIK FLIP
+                  </span>
+                </div>
+              </div>
+
+              <!-- BACK SIDE: QR Code & Verification -->
+              <div class="flip-card-back bg-slate-900 text-white p-4 shadow-2xl border border-purple-500/40 flex flex-col justify-between text-center">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2 text-[9px] font-mono text-slate-400">
+                  <span>AUTHENTICITY</span>
+                  <span class="text-emerald-400 font-bold flex items-center gap-1">
+                    <i data-lucide="check-circle" class="w-3 h-3"></i> VERIFIED
+                  </span>
+                </div>
+
+                <div class="my-auto flex flex-col items-center py-2">
+                  <div class="p-2.5 bg-white rounded-xl shadow-md">
+                    <!-- Clean Vector QR Graphic -->
+                    <div class="w-20 h-20 bg-slate-950 flex flex-col justify-between p-1.5 rounded-lg">
+                      <div class="flex justify-between">
+                        <div class="w-5 h-5 bg-white border border-black p-0.5"><div class="w-full h-full bg-black"></div></div>
+                        <div class="w-5 h-5 bg-white border border-black p-0.5"><div class="w-full h-full bg-black"></div></div>
+                      </div>
+                      <div class="flex justify-center text-[7px] font-mono text-white tracking-widest font-bold">LINKEDIN</div>
+                      <div class="flex justify-between">
+                        <div class="w-5 h-5 bg-white border border-black p-0.5"><div class="w-full h-full bg-black"></div></div>
+                        <div class="w-5 h-5 bg-white p-1 flex items-center justify-center"><div class="w-2 h-2 bg-black rounded-full"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="text-xs font-semibold text-slate-200 mt-2.5">LinkedIn Profile</span>
+                  <span class="text-[9px] text-slate-400 font-mono mt-0.5">Scan / Tap to flip back</span>
+                </div>
+
+                <div class="border-t border-slate-800 pt-2 text-[9px] text-slate-500 font-mono">
+                  TAP KARTU UNTUK KEMBALI
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= DARK STUDIO SECTION: 3D TECH STACK & PROJECTS ================= -->
+  <div class="dark-section bg-[#0A0E17] text-slate-100 relative pt-24 pb-32">
+    
+    <!-- Dynamic Spotlight Overlay -->
+    <div class="spotlight-overlay" id="mouseSpotlight"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+      <!-- ================= 8 3D NEON TILES SECTION ================= -->
+      <section id="tech-stack" class="mb-32">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
+            Core Instruments
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+            Creative Tech Stack & Tools
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-4 leading-relaxed">
+            Perangkat lunak dan instrumen kerja yang saya gunakan secara terampil untuk merumuskan konsep, memproduksi materi visual, dan mempercepat alur kerja digital.
+          </p>
+        </div>
+
+        <!-- 8 Neon Tiles Grid (4x2 on desktop, 2x4 on mobile) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+          <!-- 1. FIGMA -->
+          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #F24E1E; --neon-glow: rgba(242, 78, 30, 0.35);">
+            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform">
+              <svg viewBox="0 0 38 57" class="w-9 h-9 fill-current" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
+                <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
+                <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
+                <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/>
+                <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/>
+              </svg>
+            </div>
+            <div class="font-heading font-bold text-sm tracking-wide text-white">FIGMA</div>
+            <div class="text-[11px] font-medium text-rose-400 mt-1">UI/UX & Wireframing</div>
+          </div>
+
+          <!-- 2. CORELDRAW -->
+          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #10B981; --neon-glow: rgba(16, 185, 129, 0.35);">
+            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-emerald-400">
+              <i data-lucide="pen-tool" class="w-8 h-8"></i>
+            </div>
+            <div class="font-heading font-bold text-sm tracking-wide text-white">CORELDRAW</div>
+            <div class="text-[11px] font-medium text-emerald-400 mt-1">Vector & Print Layout</div>
+          </div>
+
+          <!-- 3. CANVA PRO -->
+          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #06B6D4; --neon-glow: rgba(6, 182, 212, 0.35);">
+            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-cyan-400">
+              <i data-lucide="palette" class="w-8 h-8"></i>
+            </div>
+            <div class="font-heading font-bold text-sm tracking-wide text-white">CANVA PRO</div>
+            <div class="text-[11px] font-medium text-cyan-400 mt-1">Social Feed & Carousel</div>
+          </div>
+
+          <!-- 4. CAPCUT -->
+          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #38BDF8; --neon-glow: rgba(56, 189, 248, 0.35);">
+            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-sky-400">
+              <i data-lucide="film" class="w-8 h-8"></i>
+            </div>
+            <div class="font-heading font-bold text-sm tracking-wide text-white">CAPCUT</div>
+            <div class="text-[11px] font-medium text-sky-400 mt-1">Video Editing & Reels</div>
+          </div>
+
+          <!-- 5. WORDPRESS -->
+          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #2563EB; --neon-glow: rgba(37, 99, 235, 0.35);">
+            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-blue-400">
+              <i data-lucide="globe" class="w-8 h-8"></i>
+            </div>
+            <div class="font-heading font-bold text-sm tracking-wide text-white">WORDPRESS</div>
+            <div class="text-[11px] font-medium text-blue-400 mt-1">CMS & Web Architecture</div>
+          </div>
+
+          <!-- 6. GOOGLE WORKSPACE -->
+          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #F59E0B; --neon-glow: rgba(245, 158, 11, 0.35);">
+            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-amber-400">
+              <i data-lucide="file-spreadsheet" class="w-8 h-8"></i>
+            </div>
+            <div class="font-heading font-bold text-sm tracking-wide text-white">WORKSPACE</div>
+            <div class="text-[11px] font-medium text-amber-400 mt-1">Docs, Sheets & Slides</div>
+          </div>
+
+          <!-- 7. GOOGLE MAPS -->
+          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #EF4444; --neon-glow: rgba(239, 68, 68, 0.35);">
+            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-red-400">
+              <i data-lucide="map-pin" class="w-8 h-8"></i>
+            </div>
+            <div class="font-heading font-bold text-sm tracking-wide text-white">GOOGLE MAPS</div>
+            <div class="text-[11px] font-medium text-red-400 mt-1">Local Business & SEO</div>
+          </div>
+
+          <!-- 8. AI WORKFLOW & PRODUCTIVITY STACK -->
+          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #A855F7; --neon-glow: rgba(168, 85, 247, 0.4);">
+            <!-- Multi-Logo Container Box (Notion, Antigravity, ChatGPT/OpenAI, Claude/Gemini) -->
+            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-purple-500/30 p-2 mb-4 group-hover:scale-110 transition-transform shadow-inner flex flex-col justify-between">
+              <div class="flex items-center justify-around">
+                <!-- Notion Logo -->
+                <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current text-white hover:text-purple-300 transition-colors" title="Notion AI Workspace" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.047-.326L17.86 1.64c-.466-.373-1.166-.7-2.333-.606L2.965 2.06c-.373.047-.466.326-.326.606l1.82 1.542zm1.26 3.733v13.68c0 .84.42 1.12 1.354 1.073l13.635-.793c.933-.047 1.12-.56 1.12-1.354V6.96c0-.746-.373-1.073-1.12-1.026L7.073 6.773c-.887.047-1.354.42-1.354 1.168zm12.607.747c.094.42 0 .84-.42.887l-.98.187v9.427c-.466.28-1.026.466-1.586.466-.98 0-1.446-.373-2.193-1.307l-4.76-7.373v7.373l1.493.326c0 .42-.326.793-.793.84l-3.36.187c-.094-.373.094-.793.513-.887l1.073-.233V8.873l-1.354-.14c-.093-.373.14-.84.606-.887l3.78-.233 4.947 7.513V8.64l-1.26-.14c-.093-.42.187-.84.606-.887l3.687-.233z"/>
+                </svg>
+                <!-- Antigravity Logo Icon (Rocket / Warp) -->
+                <div class="w-5 h-5 flex items-center justify-center text-purple-400 hover:text-purple-200 transition-colors" title="Antigravity AI">
+                  <i data-lucide="orbit" class="w-4 h-4"></i>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-around border-t border-slate-800 pt-1">
+                <!-- OpenAI / ChatGPT Sparkle Icon -->
+                <div class="w-5 h-5 flex items-center justify-center text-emerald-400 hover:text-emerald-300 transition-colors" title="ChatGPT & Claude">
+                  <i data-lucide="bot" class="w-4 h-4"></i>
+                </div>
+                <!-- Sparkles / GenAI Core -->
+                <div class="w-5 h-5 flex items-center justify-center text-amber-400 hover:text-amber-300 transition-colors" title="AI Content Engine">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="font-heading font-bold text-sm tracking-wide text-white">AI WORKFLOW</div>
+            <div class="text-[11px] font-medium text-purple-400 mt-1">Notion • Antigravity • LLMs</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= FEATURED EXPERIENCE SHOWCASE ================= -->
+      <section id="experience" class="mb-32">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal-on-scroll">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">
+              Curated Experience
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              Pengalaman Kerja & Proyek
+            </h2>
+          </div>
+          <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0 text-left md:text-right">
+            Rekam jejak nyata dari magang industri kargo, pengabdian masyarakat desa, perancangan portal web dinas, hingga produksi kreatif naskah.
+          </p>
+        </div>
+
+        <!-- FEATURED FLAGSHIP CASE STUDY: INFINITY LOGISTICS (FULL WIDTH DUAL-COLUMN SHOWCASE) -->
+        <div class="mb-12 bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-8 lg:p-10 shadow-2xl hover:border-slate-700 transition-all duration-300">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Left: Interactive Dual-Tab Showcase (Depo Lapangan & Live Instagram Feed) -->
+            <div class="lg:col-span-5 flex flex-col gap-3">
+              <!-- Tab Switcher Header (3 Tabs: Depo Lapangan, Ruang Kerja Kantor, Feed Instagram) -->
+              <div class="grid grid-cols-3 gap-1 p-1 rounded-xl bg-slate-950 border border-slate-800 text-[10px] sm:text-xs">
+                <button 
+                  id="tabBtnDepot" 
+                  onclick="switchInfinityTab('depot')" 
+                  class="w-full py-1.5 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 bg-blue-600 text-white shadow transition-all text-[10px] sm:text-[11px] truncate"
+                >
+                  <i data-lucide="hard-hat" class="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0"></i>
+                  <span class="truncate">Depo K3</span>
+                </button>
+                <button 
+                  id="tabBtnOffice" 
+                  onclick="switchInfinityTab('office')" 
+                  class="w-full py-1.5 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 text-slate-400 hover:text-white transition-all text-[10px] sm:text-[11px] truncate"
+                >
+                  <i data-lucide="briefcase" class="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0"></i>
+                  <span class="truncate">Kantor</span>
+                </button>
+                <button 
+                  id="tabBtnInstagram" 
+                  onclick="switchInfinityTab('instagram')" 
+                  class="w-full py-1.5 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 text-slate-400 hover:text-white transition-all text-[10px] sm:text-[11px] truncate"
+                >
+                  <i data-lucide="instagram" class="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0"></i>
+                  <span class="truncate">Feed IG</span>
+                </button>
+              </div>
+
+              <!-- Media Viewport Container -->
+              <div class="relative group overflow-hidden rounded-2xl border border-slate-700/80 shadow-2xl bg-slate-950 min-h-[460px] flex items-center justify-center cursor-pointer" onclick="openLightbox(currentInfinitySrc, currentInfinityCaption)">
+                
+                <!-- VIEW 1: On-Site Depot Portrait -->
+                <div id="infinityViewDepot" class="w-full h-full relative transition-opacity duration-300">
+                  <img 
+                    id="imgDepot"
+                    src="assets/infinity/infinity-yard-portrait.jpg" 
+                    alt="Jhonson Samuel Manurung di Depo Kontainer Infinity Logistics" 
+                    class="w-full h-auto max-h-[480px] object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+                  
+                  <!-- Click to Zoom Hint Overlay -->
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                      <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-blue-400"></i>
+                      <span>Klik untuk Pop-Up Full Layar</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-emerald-400 border border-emerald-500/40 font-semibold shadow">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                      <span>On-site Logistics Depot</span>
+                    </span>
+                    <span class="text-[11px] font-mono text-slate-300 bg-black/60 px-2 py-0.5 rounded">
+                      Belawan • Medan
+                    </span>
+                  </div>
+                </div>
+
+                <!-- VIEW 2: Office & Mentor Consultation Photo -->
+                <div id="infinityViewOffice" class="w-full h-full relative hidden transition-opacity duration-300">
+                  <img 
+                    id="imgOffice"
+                    src="assets/infinity/poto.jpeg" 
+                    alt="Konsultasi & Suasana Kerja Kantor Infinity Logistics" 
+                    class="w-full h-auto max-h-[480px] object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+                  
+                  <!-- Click to Zoom Hint Overlay -->
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                      <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-blue-400"></i>
+                      <span>Klik untuk Pop-Up Full Layar</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-blue-400 border border-blue-500/40 font-semibold shadow">
+                      <i data-lucide="users" class="w-3.5 h-3.5"></i>
+                      <span>Diskusi Strategi & Kantor</span>
+                    </span>
+                    <span class="text-[11px] font-mono text-slate-300 bg-black/60 px-2 py-0.5 rounded">
+                      Graha Harmoni • Medan
+                    </span>
+                  </div>
+                </div>
+
+                <!-- VIEW 3: Real Instagram Profile & Feed Showcase -->
+                <div id="infinityViewInstagram" class="w-full h-full relative hidden transition-opacity duration-300">
+                  <img 
+                    id="imgInstagram"
+                    src="assets/infinity/ig-infinity-feed.jpeg" 
+                    alt="Instagram Official PT Infinitindo Logistik Medan" 
+                    class="w-full h-auto max-h-[480px] object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/10 to-transparent"></div>
+                  
+                  <!-- Click to Zoom Hint Overlay -->
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                      <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-blue-400"></i>
+                      <span>Klik untuk Pop-Up Full Layar</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-blue-400 border border-blue-500/40 font-semibold shadow">
+                      <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+                      <span>@infinitylogistics.medan</span>
+                    </span>
+                    <span class="text-[11px] font-mono text-emerald-400 bg-black/60 px-2 py-0.5 rounded flex items-center gap-1">
+                      <i data-lucide="users" class="w-3 h-3"></i> 1.1k+ Followers
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Interactive Helper Hint -->
+              <div class="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
+                <i data-lucide="touchpad" class="w-3.5 h-3.5 text-blue-400"></i>
+                <span>Ganti 3 tab di atas untuk melihat foto lapangan, kantor, atau feed resmi.</span>
+              </div>
+            </div>
+
+            <!-- Right: Content Narrative & Project Highlights -->
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+              <div>
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                  <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-bold">MAGANG INDUSTRI</span>
+                  <span>DES 2024 – JUL 2025</span>
+                </div>
+                
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold text-white">
+                  Infinity Logistics Medan
+                </h3>
+                <p class="text-sm font-semibold text-blue-400 mt-1">
+                  Social Media Marketing Intern
+                </p>
+
+                <p class="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed text-justify">
+                  Memperkuat <strong>brand awareness</strong> perusahaan kargo & logistik melalui strategi konten edukatif di Instagram resmi. Mengemas alur operasional lapangan menjadi materi visual carousel dan Reels yang mudah dipahami, guna mengedukasi calon mitra bisnis mengenai keandalan layanan rute pengiriman dan mendorong keputusan kerja sama pengiriman kargo.
+                </p>
+
+                <!-- Project Bullets -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5">
+                  <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+                    <div class="font-heading font-bold text-white text-xs flex items-center gap-2">
+                      <i data-lucide="layers" class="w-4 h-4 text-blue-400"></i>
+                      <span>25+ Konten Terpublikasi</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-1">Desain feed carousel informasi rute & armada kargo.</p>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+                    <div class="font-heading font-bold text-white text-xs flex items-center gap-2">
+                      <i data-lucide="video" class="w-4 h-4 text-purple-400"></i>
+                      <span>Ideasi Konsep Reels</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-1">Edukasi istilah ekspor-impor & proses pengiriman.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tools & Bottom Tags -->
+              <div class="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full bg-slate-800 text-xs font-medium text-slate-300">Instagram Feed</span>
+                  <span class="px-3 py-1 rounded-full bg-slate-800 text-xs font-medium text-slate-300">Copywriting</span>
+                  <span class="px-3 py-1 rounded-full bg-slate-800 text-xs font-medium text-slate-300">Canva</span>
+                  <span class="px-3 py-1 rounded-full bg-slate-800 text-xs font-medium text-slate-300">Meta Business Suite</span>
+                </div>
+                <span class="text-xs font-semibold text-emerald-400 flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Terverifikasi Lapangan
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- PROJECT 2: DISKOMINFO WEBSITES -->
+          <div class="bg-slate-900/80 rounded-3xl border border-slate-800 p-6 sm:p-7 flex flex-col justify-between hover:border-slate-700 transition-all duration-300 group">
+            <div>
+              <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">PRAKTIK KERJA LAPANGAN</span>
+                <span>SEP 2021 – NOV 2021</span>
+              </div>
+
+              <!-- Media Tabs for Diskominfo (Aktivitas PKL, Portal Web, Tim Prakerin) -->
+              <div class="grid grid-cols-3 gap-1 p-1 rounded-xl bg-slate-950 border border-slate-800 text-[10px] sm:text-xs mb-2.5">
+                <button 
+                  id="tabBtnDiskominfoDev" 
+                  onclick="switchDiskominfoTab('dev')" 
+                  class="w-full py-1 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 bg-emerald-600 text-white shadow transition-all text-[10px] sm:text-[11px] truncate"
+                >
+                  <i data-lucide="laptop" class="w-3 h-3 flex-shrink-0"></i>
+                  <span class="truncate">Aktivitas</span>
+                </button>
+                <button 
+                  id="tabBtnDiskominfoWeb" 
+                  onclick="switchDiskominfoTab('web')" 
+                  class="w-full py-1 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 text-slate-400 hover:text-white transition-all text-[10px] sm:text-[11px] truncate"
+                >
+                  <i data-lucide="globe" class="w-3 h-3 flex-shrink-0"></i>
+                  <span class="truncate">Portal Web</span>
+                </button>
+                <button 
+                  id="tabBtnDiskominfoTeam" 
+                  onclick="switchDiskominfoTab('team')" 
+                  class="w-full py-1 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 text-slate-400 hover:text-white transition-all text-[10px] sm:text-[11px] truncate"
+                >
+                  <i data-lucide="users" class="w-3 h-3 flex-shrink-0"></i>
+                  <span class="truncate">Tim PKL</span>
+                </button>
+              </div>
+
+              <!-- Media Frame Container -->
+              <div class="relative group/prakerin overflow-hidden rounded-xl border border-slate-700/80 shadow-md bg-slate-950 mb-4 cursor-pointer aspect-[16/10]" onclick="openLightbox(currentDiskominfoSrc, currentDiskominfoCaption)">
+                <!-- VIEW 1 (Default): Aktivitas Laptop Prakerin -->
+                <div id="diskominfoViewDev" class="w-full h-full relative transition-opacity duration-300">
+                  <img 
+                    src="assets/prakerin/prakerin-laptop.jpg" 
+                    alt="Aktivitas Jhonson Saat Praktik Kerja Lapangan (PKL) Diskominfo Pematangsiantar" 
+                    class="w-full h-full object-cover object-center group-hover/prakerin:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                  
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/prakerin:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                      <i data-lucide="maximize-2" class="w-3 h-3 text-emerald-400"></i>
+                      <span>Klik Lihat Foto Aktivitas</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px]">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-900/90 backdrop-blur-md text-emerald-400 border border-emerald-500/30 font-semibold flex items-center gap-1">
+                      <i data-lucide="code" class="w-3 h-3"></i> Kerja Praktik Instansi
+                    </span>
+                    <span class="text-slate-300 bg-black/60 px-1.5 py-0.5 rounded font-mono">
+                      Pematangsiantar
+                    </span>
+                  </div>
+                </div>
+
+                <!-- VIEW 2: Portal dispar.pematangsiantar.go.id -->
+                <div id="diskominfoViewWeb" class="w-full h-full relative hidden transition-opacity duration-300">
+                  <img 
+                    src="assets/prakerin/J1.jpeg" 
+                    alt="Website Resmi Dinas Pariwisata Kota Pematangsiantar" 
+                    class="w-full h-full object-cover object-top group-hover/prakerin:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                  
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/prakerin:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                      <i data-lucide="maximize-2" class="w-3 h-3 text-emerald-400"></i>
+                      <span>Klik Lihat Portal Utuh</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px]">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-900/90 backdrop-blur-md text-emerald-400 border border-emerald-500/30 font-semibold">
+                      dispar.pematangsiantar.go.id
+                    </span>
+                    <span class="text-slate-300 bg-black/60 px-1.5 py-0.5 rounded font-mono">
+                      WordPress Admin
+                    </span>
+                  </div>
+                </div>
+
+                <!-- VIEW 3: Team Prakerin Commemoration Photo -->
+                <div id="diskominfoViewTeam" class="w-full h-full relative hidden transition-opacity duration-300">
+                  <img 
+                    src="assets/prakerin/foto.jpeg" 
+                    alt="Foto Tim Prakerin Diskominfo bersama Jurnal Laporan" 
+                    class="w-full h-full object-cover object-center group-hover/prakerin:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                  
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/prakerin:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                      <i data-lucide="maximize-2" class="w-3 h-3 text-emerald-400"></i>
+                      <span>Klik Lihat Tim Prakerin</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px]">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-900/90 backdrop-blur-md text-emerald-400 border border-emerald-500/30 font-semibold">
+                      Dokumentasi Jurnal PKL
+                    </span>
+                    <span class="text-slate-300 bg-black/60 px-1.5 py-0.5 rounded font-mono">
+                      Pematangsiantar
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="font-heading text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                Website Instansi Diskominfo
+              </h3>
+              <p class="text-xs font-semibold text-emerald-400 mt-0.5">WordPress Development & On-Page SEO (PKL)</p>
+              <p class="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed text-justify">
+                Membangun portal website resmi instansi pemerintah (<strong>Dinas Pariwisata</strong> & <strong>Dinas Sosial</strong>) untuk memfasilitasi adopsi layanan informasi publik berbasis digital. Mengoptimalkan struktur <strong>On-Page SEO</strong> dan tata kelola navigasi yang ramah pengguna agar mempermudah masyarakat mengakses program serta informasi dinas secara cepat di mesin pencari.
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] font-medium text-slate-300">On-Page SEO</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] font-medium text-slate-300">WordPress CMS</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] font-medium text-slate-300">Gov Portal</span>
+              </div>
+              <span class="text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:text-white transition-colors cursor-pointer" onclick="openLightbox(currentDiskominfoSrc, currentDiskominfoCaption)">
+                Lihat Screenshot <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </span>
+            </div>
+          </div>
+
+          <!-- PROJECT 3: DIGITALISASI UMKM TOMOK -->
+          <div class="bg-slate-900/80 rounded-3xl border border-slate-800 p-6 sm:p-7 flex flex-col justify-between hover:border-slate-700 transition-all duration-300 group">
+            <div>
+              <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">PENGABDIAN MASYARAKAT</span>
+                <span>JUL 2025 – AGU 2025</span>
+              </div>
+
+              <!-- Media Tabs for KKN Tomok (Profil IG, Feed Gorga, Lapangan Danau Toba) -->
+              <div class="grid grid-cols-3 gap-1 p-1 rounded-xl bg-slate-950 border border-slate-800 text-[10px] sm:text-xs mb-2.5">
+                <button 
+                  id="tabBtnKknProfile" 
+                  onclick="switchKknTab('profile')" 
+                  class="w-full py-1 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 bg-amber-600 text-white shadow transition-all text-[10px] sm:text-[11px] truncate"
+                >
+                  <i data-lucide="instagram" class="w-3 h-3 flex-shrink-0"></i>
+                  <span class="truncate">Profil IG</span>
+                </button>
+                <button 
+                  id="tabBtnKknFeed" 
+                  onclick="switchKknTab('feed')" 
+                  class="w-full py-1 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 text-slate-400 hover:text-white transition-all text-[10px] sm:text-[11px] truncate"
+                >
+                  <i data-lucide="layout-grid" class="w-3 h-3 flex-shrink-0"></i>
+                  <span class="truncate">Feed Gorga</span>
+                </button>
+                <button 
+                  id="tabBtnKknField" 
+                  onclick="switchKknTab('field')" 
+                  class="w-full py-1 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 text-slate-400 hover:text-white transition-all text-[10px] sm:text-[11px] truncate"
+                >
+                  <i data-lucide="compass" class="w-3 h-3 flex-shrink-0"></i>
+                  <span class="truncate">Danau Toba</span>
+                </button>
+              </div>
+
+              <!-- Media Frame Container -->
+              <div class="relative group/kkn overflow-hidden rounded-xl border border-slate-700/80 shadow-md bg-slate-950 mb-4 cursor-pointer aspect-[16/10]" onclick="openLightbox(currentKknSrc, currentKknCaption)">
+                <!-- VIEW 1: Official Profile Instagram -->
+                <div id="kknViewProfile" class="w-full h-full relative transition-opacity duration-300">
+                  <img 
+                    src="assets/kkn/poto ig.jpeg" 
+                    alt="Dokumentasi Instagram KKN Desa Tomok 2025" 
+                    class="w-full h-full object-cover object-top group-hover/kkn:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                  
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/kkn:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                      <i data-lucide="maximize-2" class="w-3 h-3 text-amber-400"></i>
+                      <span>Klik Lihat Profil & Feed</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px]">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-900/90 backdrop-blur-md text-amber-400 border border-amber-500/30 font-semibold flex items-center gap-1">
+                      <i data-lucide="instagram" class="w-3 h-3"></i> @kkndesatomok2025
+                    </span>
+                    <span class="text-slate-300 bg-black/60 px-1.5 py-0.5 rounded font-mono">
+                      66 Posts
+                    </span>
+                  </div>
+                </div>
+
+                <!-- VIEW 2: Feed Grid Batak Gorga -->
+                <div id="kknViewFeed" class="w-full h-full relative hidden transition-opacity duration-300">
+                  <img 
+                    src="assets/kkn/ig2.jpeg" 
+                    alt="Desain Feed Grid Batak Gorga @kkndesatomok2025" 
+                    class="w-full h-full object-cover object-top group-hover/kkn:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                  
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/kkn:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                      <i data-lucide="maximize-2" class="w-3 h-3 text-amber-400"></i>
+                      <span>Klik Lihat Feed Gorga</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px]">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-900/90 backdrop-blur-md text-amber-400 border border-amber-500/30 font-semibold">
+                      Desain Grid Gorga Batak
+                    </span>
+                    <span class="text-slate-300 bg-black/60 px-1.5 py-0.5 rounded font-mono">
+                      Meet Our Team
+                    </span>
+                  </div>
+                </div>
+
+                <!-- VIEW 3: Field Lake Toba Transit Photo -->
+                <div id="kknViewField" class="w-full h-full relative hidden transition-opacity duration-300">
+                  <img 
+                    src="assets/kkn/kpl.jpeg" 
+                    alt="Jhonson di Danau Toba KKN Desa Tomok" 
+                    class="w-full h-full object-cover object-center group-hover/kkn:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                  
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/kkn:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                      <i data-lucide="maximize-2" class="w-3 h-3 text-amber-400"></i>
+                      <span>Klik Lihat Dokumentasi Lapangan</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px]">
+                    <span class="px-2 py-0.5 rounded-full bg-slate-900/90 backdrop-blur-md text-amber-400 border border-amber-500/30 font-semibold flex items-center gap-1">
+                      <i data-lucide="map-pin" class="w-3 h-3"></i> Danau Toba • Tomok
+                    </span>
+                    <span class="text-slate-300 bg-black/60 px-1.5 py-0.5 rounded font-mono">
+                      UNIMED Field Team
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="font-heading text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
+                Digitalisasi UMKM Desa Tomok
+              </h3>
+              <p class="text-xs font-semibold text-amber-400 mt-0.5">Edukasi Digital UMKM, Local SEO & Social Media</p>
+              <p class="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed text-justify">
+                Terjun langsung ke lapangan mengedukasi dan mendampingi pelaku UMKM lokal (toko suvenir, kuliner, grosir, rental motor) mengenai pentingnya promosi online di media sosial serta adopsi teknologi digital. Mendaftarkan puluhan titik usaha ke <strong>Google Maps (Local SEO)</strong> guna memperluas jangkauan pasar, sekaligus menyusun konten visual dokumentasi yang relevan untuk membangun kesadaran digital di ekosistem desa.
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] font-medium text-slate-300">Edukasi UMKM</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] font-medium text-slate-300">Local SEO</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] font-medium text-slate-300">Google Maps</span>
+              </div>
+              <span class="text-xs font-semibold text-amber-400 flex items-center gap-1 group-hover:text-white transition-colors cursor-pointer" onclick="openLightbox(currentKknSrc, currentKknCaption)">
+                Lihat Foto <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </span>
+            </div>
+          </div>
+
+          <!-- PROJECT 4: FILM PENDEK NO WAY BACK -->
+          <div class="bg-slate-900/80 rounded-3xl border border-slate-800 p-6 sm:p-7 flex flex-col justify-between hover:border-slate-700 transition-all duration-300 group">
+            <div>
+              <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 font-bold">KARYA KREATIF & NARATIF</span>
+                <span>MEI 2025</span>
+              </div>
+
+              <!-- Media Frame: Embedded In-Browser Video Player -->
+              <div class="relative overflow-hidden rounded-xl border border-slate-700/80 shadow-md bg-black mb-4 aspect-[16/10]">
+                <video 
+                  id="filmTrailerVideo" 
+                  controls 
+                  poster="assets/film/nowayback-poster.jpg" 
+                  preload="metadata"
+                  class="w-full h-full object-cover"
+                >
+                  <source src="assets/film/trailer-nowayback.mp4" type="video/mp4">
+                  Browser Anda tidak mendukung pemutar video HTML5.
+                </video>
+                
+                <div class="absolute top-2.5 left-2.5 pointer-events-none">
+                  <span class="px-2 py-0.5 rounded-full bg-black/80 backdrop-blur-md text-purple-300 border border-purple-500/30 text-[10px] font-bold flex items-center gap-1">
+                    <i data-lucide="clapperboard" class="w-3 h-3 text-purple-400"></i> Official Trailer
+                  </span>
+                </div>
+              </div>
+
+              <h3 class="font-heading text-xl font-bold text-white group-hover:text-purple-400 transition-colors">
+                Film Pendek: "NO WAY BACK"
+              </h3>
+              <p class="text-xs font-semibold text-purple-400 mt-0.5">Penulis Skenario & Integrasi Brand Placement</p>
+              <p class="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed text-justify">
+                Merancang premis cerita, naskah skenario, serta eksekusi kampanye <strong>brand awareness</strong> kreatif melalui penempatan produk (<strong>Brand Placement</strong>). Mengintegrasikan produk sponsor ke dalam adegan naratif secara organik guna membangun retensi ingatan penonton (<em>brand recall</em>) tanpa mengurangi kualitas pesan cerita.
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] font-medium text-slate-300">Brand Placement</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] font-medium text-slate-300">Brand Awareness</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] font-medium text-slate-300">Storytelling</span>
+              </div>
+              <span class="text-xs font-semibold text-purple-400 flex items-center gap-1">
+                <i data-lucide="play-circle" class="w-3.5 h-3.5"></i> Putar di Sini
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= CERTIFICATES & CREDENTIALS SHOWCASE ================= -->
+      <section id="certificates" class="mb-32">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal-on-scroll">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
+              Verified Credentials
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              Sertifikasi Profesional
+            </h2>
+          </div>
+          <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0 text-left md:text-right">
+            Sertifikat keahlian industri berstandar nasional dan global dari Kementerian Kominfo RI, Google, HubSpot & Coursera yang dapat diverifikasi keasliannya.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- CERTIFICATE 1: HUBSPOT INBOUND SALES -->
+          <div class="bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 group flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden aspect-[4/2.9] bg-slate-950 border-b border-slate-800 cursor-pointer" onclick="openLightbox('assets/certificates/cert-inbound-sales-hubspot.jpg', 'Inbound Sales Certified • HubSpot Academy Certification')">
+                <img 
+                  src="assets/certificates/cert-inbound-sales-hubspot.jpg" 
+                  alt="Inbound Sales Certified - HubSpot Academy" 
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                
+                <!-- Zoom Hint Overlay -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                    <i data-lucide="maximize-2" class="w-3 h-3 text-orange-400"></i>
+                    <span>Klik Lihat Sertifikat</span>
+                  </span>
+                </div>
+
+                <div class="absolute top-3 left-3">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-orange-400 border border-orange-500/30 text-[10px] font-bold shadow">
+                    <i data-lucide="award" class="w-3.5 h-3.5"></i> HubSpot Certified
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-5">
+                <div class="flex items-center justify-between text-[10px] font-mono text-slate-400 mb-2">
+                  <span>HUBSPOT ACADEMY</span>
+                  <span>SEP 2026</span>
+                </div>
+                <h3 class="font-heading text-base font-bold text-white group-hover:text-orange-400 transition-colors leading-snug">
+                  Inbound Sales Certified
+                </h3>
+                <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
+                  Metodologi Inbound Sales: identifikasi prospek berkualitas, membangun koneksi, eksplorasi kebutuhan pembeli, dan advis solusi terarah.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 pt-0 border-t border-slate-800/80 mt-3 flex items-center justify-between">
+              <span class="text-[9px] font-mono text-slate-500">ID: b88f7c33ab...</span>
+              <a 
+                href="assets/certificates/cert-inbound-sales-hubspot.png" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center gap-1 text-[11px] font-semibold text-orange-400 hover:text-orange-300 transition-colors"
+              >
+                <span>Lihat Sertifikat</span>
+                <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- CERTIFICATE 2: GOOGLE DIGITAL MARKETING & E-COMMERCE -->
+          <div class="bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 group flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden aspect-[4/2.9] bg-slate-950 border-b border-slate-800 cursor-pointer" onclick="openLightbox('assets/certificates/cert-digital-marketing-google.jpg', 'Foundations of Digital Marketing and E-commerce • Google Authorized Certification')">
+                <img 
+                  src="assets/certificates/cert-digital-marketing-google.jpg" 
+                  alt="Foundations of Digital Marketing and E-commerce - Google" 
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                
+                <!-- Zoom Hint Overlay -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                    <i data-lucide="maximize-2" class="w-3 h-3 text-blue-400"></i>
+                    <span>Klik Lihat Sertifikat</span>
+                  </span>
+                </div>
+
+                <div class="absolute top-3 left-3">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-blue-400 border border-blue-500/30 text-[10px] font-bold shadow">
+                    <i data-lucide="award" class="w-3.5 h-3.5"></i> Google Authorized
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-5">
+                <div class="flex items-center justify-between text-[10px] font-mono text-slate-400 mb-2">
+                  <span>COURSERA • GOOGLE</span>
+                  <span>OKT 2026</span>
+                </div>
+                <h3 class="font-heading text-base font-bold text-white group-hover:text-blue-400 transition-colors leading-snug">
+                  Digital Marketing & E-commerce
+                </h3>
+                <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
+                  Fondasi komprehensif: customer journey, funnel e-commerce, strategi kanal digital, dan analitik kampanye.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 pt-0 border-t border-slate-800/80 mt-3 flex items-center justify-between">
+              <span class="text-[9px] font-mono text-slate-500">ID: ZGV6HXS7VB6S</span>
+              <a 
+                href="https://coursera.org/verify/ZGV6HXS7VB6S" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                <span>Verifikasi</span>
+                <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- CERTIFICATE 3: GOOGLE PROJECT MANAGEMENT -->
+          <div class="bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 group flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden aspect-[4/2.9] bg-slate-950 border-b border-slate-800 cursor-pointer" onclick="openLightbox('assets/certificates/cert-project-management-google.jpg', 'Foundations of Project Management • Google Authorized Certification')">
+                <img 
+                  src="assets/certificates/cert-project-management-google.jpg" 
+                  alt="Foundations of Project Management - Google" 
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                
+                <!-- Zoom Hint Overlay -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                    <i data-lucide="maximize-2" class="w-3 h-3 text-emerald-400"></i>
+                    <span>Klik Lihat Sertifikat</span>
+                  </span>
+                </div>
+
+                <div class="absolute top-3 left-3">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-emerald-400 border border-emerald-500/30 text-[10px] font-bold shadow">
+                    <i data-lucide="award" class="w-3.5 h-3.5"></i> Google Authorized
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-5">
+                <div class="flex items-center justify-between text-[10px] font-mono text-slate-400 mb-2">
+                  <span>COURSERA • GOOGLE</span>
+                  <span>OKT 2026</span>
+                </div>
+                <h3 class="font-heading text-base font-bold text-white group-hover:text-emerald-400 transition-colors leading-snug">
+                  Foundations of Project Management
+                </h3>
+                <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
+                  Metodologi Agile & Waterfall, alokasi sumber daya tim, manajemen risiko, dan eksekusi milestone kerja terstruktur.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 pt-0 border-t border-slate-800/80 mt-3 flex items-center justify-between">
+              <span class="text-[9px] font-mono text-slate-500">ID: FPTWD16S1WQF</span>
+              <a 
+                href="https://coursera.org/verify/FPTWD16S1WQF" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+              >
+                <span>Verifikasi</span>
+                <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- CERTIFICATE 4: OPTIMIZE AI CONTENT PERFORMANCE -->
+          <div class="bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 group flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden aspect-[4/2.9] bg-slate-950 border-b border-slate-800 cursor-pointer" onclick="openLightbox('assets/certificates/cert-ai-content-coursera.jpg', 'Boost Engagement: Optimize AI Content Performance • Coursera Project Network')">
+                <img 
+                  src="assets/certificates/cert-ai-content-coursera.jpg" 
+                  alt="Boost Engagement: Optimize AI Content Performance" 
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                
+                <!-- Zoom Hint Overlay -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                    <i data-lucide="maximize-2" class="w-3 h-3 text-purple-400"></i>
+                    <span>Klik Lihat Sertifikat</span>
+                  </span>
+                </div>
+
+                <div class="absolute top-3 left-3">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-purple-400 border border-purple-500/30 text-[10px] font-bold shadow">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Industry Certified
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-5">
+                <div class="flex items-center justify-between text-[10px] font-mono text-slate-400 mb-2">
+                  <span>COURSERA PROJECT NETWORK</span>
+                  <span>OKT 2026</span>
+                </div>
+                <h3 class="font-heading text-base font-bold text-white group-hover:text-purple-400 transition-colors leading-snug">
+                  Optimize AI Content Performance
+                </h3>
+                <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
+                  Pemanfaatan AI untuk optimalisasi performa konten: prompt engineering terarah, analisis retensi, dan engagement digital.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 pt-0 border-t border-slate-800/80 mt-3 flex items-center justify-between">
+              <span class="text-[9px] font-mono text-slate-500">ID: AKU1VJ4P57K6</span>
+              <a 
+                href="https://coursera.org/verify/AKU1VJ4P57K6" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center gap-1 text-[11px] font-semibold text-purple-400 hover:text-purple-300 transition-colors"
+              >
+                <span>Verifikasi</span>
+                <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- CERTIFICATE 5: LITERASI DIGITAL NASIONAL - KOMINFO RI -->
+          <div class="bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300 group flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden aspect-[4/2.9] bg-slate-950 border-b border-slate-800 cursor-pointer" onclick="openLightbox('assets/certificates/cert-literasi-digital-kominfo.jpg', 'Sertifikat Literasi Digital Nasional: Indonesia Makin Cakap Digital • Kementerian Komunikasi dan Informatika RI & Siberkreasi')">
+                <img 
+                  src="assets/certificates/cert-literasi-digital-kominfo.jpg" 
+                  alt="Sertifikat Literasi Digital Nasional Kominfo RI" 
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                
+                <!-- Zoom Hint Overlay -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-[11px] font-semibold shadow-2xl">
+                    <i data-lucide="maximize-2" class="w-3 h-3 text-cyan-400"></i>
+                    <span>Klik Lihat Sertifikat</span>
+                  </span>
+                </div>
+
+                <div class="absolute top-3 left-3">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-cyan-400 border border-cyan-500/30 text-[10px] font-bold shadow">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Kominfo Certified
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-5">
+                <div class="flex items-center justify-between text-[10px] font-mono text-slate-400 mb-2">
+                  <span>KOMINFO RI • SIBERKREASI</span>
+                  <span>2022</span>
+                </div>
+                <h3 class="font-heading text-base font-bold text-white group-hover:text-cyan-400 transition-colors leading-snug">
+                  Literasi Digital Nasional
+                </h3>
+                <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
+                  Program nasional <em>Indonesia Makin Cakap Digital</em>: penguasaan 4 pilar kecakapan digital (Digital Skills, Digital Ethics, Digital Safety, dan Digital Culture) di 34 provinsi.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 pt-0 border-t border-slate-800/80 mt-3 flex items-center justify-between">
+              <span class="text-[9px] font-mono text-slate-500">QR Code TTE Terverifikasi</span>
+              <span 
+                onclick="openLightbox('assets/certificates/cert-literasi-digital-kominfo.jpg', 'Sertifikat Literasi Digital Nasional: Indonesia Makin Cakap Digital • Kemkominfo RI & Siberkreasi')" 
+                class="inline-flex items-center gap-1 text-[11px] font-semibold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer"
+              >
+                <span>Lihat Sertifikat</span>
+                <i data-lucide="maximize-2" class="w-3 h-3"></i>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= KARYA TULIS SKRIPSI & HAK CIPTA (HAKI) ================= -->
+      <section id="skripsi" class="mb-32">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal-on-scroll">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-3">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+              <span>Legal IP & Academic Research</span>
+            </div>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              Karya Tulis Skripsi & Hak Cipta (HAKI)
+            </h2>
+          </div>
+          <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0 text-left md:text-right">
+            Riset kuantitatif perilaku konsumen digital dan hak cipta resmi yang terdaftar pada Kementerian Hukum dan HAM Republik Indonesia.
+          </p>
+        </div>
+
+        <!-- Featured Card: Dual Column Layout (Mockup/Visual Left + Insight & Legal Detail Right) -->
+        <div class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-8 lg:p-10 shadow-2xl hover:border-indigo-500/40 transition-all duration-300">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Left: Dual Tab Visual (Sertifikat HAKI vs Cover Skripsi) -->
+            <div class="lg:col-span-5 flex flex-col gap-3">
+              <div class="flex items-center justify-between p-1 rounded-xl bg-slate-950 border border-slate-800 text-xs">
+                <button 
+                  id="tabBtnHaki" 
+                  onclick="switchHakiTab('haki')" 
+                  class="flex-1 py-1.5 px-2 rounded-lg font-semibold flex items-center justify-center gap-1.5 bg-indigo-600 text-white shadow transition-all text-[11px]"
+                >
+                  <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                  <span>Sertifikat HAKI</span>
+                </button>
+                <button 
+                  id="tabBtnSkripsi" 
+                  onclick="switchHakiTab('skripsi')" 
+                  class="flex-1 py-1.5 px-2 rounded-lg font-semibold flex items-center justify-center gap-1.5 text-slate-400 hover:text-white transition-all text-[11px]"
+                >
+                  <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                  <span>Dokumen Skripsi</span>
+                </button>
+              </div>
+
+              <!-- Media Viewport -->
+              <div class="relative group overflow-hidden rounded-2xl border border-slate-700/80 shadow-2xl bg-slate-950 min-h-[440px] flex items-center justify-center cursor-pointer" onclick="openLightbox(currentHakiSrc, currentHakiCaption)">
+                
+                <!-- VIEW 1: Sertifikat HAKI -->
+                <div id="hakiViewCert" class="w-full h-full relative transition-opacity duration-300">
+                  <img 
+                    id="imgHaki"
+                    src="assets/haki/haki-certificate.jpg" 
+                    alt="Surat Pencatatan Hak Cipta Kemenkumham RI - Jhonson Samuel Manurung" 
+                    class="w-full h-auto max-h-[460px] object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                  
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl">
+                      <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-indigo-400"></i>
+                      <span>Klik untuk Pop-Up Full Layar</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-indigo-400 border border-indigo-500/40 font-semibold shadow">
+                      <i data-lucide="shield-check" class="w-3 h-3 text-indigo-400"></i>
+                      <span>Kemenkumham RI</span>
+                    </span>
+                    <span class="text-[11px] font-mono text-slate-300 bg-black/60 px-2 py-0.5 rounded">
+                      No. 001426864
+                    </span>
+                  </div>
+                </div>
+
+                <!-- VIEW 2: Cover Skripsi -->
+                <div id="hakiViewDoc" class="w-full h-full relative hidden transition-opacity duration-300">
+                  <img 
+                    id="imgSkripsi"
+                    src="assets/haki/skripsi-cover.jpg" 
+                    alt="Cover Skripsi S1 Bisnis Digital UNIMED - Jhonson Samuel Manurung" 
+                    class="w-full h-auto max-h-[460px] object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                  
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl">
+                      <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-indigo-400"></i>
+                      <span>Klik untuk Pop-Up Full Layar</span>
+                    </span>
+                  </div>
+
+                  <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 backdrop-blur-md text-emerald-400 border border-emerald-500/40 font-semibold shadow">
+                      <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
+                      <span>S1 Bisnis Digital UNIMED</span>
+                    </span>
+                    <span class="text-[11px] font-mono text-slate-300 bg-black/60 px-2 py-0.5 rounded">
+                      Tahun 2026
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Interactive Helper Hint -->
+              <div class="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
+                <i data-lucide="touchpad" class="w-3.5 h-3.5 text-indigo-400"></i>
+                <span>Ganti tab di atas untuk melihat Sertifikat Resmi HAKI atau Dokumen Skripsi.</span>
+              </div>
+            </div>
+
+            <!-- Right: Content Narrative & Research Highlights -->
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+              <div>
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                  <span class="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-bold">HAK CIPTA RESMI</span>
+                  <span>TERCATAT 19 AGU 2026</span>
+                </div>
+                
+                <h3 class="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-snug">
+                  Pengaruh E-Service Quality terhadap Loyalitas Pelanggan dengan Customer Satisfaction sebagai Variabel Mediasi
+                </h3>
+                <p class="text-sm font-semibold text-indigo-400 mt-1">
+                  Studi pada Pengguna Disney+ Hotstar di Kota Medan • S1 Bisnis Digital UNIMED
+                </p>
+
+                <p class="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed text-justify">
+                  Riset tugas akhir yang meneliti dinamika retensi pengguna pada produk layanan digital berbasis langganan (<em>subscription streaming</em>). Mengkaji secara kuantitatif bagaimana kualitas layanan elektronik (<strong>E-Service Quality</strong>) mempengaruhi kepuasan pelanggan (<strong>Customer Satisfaction</strong>) dan loyalitas retensi pengguna (<strong>Customer Loyalty</strong>).
+                </p>
+
+                <!-- Research Key Findings & Methodology Bullets -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
+                  <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+                    <div class="font-heading font-bold text-white text-xs flex items-center gap-2">
+                      <i data-lucide="bar-chart-2" class="w-4 h-4 text-indigo-400"></i>
+                      <span>Metode PLS-SEM</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-1">Analisis kuantitatif struktural dengan software <strong>SmartPLS</strong>.</p>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+                    <div class="font-heading font-bold text-white text-xs flex items-center gap-2">
+                      <i data-lucide="users" class="w-4 h-4 text-emerald-400"></i>
+                      <span>99 Responden</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-1">Sampling purposif pengguna aktif Disney+ Hotstar di Kota Medan.</p>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+                    <div class="font-heading font-bold text-white text-xs flex items-center gap-2">
+                      <i data-lucide="shield-check" class="w-4 h-4 text-purple-400"></i>
+                      <span>HAKI Kemenkumham</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-1">Surat Pencatatan Ciptaan No. <strong>001426864</strong> (UU No. 28/2014).</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tools & Bottom Tags -->
+              <div class="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full bg-slate-800 text-xs font-medium text-slate-300">Customer Retention</span>
+                  <span class="px-3 py-1 rounded-full bg-slate-800 text-xs font-medium text-slate-300">E-Service Quality</span>
+                  <span class="px-3 py-1 rounded-full bg-slate-800 text-xs font-medium text-slate-300">SmartPLS</span>
+                  <span class="px-3 py-1 rounded-full bg-slate-800 text-xs font-medium text-slate-300">HAKI Terdaftar</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <a href="assets/haki/HAKI_Jhonson_Samuel_Manurung.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs font-semibold transition-all">
+                    <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                    <span>Unduh HAKI (PDF)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CALL TO ACTION / FOOTER ================= -->
+      <section id="contact" class="text-center pt-16 border-t border-slate-800/80 reveal-on-scroll">
+        <h2 class="font-display text-2xl sm:text-4xl font-bold text-white mb-4">
+          Mari Terhubung & Berkolaborasi
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
+          Terbuka untuk peluang kerja penuh waktu, kontrak, maupun proyek digital marketing, pengelolaan media sosial, dan pengembangan konten kreatif.
+        </p>
+
+        <div class="flex flex-col sm:flex-row flex-wrap justify-center items-stretch sm:items-center gap-3 sm:gap-4 mb-16 px-4">
+          <a href="https://wa.me/6285358977145?text=Halo%20Jhonson,%20saya%20melihat%20portofolio%20website%20Anda" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-emerald-600 text-white font-semibold text-xs sm:text-sm hover:bg-emerald-500 shadow-lg hover:shadow-emerald-500/20 transition-all transform hover:-translate-y-0.5 text-center">
+            <i data-lucide="message-circle" class="w-4 h-4 flex-shrink-0"></i>
+            <span>WhatsApp (0853 5897 7145)</span>
+          </a>
+          <a href="https://www.linkedin.com/in/jhonson-samuel-manurung-39715b439" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-slate-800 text-white border border-slate-700 font-semibold text-xs sm:text-sm hover:bg-slate-700 transition-all text-center">
+            <i data-lucide="linkedin" class="w-4 h-4 text-blue-400 flex-shrink-0"></i>
+            <span>LinkedIn Profile</span>
+          </a>
+          <a href="mailto:jhonsonmanurung02@gmail.com" class="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-slate-800 text-white border border-slate-700 font-semibold text-xs sm:text-sm hover:bg-slate-700 transition-all text-center">
+            <i data-lucide="mail" class="w-4 h-4 text-amber-400 flex-shrink-0"></i>
+            <span>Kirim Email</span>
+          </a>
+        </div>
+
+        <div class="text-xs text-slate-500 font-mono flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-slate-900 gap-4">
+          <span>© 2026 Jhonson Samuel Manurung. All rights reserved.</span>
+          <span>Designed with High Aesthetic Precision • Built with HTML, Tailwind & JS</span>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ================= LIGHTBOX POPUP MODAL (FULLSCREEN / NO CROPPING) ================= -->
+  <div id="imageLightbox" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex-col items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300" onclick="closeLightbox(event)">
+    <!-- Close Button -->
+    <button onclick="closeLightbox(null, true)" class="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition-all shadow-lg border border-white/20">
+      ✕
+    </button>
+
+    <!-- Modal Content Box -->
+    <div class="relative max-w-5xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+      <img id="lightboxImg" src="" alt="Popup Preview" class="max-w-full max-h-[82vh] object-contain rounded-xl shadow-2xl border border-white/10">
+      <div id="lightboxCaption" class="mt-3 text-center text-xs sm:text-sm font-medium text-slate-300 bg-slate-900/80 px-4 py-1.5 rounded-full border border-slate-700"></div>
+    </div>
+  </div>
+
+  <!-- Lucide Script Initiation & Interactive Scripts -->
+  <script>
+    lucide.createIcons();
+
+    // 0. Infinity Logistics Tab Switcher & Dynamic Lightbox Source (3 Tabs: Depot, Office, Instagram)
+    let currentInfinitySrc = "assets/infinity/infinity-yard-portrait.jpg";
+    let currentInfinityCaption = "Dokumentasi Operasional Lapangan di Depo Kontainer Infinity Logistics • Belawan, Medan";
+
+    function switchInfinityTab(tab) {
+      const viewDepot = document.getElementById('infinityViewDepot');
+      const viewOffice = document.getElementById('infinityViewOffice');
+      const viewInstagram = document.getElementById('infinityViewInstagram');
+      
+      const btnDepot = document.getElementById('tabBtnDepot');
+      const btnOffice = document.getElementById('tabBtnOffice');
+      const btnInstagram = document.getElementById('tabBtnInstagram');
+
+      viewDepot.classList.add('hidden');
+      viewOffice.classList.add('hidden');
+      viewInstagram.classList.add('hidden');
+
+      const activeClass = "w-full py-1.5 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 bg-blue-600 text-white shadow transition-all text-[10px] sm:text-[11px] truncate";
+      const inactiveClass = "w-full py-1.5 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 text-slate-400 hover:text-white transition-all text-[10px] sm:text-[11px] truncate";
+      
+      btnDepot.className = inactiveClass;
+      btnOffice.className = inactiveClass;
+      btnInstagram.className = inactiveClass;
+
+      if (tab === 'depot') {
+        viewDepot.classList.remove('hidden');
+        btnDepot.className = activeClass;
+        currentInfinitySrc = "assets/infinity/infinity-yard-portrait.jpg";
+        currentInfinityCaption = "Dokumentasi Operasional Lapangan di Depo Kontainer Infinity Logistics • Belawan, Medan";
+      } else if (tab === 'office') {
+        viewOffice.classList.remove('hidden');
+        btnOffice.className = activeClass;
+        currentInfinitySrc = "assets/infinity/poto.jpeg";
+        currentInfinityCaption = "Suasana Ruang Kerja & Diskusi Strategi Pemasaran Bersama Tim/Mentor • Graha Harmoni, Medan";
+      } else {
+        viewInstagram.classList.remove('hidden');
+        btnInstagram.className = activeClass;
+        currentInfinitySrc = "assets/infinity/ig-infinity-feed.jpeg";
+        currentInfinityCaption = "Official Instagram Business Feed (@infinitylogistics.medan) • PT Infinitindo Logistik Medan";
+      }
+    }
+
+    // 0.1 Diskominfo Tab Switcher (Aktivitas PKL, Portal Web, Tim Prakerin)
+    let currentDiskominfoSrc = "assets/prakerin/prakerin-laptop.jpg";
+    let currentDiskominfoCaption = "Dokumentasi Praktik Kerja Lapangan (PKL) Diskominfo Pematangsiantar • Perancangan & Pengelolaan Website Instansi";
+
+    function switchDiskominfoTab(tab) {
+      const viewDev = document.getElementById('diskominfoViewDev');
+      const viewWeb = document.getElementById('diskominfoViewWeb');
+      const viewTeam = document.getElementById('diskominfoViewTeam');
+      
+      const btnDev = document.getElementById('tabBtnDiskominfoDev');
+      const btnWeb = document.getElementById('tabBtnDiskominfoWeb');
+      const btnTeam = document.getElementById('tabBtnDiskominfoTeam');
+
+      viewDev.classList.add('hidden');
+      viewWeb.classList.add('hidden');
+      viewTeam.classList.add('hidden');
+
+      const activeClass = "w-full py-1 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 bg-emerald-600 text-white shadow transition-all text-[10px] sm:text-[11px] truncate";
+      const inactiveClass = "w-full py-1 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 text-slate-400 hover:text-white transition-all text-[10px] sm:text-[11px] truncate";
+
+      btnDev.className = inactiveClass;
+      btnWeb.className = inactiveClass;
+      btnTeam.className = inactiveClass;
+
+      if (tab === 'dev') {
+        viewDev.classList.remove('hidden');
+        btnDev.className = activeClass;
+        currentDiskominfoSrc = "assets/prakerin/prakerin-laptop.jpg";
+        currentDiskominfoCaption = "Dokumentasi Praktik Kerja Lapangan (PKL) Diskominfo Pematangsiantar • Perancangan & Pengelolaan Website Instansi";
+      } else if (tab === 'web') {
+        viewWeb.classList.remove('hidden');
+        btnWeb.className = activeClass;
+        currentDiskominfoSrc = "assets/prakerin/J1.jpeg";
+        currentDiskominfoCaption = "Website Resmi Dinas Pariwisata Kota Pematangsiantar (dispar.pematangsiantar.go.id) • WordPress CMS Development";
+      } else {
+        viewTeam.classList.remove('hidden');
+        btnTeam.className = activeClass;
+        currentDiskominfoSrc = "assets/prakerin/foto.jpeg";
+        currentDiskominfoCaption = "Foto Bersama Tim Prakerin Diskominfo memegang Jurnal Praktik Kerja Industri (Prakerin) • Pematangsiantar";
+      }
+    }
+
+    // 0.2 KKN Desa Tomok Tab Switcher (Profil IG, Feed Gorga, Danau Toba)
+    let currentKknSrc = "assets/kkn/poto ig.jpeg";
+    let currentKknCaption = "Akun Resmi Instagram @kkndesatomok2025 • 66 Konten Publikasi & Dokumentasi Harian Mahasiswa KKN UNIMED";
+
+    function switchKknTab(tab) {
+      const viewProfile = document.getElementById('kknViewProfile');
+      const viewFeed = document.getElementById('kknViewFeed');
+      const viewField = document.getElementById('kknViewField');
+
+      const btnProfile = document.getElementById('tabBtnKknProfile');
+      const btnFeed = document.getElementById('tabBtnKknFeed');
+      const btnField = document.getElementById('tabBtnKknField');
+
+      viewProfile.classList.add('hidden');
+      viewFeed.classList.add('hidden');
+      viewField.classList.add('hidden');
+
+      const activeClass = "w-full py-1 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 bg-amber-600 text-white shadow transition-all text-[10px] sm:text-[11px] truncate";
+      const inactiveClass = "w-full py-1 px-1 rounded-lg font-semibold flex items-center justify-center gap-1 text-slate-400 hover:text-white transition-all text-[10px] sm:text-[11px] truncate";
+
+      btnProfile.className = inactiveClass;
+      btnFeed.className = inactiveClass;
+      btnField.className = inactiveClass;
+
+      if (tab === 'profile') {
+        viewProfile.classList.remove('hidden');
+        btnProfile.className = activeClass;
+        currentKknSrc = "assets/kkn/poto ig.jpeg";
+        currentKknCaption = "Akun Resmi Instagram @kkndesatomok2025 • 66 Konten Publikasi & Dokumentasi Harian Mahasiswa KKN UNIMED";
+      } else if (tab === 'feed') {
+        viewFeed.classList.remove('hidden');
+        btnFeed.className = activeClass;
+        currentKknSrc = "assets/kkn/ig2.jpeg";
+        currentKknCaption = "Desain Feed Grid Batak Gorga (Meet Our Team & Daily Recaps) @kkndesatomok2025";
+      } else {
+        viewField.classList.remove('hidden');
+        btnField.className = activeClass;
+        currentKknSrc = "assets/kkn/kpl.jpeg";
+        currentKknCaption = "Dokumentasi Lapangan Jhonson (UNIMED) Perjalanan Danau Toba Menuju Desa Tomok, Samosir";
+      }
+    }
+
+    // 0.3 HAKI & Skripsi Tab Switcher
+    let currentHakiSrc = "assets/haki/haki-certificate.jpg";
+    let currentHakiCaption = "Surat Pencatatan Ciptaan Kemenkumham RI No. 001426864 • Jhonson Samuel Manurung";
+
+    function switchHakiTab(tab) {
+      const viewCert = document.getElementById('hakiViewCert');
+      const viewDoc = document.getElementById('hakiViewDoc');
+      const btnHaki = document.getElementById('tabBtnHaki');
+      const btnSkripsi = document.getElementById('tabBtnSkripsi');
+
+      const activeClass = "flex-1 py-1.5 px-2 rounded-lg font-semibold flex items-center justify-center gap-1.5 bg-indigo-600 text-white shadow transition-all text-[11px]";
+      const inactiveClass = "flex-1 py-1.5 px-2 rounded-lg font-semibold flex items-center justify-center gap-1.5 text-slate-400 hover:text-white transition-all text-[11px]";
+
+      if (tab === 'haki') {
+        viewCert.classList.remove('hidden');
+        viewDoc.classList.add('hidden');
+        btnHaki.className = activeClass;
+        btnSkripsi.className = inactiveClass;
+        currentHakiSrc = "assets/haki/haki-certificate.jpg";
+        currentHakiCaption = "Surat Pencatatan Ciptaan Kemenkumham RI No. 001426864 • Jhonson Samuel Manurung";
+      } else {
+        viewCert.classList.add('hidden');
+        viewDoc.classList.remove('hidden');
+        btnHaki.className = inactiveClass;
+        btnSkripsi.className = activeClass;
+        currentHakiSrc = "assets/haki/skripsi-cover.jpg";
+        currentHakiCaption = "Karya Tulis Skripsi S1 Bisnis Digital UNIMED • Pengaruh E-Service Quality terhadap Loyalitas Pelanggan";
+      }
+    }
+
+    // Lightbox Controls
+    function openLightbox(src, caption) {
+      const modal = document.getElementById('imageLightbox');
+      const img = document.getElementById('lightboxImg');
+      const cap = document.getElementById('lightboxCaption');
+      
+      img.src = src;
+      cap.textContent = caption || "";
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+      }, 10);
+    }
+
+    function closeLightbox(e, force = false) {
+      const modal = document.getElementById('imageLightbox');
+      if (force || e.target === modal) {
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 300);
+      }
+    }
+
+    // 1. Flip Card Interaction for Suspended Lanyard
+    const lanyardTrigger = document.getElementById('lanyardTrigger');
+    const flipCard = document.querySelector('.flip-card');
+    if (lanyardTrigger && flipCard) {
+      lanyardTrigger.addEventListener('click', () => {
+        flipCard.classList.toggle('flipped');
+      });
+    }
+
+    // 1.5. Interactive 3D Parallax & Magnetic Tracking for Hero Section
+    const heroStage = document.getElementById('heroStage');
+    const heroBackdropText = document.getElementById('heroBackdropText');
+    const heroSubjectLayer = document.getElementById('heroSubjectLayer');
+
+    if (heroStage && heroBackdropText && heroSubjectLayer) {
+      heroStage.addEventListener('mousemove', (e) => {
+        const rect = heroStage.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        // Background Text Parallax (moves slightly opposite to mouse)
+        heroBackdropText.style.transform = `translate(${x * -28}px, ${y * -18}px)`;
+
+        // Subject Layer (moves subtly with mouse depth)
+        heroSubjectLayer.style.transform = `translate(${x * 16}px, ${y * 10}px) scale(1.01)`;
+      });
+
+      heroStage.addEventListener('mouseleave', () => {
+        heroBackdropText.style.transform = 'translate(0px, 0px)';
+        heroSubjectLayer.style.transform = 'translate(0px, 0px) scale(1)';
+      });
+    }
+
+    // 2. Ambient Mouse Spotlight in Dark Studio Section
+    const darkSection = document.querySelector('.dark-section');
+    const mouseSpotlight = document.getElementById('mouseSpotlight');
+
+    if (darkSection && mouseSpotlight) {
+      darkSection.addEventListener('mousemove', (e) => {
+        const rect = darkSection.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        mouseSpotlight.style.setProperty('--mouse-x', `${e.clientX}px`);
+        mouseSpotlight.style.setProperty('--mouse-y', `${e.clientY}px`);
+      });
+    }
+
+    // 3. 3D Magnetic Parallax Tilt on Neon Tiles
+    const tiles = document.querySelectorAll('.neon-tile');
+    tiles.forEach(tile => {
+      tile.addEventListener('mousemove', (e) => {
+        const rect = tile.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rotateX = (-y / rect.height) * 16;
+        const rotateY = (x / rect.width) * 16;
+        tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.03)`;
+      });
+
+      tile.addEventListener('mouseleave', () => {
+        tile.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+      });
+    });
+
+    // 4. Kinetic Scroll Reveal Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

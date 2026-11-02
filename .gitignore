@@ -1,0 +1,6 @@
+# Temporary test and screenshot files
+screenshot_*.png
+test_*
+badge_crop_test*
+*.bak*
+*.bak

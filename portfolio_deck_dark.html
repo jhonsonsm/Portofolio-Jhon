@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Portofolio - Jhonson Samuel Manurung</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  @page {
+    size: 297mm 210mm; /* A4 Landscape (16:9 widescreen feel) */
+    margin: 0;
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    color: #F8FAFC;
+    background-color: #070A12;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .slide {
+    width: 297mm;
+    height: 210mm;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+    background: #0A0E17;
+    padding: 16mm 20mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 2px solid #1E293B;
+  }
+  .slide:last-child {
+    page-break-after: auto;
+    border-bottom: none;
+  }
+
+  /* SLIDE 1: COVER (CYBERNETIC LUXURY / 3D HERO LOOK) */
+  .slide-cover {
+    background: radial-gradient(circle at 75% 30%, rgba(147, 51, 234, 0.22) 0%, rgba(10, 14, 23, 1) 65%);
+    padding: 18mm 20mm;
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    color: #34D399;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .dot-ping {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10B981;
+  }
+  .cover-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 20mm;
+    align-items: center;
+    flex-grow: 1;
+    margin-top: 4mm;
+  }
+  .cover-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 38pt;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+  }
+  .cover-name span {
+    color: #C084FC;
+    font-style: italic;
+    font-weight: 700;
+  }
+  .cover-role {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #38BDF8;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+  .cover-bio {
+    font-size: 9.2pt;
+    line-height: 1.55;
+    color: #94A3B8;
+    text-align: justify;
+    max-width: 520px;
+    margin-bottom: 18px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 10px 14px;
+    max-width: 480px;
+  }
+  .stat-val {
+    font-size: 15pt;
+    font-weight: 800;
+    color: #FFFFFF;
+  }
+  .stat-lbl {
+    font-size: 7.5pt;
+    color: #94A3B8;
+    margin-top: 2px;
+  }
+  .cover-visual-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .portrait-frame {
+    width: 78mm;
+    height: 105mm;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1.5px solid rgba(168, 85, 247, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(168, 85, 247, 0.25);
+    background: #020617;
+  }
+  .portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  /* SLIDE HEADER & FOOTER */
+  .slide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .category-pill {
+    display: inline-block;
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #A855F7;
+    margin-bottom: 2px;
+  }
+  .slide-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+  .slide-page-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #64748B;
+  }
+  .slide-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 8px;
+    font-size: 8pt;
+    color: #64748B;
+  }
+
+  /* 2-COLUMN CASE STUDY LAYOUT */
+  .case-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16mm;
+    flex-grow: 1;
+    align-items: stretch;
+  }
+  .case-visual-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8mm;
+    align-items: center;
+  }
+  .visual-card-single {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: #020617;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    height: 105mm;
+  }
+  .visual-card-single img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .visual-tag-overlay {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 7.5pt;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .meta-box {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #38BDF8;
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+  }
+  .meta-row {
+    display: flex;
+    font-size: 8.5pt;
+    margin-bottom: 4px;
+  }
+  .meta-row:last-child {
+    margin-bottom: 0;
+  }
+  .meta-k {
+    width: 90px;
+    font-weight: 700;
+    color: #E2E8F0;
+  }
+  .meta-v {
+    color: #94A3B8;
+  }
+  .case-desc {
+    font-size: 9pt;
+    line-height: 1.5;
+    color: #CBD5E1;
+    text-align: justify;
+    margin-bottom: 14px;
+  }
+  .case-kpi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .kpi-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 8px 12px;
+  }
+  .kpi-title {
+    font-size: 8pt;
+    font-weight: 700;
+    color: #38BDF8;
+  }
+  .kpi-desc {
+    font-size: 7.2pt;
+    color: #94A3B8;
+    margin-top: 2px;
+  }
+  .tag-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 7.5pt;
+    color: #E2E8F0;
+  }
+
+  /* CERTIFICATES SLIDE GRID */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12mm;
+    flex-grow: 1;
+    align-items: stretch;
+  }
+  .cert-card {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cert-img-box {
+    height: 52mm;
+    background: #020617;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .cert-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .cert-badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: #38BDF8;
+    font-size: 7pt;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+  .cert-body {
+    padding: 10px 14px;
+    flex-grow: 1;
+  }
+  .cert-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7pt;
+    font-family: 'JetBrains Mono', monospace;
+    color: #64748B;
+    margin-bottom: 4px;
+  }
+  .cert-name {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.35;
+  }
+  .cert-sub {
+    font-size: 7.5pt;
+    color: #94A3B8;
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+  .cert-footer {
+    padding: 8px 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5pt;
+  }
+  .cert-link {
+    color: #38BDF8;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* TOOLS 3D TILES SLIDE */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10mm;
+    flex-grow: 1;
+    align-items: center;
+  }
+  .tool-tile-pdf {
+    background: linear-gradient(145deg, #131B2A 0%, #0B101D 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 14px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  }
+  .tool-icon-box {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 10px auto;
+    border-radius: 12px;
+    background: #020617;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16pt;
+  }
+  .tool-name {
+    font-size: 9.5pt;
+    font-weight: 800;
+    color: #FFFFFF;
+  }
+  .tool-cat {
+    font-size: 7.5pt;
+    margin-top: 3px;
+    font-weight: 600;
+  }
+
+  /* CONTACT CLOSING */
+  .slide-closing {
+    background: radial-gradient(circle at center, rgba(147, 51, 234, 0.25) 0%, rgba(10, 14, 23, 1) 70%);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .closing-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32pt;
+    font-weight: 900;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+  }
+  .closing-sub {
+    font-size: 11pt;
+    color: #CBD5E1;
+    max-width: 600px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .contact-badges-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+  }
+  .contact-badge-item {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 9pt;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+</style>
+</head>
+<body>
+
+  <!-- SLIDE 1: COVER -->
+  <div class="slide slide-cover">
+    <div class="cover-top">
+      <div class="badge-status">
+        <div class="dot-ping"></div>
+        <span>FRESH GRADUATE BISNIS DIGITAL • UNIMED</span>
+      </div>
+      <div style="font-family:'JetBrains Mono'; font-size:8.5pt; color:#94A3B8;">
+        MEDAN, INDONESIA • PORTFOLIO 2026
+      </div>
+    </div>
+
+    <div class="cover-grid">
+      <div>
+        <div class="cover-name">
+          Jhonson Samuel <br><span>Manurung</span>
+        </div>
+        <div class="cover-role">
+          DIGITAL MARKETING & WEB STRATEGIST
+        </div>
+        <div class="cover-bio">
+          Lulusan S1 Bisnis Digital dari Universitas Negeri Medan (IPK 3.70) dengan fondasi teknis Rekayasa Perangkat Lunak. Berpengalaman nyata dalam manajemen konten media sosial B2B logistik, perancangan website WordPress instansi, digitalisasi UMKM (Google Maps), serta pemanfaatan tools AI untuk riset dan alur kerja konten.
+        </div>
+
+        <div class="stat-grid">
+          <div>
+            <div class="stat-val">3.70<span style="font-size:8pt; color:#94A3B8; font-weight:normal;">/4.0</span></div>
+            <div class="stat-lbl">IPK Kelulusan (UNIMED)</div>
+          </div>
+          <div>
+            <div class="stat-val">25+</div>
+            <div class="stat-lbl">Aset Konten Feed & Reels</div>
+          </div>
+          <div>
+            <div class="stat-val">2 Portal</div>
+            <div class="stat-lbl">Web Dinas (WordPress)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-visual-box">
+        <div class="portrait-frame">
+          <img src="jhonson-hero-perfect.png" alt="Jhonson Samuel Manurung">
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jhonson Samuel Manurung • Official Portfolio Deck</span>
+      <span>0853 5897 7145 • jhonsonmanurung02@gmail.com</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: INFINITY LOGISTICS CASE STUDY -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="category-pill">Case Study 01 • Magang Industri</div>
+        <div class="slide-title">Infinity Logistics Medan</div>
+      </div>
+      <div class="slide-page-num">01 / 06</div>
+    </div>
+
+    <div class="case-grid">
+      <!-- Left: Dual Photos (Field Depot + Official Feed) -->
+      <div class="case-visual-dual">
+        <div class="visual-card-single">
+          <img src="assets/infinity/infinity-yard-portrait.jpg" alt="Depo Kontainer">
+          <div class="visual-tag-overlay">
+            <span style="color:#34D399; font-weight:bold;">● Depo Lapangan</span>
+            <span style="color:#94A3B8;">Belawan</span>
+          </div>
+        </div>
+        <div class="visual-card-single">
+          <img src="assets/infinity/ig-infinity-feed.jpeg" alt="Instagram Feed">
+          <div class="visual-tag-overlay">
+            <span style="color:#38BDF8; font-weight:bold;">@infinitylogistics</span>
+            <span style="color:#94A3B8;">1.1k+ Followers</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Narrative & Highlights -->
+      <div style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div class="meta-box">
+            <div class="meta-row"><span class="meta-k">Peran</span><span class="meta-v">Social Media Marketing Intern</span></div>
+            <div class="meta-row"><span class="meta-k">Periode</span><span class="meta-v">Desember 2024 – Juli 2025</span></div>
+            <div class="meta-row"><span class="meta-k">Platform</span><span class="meta-v">Instagram Feed Carousel, Reels, Copywriting</span></div>
+            <div class="meta-row"><span class="meta-k">Tools</span><span class="meta-v">Canva, Meta Business Suite, CapCut</span></div>
+          </div>
+
+          <div class="case-desc">
+            Mengelola akun Instagram resmi perusahaan logistik dan ekspedisi kargo. Mengambil inspirasi dari operasional lapangan nyata di depo kontainer Belawan untuk merancang materi visual feed carousel, menyusun copywriting terstruktur, dan mengembangkan ide konten video Reels yang informatif untuk mitra bisnis B2B.
+          </div>
+
+          <div class="case-kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-title">25+ Konten Terpublikasi</div>
+              <div class="kpi-desc">Desain feed carousel informasi rute, armada kargo, & layanan logistik.</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Ideasi Konsep Reels</div>
+              <div class="kpi-desc">Edukasi istilah ekspor-impor & proses pengiriman untuk tingkatkan reach.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tag-cluster">
+          <div class="tag-pill">B2B Social Media</div>
+          <div class="tag-pill">Instagram Carousel</div>
+          <div class="tag-pill">Copywriting</div>
+          <div class="tag-pill">Field Verified</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jhonson Samuel Manurung • Portofolio</span>
+      <span>Industrial Internship Showcase</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: DISKOMINFO & KKN TOMOK -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="category-pill">Case Study 02 & 03 • Web & Local SEO</div>
+        <div class="slide-title">Diskominfo & Digitalisasi UMKM Tomok</div>
+      </div>
+      <div class="slide-page-num">02 / 06</div>
+    </div>
+
+    <div class="case-grid">
+      <!-- Project Diskominfo -->
+      <div style="background:rgba(15,23,42,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-size:7.5pt; font-family:'JetBrains Mono'; color:#38BDF8; font-weight:bold; margin-bottom:4px;">
+            PRAKTIK KERJA LAPANGAN • SEP - NOV 2021
+          </div>
+          <div style="font-size:13pt; font-weight:800; color:#FFFFFF; margin-bottom:4px;">
+            Website Instansi Diskominfo
+          </div>
+          <div style="font-size:8pt; color:#34D399; font-weight:600; margin-bottom:10px;">
+            WordPress Web Developer (PKL)
+          </div>
+          <div style="font-size:8.5pt; color:#CBD5E1; line-height:1.45; text-align:justify; margin-bottom:12px;">
+            Membantu perancangan dan pembuatan website untuk instansi pemerintah (<strong>Dinas Pariwisata</strong> dan <strong>Dinas Sosial</strong> Pematangsiantar) menggunakan platform WordPress. Menyusun struktur menu navigasi, tata letak konten, serta mendukung kebutuhan administrasi data.
+          </div>
+          <div style="background:rgba(2,6,23,0.6); padding:8px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); margin-bottom:10px;">
+            <div style="font-size:7.8pt; color:#FFFFFF; font-weight:bold;">Deliverables:</div>
+            <div style="font-size:7.5pt; color:#94A3B8;">• Struktur Menu & Navigasi Publik</div>
+            <div style="font-size:7.5pt; color:#94A3B8;">• Layout Halaman Informasi & Berita</div>
+          </div>
+        </div>
+        <div class="tag-cluster">
+          <div class="tag-pill">WordPress CMS</div>
+          <div class="tag-pill">Gov Portal</div>
+          <div class="tag-pill">Web Architecture</div>
+        </div>
+      </div>
+
+      <!-- Project KKN Tomok -->
+      <div style="background:rgba(15,23,42,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="font-size:7.5pt; font-family:'JetBrains Mono'; color:#F59E0B; font-weight:bold; margin-bottom:4px;">
+            PENGABDIAN MASYARAKAT • JUL - AGU 2025
+          </div>
+          <div style="font-size:13pt; font-weight:800; color:#FFFFFF; margin-bottom:4px;">
+            Digitalisasi UMKM Desa Tomok
+          </div>
+          <div style="font-size:8pt; color:#F59E0B; font-weight:600; margin-bottom:10px;">
+            Publikasi, Desain & Local SEO
+          </div>
+          <div style="font-size:8.5pt; color:#CBD5E1; line-height:1.45; text-align:justify; margin-bottom:12px;">
+            Membantu digitalisasi usaha lokal di kawasan wisata Danau Toba (toko suvenir, salon, tempat makan, grosir) dengan mendaftarkan dan memvalidasi titik lokasi di <strong>Google Maps</strong>. Mendesain materi poster publikasi desa dan video dokumentasi kegiatan.
+          </div>
+          <div style="background:rgba(2,6,23,0.6); padding:8px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); margin-bottom:10px;">
+            <div style="font-size:7.8pt; color:#FFFFFF; font-weight:bold;">Impact:</div>
+            <div style="font-size:7.5pt; color:#94A3B8;">• Titik UMKM terverifikasi di Google Maps</div>
+            <div style="font-size:7.5pt; color:#94A3B8;">• Desain poster informasi & publikasi desa</div>
+          </div>
+        </div>
+        <div class="tag-cluster">
+          <div class="tag-pill">Google Maps Listing</div>
+          <div class="tag-pill">Local SEO</div>
+          <div class="tag-pill">Desain Poster</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jhonson Samuel Manurung • Portofolio</span>
+      <span>Web Architecture & Community Impact</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: FILM PENDEK "NO WAY BACK" -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="category-pill">Case Study 04 • Creative Storytelling</div>
+        <div class="slide-title">Film Pendek: "NO WAY BACK"</div>
+      </div>
+      <div class="slide-page-num">03 / 06</div>
+    </div>
+
+    <div class="case-grid">
+      <!-- Left: Visual Film Stills -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6mm; height:105mm;">
+        <div class="visual-card-single" style="height:100%;">
+          <img src="assets/film/people.jpg" alt="Film Still 1">
+          <div class="visual-tag-overlay">
+            <span style="color:#C084FC; font-weight:bold;">Scene Atmospheric</span>
+          </div>
+        </div>
+        <div class="visual-card-single" style="height:100%;">
+          <img src="assets/film/street-name.png" alt="Film Still 2">
+          <div class="visual-tag-overlay">
+            <span style="color:#38BDF8; font-weight:bold;">Location Still</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Narrative & Role -->
+      <div style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div class="meta-box" style="border-left-color:#C084FC;">
+            <div class="meta-row"><span class="meta-k">Peran</span><span class="meta-v">Konseptor & Penulis Alur Cerita (Scriptwriter)</span></div>
+            <div class="meta-row"><span class="meta-k">Proyek</span><span class="meta-v">Tugas Kuliah Produksi Film Pendek</span></div>
+            <div class="meta-row"><span class="meta-k">Periode</span><span class="meta-v">Mei 2025</span></div>
+            <div class="meta-row"><span class="meta-k">Genre</span><span class="meta-v">Drama / Aksi Fiksi Sinematik</span></div>
+          </div>
+
+          <div class="case-desc">
+            Merancang premis cerita, arah tema aksi/drama, dan skenario utama film pendek "NO WAY BACK". Menyusun pembagian adegan (scene breakdown) serta berkoordinasi bersama tim produksi agar alur emosional dan ketegangan naskah tereksekusi dengan baik dalam trailer dan video akhir.
+          </div>
+
+          <div class="case-kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-title">Pengembangan Premis</div>
+              <div class="kpi-desc">Membangun konflik karakter & tensi narasi dramatis dari ide awal.</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">Scene Breakdown</div>
+              <div class="kpi-desc">Menyusun urutan shooting adegan untuk efisiensi produksi tim kamera.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tag-cluster">
+          <div class="tag-pill">Creative Writing</div>
+          <div class="tag-pill">Scriptwriting</div>
+          <div class="tag-pill">Storyboarding</div>
+          <div class="tag-pill">Visual Direction</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jhonson Samuel Manurung • Portofolio</span>
+      <span>Narrative Concept & Video Storytelling</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: SERTIFIKASI PROFESIONAL (GOOGLE, HUBSPOT & COURSERA) -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="category-pill">Verified Credentials • HubSpot & Google</div>
+        <div class="slide-title">Sertifikasi Profesional</div>
+      </div>
+      <div class="slide-page-num">04 / 06</div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:7mm; flex-grow:1; align-items:stretch;">
+      <!-- Cert 1: HubSpot Inbound Sales -->
+      <div class="cert-card">
+        <div>
+          <div class="cert-img-box" style="height:46mm;">
+            <img src="assets/certificates/cert-inbound-sales-hubspot.jpg" alt="HubSpot Inbound Sales">
+            <div class="cert-badge" style="border-color:rgba(249,115,22,0.4); color:#FB923C;">HubSpot Certified</div>
+          </div>
+          <div class="cert-body" style="padding:8px 12px;">
+            <div class="cert-meta-row"><span>HUBSPOT</span><span>SEP 2026</span></div>
+            <div class="cert-name" style="font-size:8.5pt;">Inbound Sales Certified</div>
+            <div class="cert-sub" style="font-size:7pt;">Metodologi inbound sales: identifikasi prospek, eksplorasi kebutuhan, dan solusi bisnis.</div>
+          </div>
+        </div>
+        <div class="cert-footer" style="padding:6px 12px;">
+          <span style="color:#64748B; font-family:'JetBrains Mono'; font-size:6.5pt;">ID: b88f7c33...</span>
+          <span class="cert-link" style="color:#FB923C; font-size:7pt;">Terverifikasi ↗</span>
+        </div>
+      </div>
+
+      <!-- Cert 2: Google Digital Marketing -->
+      <div class="cert-card">
+        <div>
+          <div class="cert-img-box" style="height:46mm;">
+            <img src="assets/certificates/cert-digital-marketing-google.jpg" alt="Google Digital Marketing">
+            <div class="cert-badge">Google Authorized</div>
+          </div>
+          <div class="cert-body" style="padding:8px 12px;">
+            <div class="cert-meta-row"><span>GOOGLE</span><span>OKT 2026</span></div>
+            <div class="cert-name" style="font-size:8.5pt;">Digital Marketing & E-commerce</div>
+            <div class="cert-sub" style="font-size:7pt;">Customer journey, funnel e-commerce, strategi kanal digital, dan analitik kampanye.</div>
+          </div>
+        </div>
+        <div class="cert-footer" style="padding:6px 12px;">
+          <span style="color:#64748B; font-family:'JetBrains Mono'; font-size:6.5pt;">ID: ZGV6HXS7...</span>
+          <span class="cert-link" style="font-size:7pt;">Terverifikasi ↗</span>
+        </div>
+      </div>
+
+      <!-- Cert 3: Google Project Management -->
+      <div class="cert-card">
+        <div>
+          <div class="cert-img-box" style="height:46mm;">
+            <img src="assets/certificates/cert-project-management-google.jpg" alt="Google Project Management">
+            <div class="cert-badge" style="border-color:rgba(16,185,129,0.4); color:#34D399;">Google Authorized</div>
+          </div>
+          <div class="cert-body" style="padding:8px 12px;">
+            <div class="cert-meta-row"><span>GOOGLE</span><span>OKT 2026</span></div>
+            <div class="cert-name" style="font-size:8.5pt;">Foundations of Project Management</div>
+            <div class="cert-sub" style="font-size:7pt;">Metodologi Agile & Waterfall, alokasi sumber daya, manajemen risiko, dan milestone.</div>
+          </div>
+        </div>
+        <div class="cert-footer" style="padding:6px 12px;">
+          <span style="color:#64748B; font-family:'JetBrains Mono'; font-size:6.5pt;">ID: FPTWD16S...</span>
+          <span class="cert-link" style="color:#34D399; font-size:7pt;">Terverifikasi ↗</span>
+        </div>
+      </div>
+
+      <!-- Cert 4: Coursera AI Content -->
+      <div class="cert-card">
+        <div>
+          <div class="cert-img-box" style="height:46mm;">
+            <img src="assets/certificates/cert-ai-content-coursera.jpg" alt="AI Content Performance">
+            <div class="cert-badge" style="border-color:rgba(168,85,247,0.4); color:#C084FC;">Industry Certified</div>
+          </div>
+          <div class="cert-body" style="padding:8px 12px;">
+            <div class="cert-meta-row"><span>COURSERA</span><span>OKT 2026</span></div>
+            <div class="cert-name" style="font-size:8.5pt;">Optimize AI Content Performance</div>
+            <div class="cert-sub" style="font-size:7pt;">Prompt engineering terarah, analisis retensi audiens, dan performa konten AI.</div>
+          </div>
+        </div>
+        <div class="cert-footer" style="padding:6px 12px;">
+          <span style="color:#64748B; font-family:'JetBrains Mono'; font-size:6.5pt;">ID: AKU1VJ4P...</span>
+          <span class="cert-link" style="color:#C084FC; font-size:7pt;">Terverifikasi ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jhonson Samuel Manurung • Portofolio</span>
+      <span>Official Industry Certifications (HubSpot, Google & Coursera)</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: TECH STACK & TOOLS -->
+  <div class="slide">
+    <div class="slide-header">
+      <div>
+        <div class="category-pill">Core Instruments • Tech Stack</div>
+        <div class="slide-title">Alat Kerja & Ekosistem Digital</div>
+      </div>
+      <div class="slide-page-num">05 / 06</div>
+    </div>
+
+    <div class="tools-grid">
+      <div class="tool-tile-pdf">
+        <div class="tool-icon-box" style="color:#F24E1E;">🎨</div>
+        <div class="tool-name">FIGMA</div>
+        <div class="tool-cat" style="color:#F43F5E;">UI/UX & Wireframe</div>
+      </div>
+
+      <div class="tool-tile-pdf">
+        <div class="tool-icon-box" style="color:#10B981;">✒️</div>
+        <div class="tool-name">CORELDRAW</div>
+        <div class="tool-cat" style="color:#10B981;">Vector & Layout</div>
+      </div>
+
+      <div class="tool-tile-pdf">
+        <div class="tool-icon-box" style="color:#06B6D4;">📱</div>
+        <div class="tool-name">CANVA PRO</div>
+        <div class="tool-cat" style="color:#06B6D4;">Feed & Carousel</div>
+      </div>
+
+      <div class="tool-tile-pdf">
+        <div class="tool-icon-box" style="color:#38BDF8;">🎬</div>
+        <div class="tool-name">CAPCUT</div>
+        <div class="tool-cat" style="color:#38BDF8;">Video Editing & Reels</div>
+      </div>
+
+      <div class="tool-tile-pdf">
+        <div class="tool-icon-box" style="color:#2563EB;">🌐</div>
+        <div class="tool-name">WORDPRESS</div>
+        <div class="tool-cat" style="color:#2563EB;">CMS & Web Dev</div>
+      </div>
+
+      <div class="tool-tile-pdf">
+        <div class="tool-icon-box" style="color:#F59E0B;">📊</div>
+        <div class="tool-name">WORKSPACE</div>
+        <div class="tool-cat" style="color:#F59E0B;">Docs, Sheets, Slides</div>
+      </div>
+
+      <div class="tool-tile-pdf">
+        <div class="tool-icon-box" style="color:#EF4444;">📍</div>
+        <div class="tool-name">GOOGLE MAPS</div>
+        <div class="tool-cat" style="color:#EF4444;">Local SEO & Listing</div>
+      </div>
+
+      <div class="tool-tile-pdf">
+        <div class="tool-icon-box" style="color:#A855F7;">✨</div>
+        <div class="tool-name">AI WORKFLOW</div>
+        <div class="tool-cat" style="color:#A855F7;">Notion • Antigravity • LLMs</div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jhonson Samuel Manurung • Portofolio</span>
+      <span>Proficient Software & Workflow Stack</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: CLOSING & CONTACT -->
+  <div class="slide slide-closing">
+    <div class="closing-title">Mari Terhubung & Berkolaborasi</div>
+    <div class="closing-sub">
+      Terbuka untuk peluang kerja penuh waktu, kontrak, maupun proyek digital marketing, manajemen media sosial, perancangan web, dan pembuatan konten kreatif.
+    </div>
+
+    <div class="contact-badges-row">
+      <div class="contact-badge-item">📞 0853 5897 7145 (WhatsApp)</div>
+      <div class="contact-badge-item">✉️ jhonsonmanurung02@gmail.com</div>
+      <div class="contact-badge-item">💼 linkedin.com/in/jhonson-samuel-manurung-39715b439</div>
+    </div>
+
+    <div style="font-family:'JetBrains Mono'; font-size:8pt; color:#64748B; margin-top:30px;">
+      PORTFOLIO VERSI 2026 • MEDAN, INDONESIA
+    </div>
+  </div>
+
+</body>
+</html>
