@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth overflow-x-hidden">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karya Desain & Brand Identity | Jhonson Samuel Manurung</title>
+  <meta name="description" content="Galeri karya desain grafis, visual identity, ID card series, spanduk acara, dan merchandise kreatif oleh Jhonson Samuel Manurung.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["'Plus Jakarta Sans'", "sans-serif"],
+            display: ["'Playfair Display'", "serif"],
+            mono: ["'JetBrains Mono'", "monospace"],
+            heading: ["'Space Grotesk'", "sans-serif"],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #070A12;
+      color: #F8FAFC;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Nebulas */
+    .glow-blob {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(80px);
+      pointer-events: none;
+      opacity: 0.25;
+    }
+
+    /* Card Glow on Hover */
+    .gallery-card {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(168, 85, 247, 0.45);
+      box-shadow: 0 20px 40px -15px rgba(168, 85, 247, 0.2);
+    }
+  </style>
+</head>
+<body class="selection:bg-purple-600 selection:text-white">
+
+  <!-- Top Sticky Navigation -->
+  <header class="sticky top-0 z-50 bg-[#070A12]/85 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      
+      <!-- Back to Main Portfolio Button -->
+      <a href="index.html" class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-900 border border-slate-800 hover:border-purple-500/50 text-slate-300 hover:text-white text-xs sm:text-sm font-semibold transition-all group">
+        <i data-lucide="arrow-left" class="w-4 h-4 text-purple-400 group-hover:-translate-x-0.5 transition-transform"></i>
+        <span>Kembali ke Portofolio Utama</span>
+      </a>
+
+      <!-- Identity Breadcrumb -->
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center font-heading font-bold text-xs shadow-md">
+          JM
+        </div>
+        <span class="hidden sm:inline font-heading font-semibold text-xs text-slate-400">Creative Gallery</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ambient Light Orbs -->
+  <div class="relative overflow-hidden pointer-events-none">
+    <div class="glow-blob -top-20 left-1/4 w-[500px] h-[500px] bg-purple-600"></div>
+    <div class="glow-blob top-1/3 -right-20 w-[450px] h-[450px] bg-indigo-600"></div>
+    <div class="glow-blob bottom-1/4 -left-20 w-[450px] h-[450px] bg-cyan-600"></div>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-24 relative z-10">
+
+    <!-- Header Section -->
+    <div class="max-w-3xl mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-4">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+        <span>Visual Identity & Creative Works</span>
+      </div>
+      <h1 class="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+        Eksplorasi Desain Grafis & Identitas Visual
+      </h1>
+      <p class="text-slate-400 text-sm sm:text-base mt-4 leading-relaxed text-justify">
+        Koleksi karya mandiri dalam merancang identitas visual acara, desain kemasan produk (*commercial packaging*), media promosi cetak skala besar, atribut & apparel tim, serta tata letak kartu identitas modern. Dirancang dengan kepekaan tipografi, struktur warna harmonis, dan ketelitian teknis produksi.
+      </p>
+
+      <!-- Category Filter Buttons -->
+      <div class="flex flex-wrap items-center gap-2 pt-6">
+        <button 
+          onclick="filterGallery('all')" 
+          id="btnFilterAll" 
+          class="px-4 py-1.5 rounded-full text-xs font-semibold bg-purple-600 text-white shadow-lg shadow-purple-600/30 transition-all"
+        >
+          Semua Karya (7)
+        </button>
+        <button 
+          onclick="filterGallery('packaging')" 
+          id="btnFilterPackaging" 
+          class="px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-all"
+        >
+          Desain Kemasan / Label (3)
+        </button>
+        <button 
+          onclick="filterGallery('merch')" 
+          id="btnFilterMerch" 
+          class="px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-all"
+        >
+          Atribut & Apparel (2)
+        </button>
+        <button 
+          onclick="filterGallery('banner')" 
+          id="btnFilterBanner" 
+          class="px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-all"
+        >
+          Spanduk (1)
+        </button>
+        <button 
+          onclick="filterGallery('idcard')" 
+          id="btnFilterIdcard" 
+          class="px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-all"
+        >
+          Kartu ID (1)
+        </button>
+      </div>
+    </div>
+
+    <!-- Gallery Grid (Responsive Bento / Masonry Style) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="galleryGrid">
+
+      <!-- ITEM 1: ANTISEPTIC HAND SANITIZER LABEL DUO (COMMERCIALLY MARKETED) -->
+      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group md:col-span-2" data-category="packaging">
+        <div>
+          <div class="relative overflow-hidden aspect-[21/10] bg-white cursor-pointer" onclick="openLightbox('assets/creative-gallery/Antiseptic Hand Sanitizer Label Duo.png', 'Desain Label Botol 100 ml: Antiseptic Hand Sanitizer Duo (Depan & Belakang) • Produk Resmi Beredar & Dipasarkan Komersial • Farmasi SMK Bintang Timur Pematangsiantar')">
+            <img 
+              src="assets/creative-gallery/Antiseptic Hand Sanitizer Label Duo.png" 
+              alt="Label Botol Hand Sanitizer 100ml" 
+              class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-rose-400"></i>
+                <span>Klik Lihat Label Full Resolusi</span>
+              </span>
+            </div>
+
+            <div class="absolute top-3 left-3 flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-full bg-emerald-500/90 backdrop-blur-md text-white text-[10px] font-bold shadow flex items-center gap-1">
+                <i data-lucide="check-circle" class="w-3 h-3"></i> Produk Resmi Dipasarkan
+              </span>
+              <span class="hidden sm:inline-block px-2.5 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-rose-400 border border-rose-500/30 text-[10px] font-bold shadow">
+                Botol 100 ml Duo Label
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+              <span class="text-emerald-400 font-semibold">PRODUK RESMI DIPASARKAN SECARA KOMERSIAL</span>
+              <span>100 ML DUO</span>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white group-hover:text-rose-400 transition-colors">
+              Label Kemasan: Antiseptic Hand Sanitizer 100 ml
+            </h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed text-justify">
+              Desain stiker kemasan botol spray 100 ml yang <strong>resmi diproduksi massal dan dipasarkan ke konsumen/masyarakat</strong> oleh Farmasi SMK Swasta Bintang Timur. Menggabungkan label depan dinamis (gelombang navy-red, klaim <em>70% Alcohol</em> & perisai antibakteri <em>Kills 99.9% Germs</em>) dengan label belakang edukatif yang memuat komposisi serta 6 langkah mencuci tangan higienis standar WHO.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between">
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">Produk Beredar</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] text-slate-300">Front & Back Label</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] text-slate-300">Standar Medis</span>
+          </div>
+          <span class="text-xs font-semibold text-rose-400 flex items-center gap-1 cursor-pointer" onclick="openLightbox('assets/creative-gallery/Antiseptic Hand Sanitizer Label Duo.png', 'Label Antiseptic Hand Sanitizer • Produk Resmi Dipasarkan')">
+            Zoom Label <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- ITEM 2: MINYAK URUT AROMATHERAPY KELAPA HIJAU (COMMERCIALLY MARKETED) -->
+      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="packaging">
+        <div>
+          <div class="relative overflow-hidden aspect-[4/3] bg-white cursor-pointer" onclick="openLightbox('assets/creative-gallery/minyak-farm.png', 'Lembar Cetak Stiker Botol: Minyak Urut Aromatherapy Kelapa Hijau 75 ml • Produk Resmi Dipasarkan Komersial • Farmasi SMK Bintang Timur')">
+            <img 
+              src="assets/creative-gallery/minyak-farm.png" 
+              alt="Desain Label Minyak Urut Aromatherapy" 
+              class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Lihat Lembar Cetak</span>
+              </span>
+            </div>
+
+            <div class="absolute top-3 left-3">
+              <span class="px-2.5 py-1 rounded-full bg-emerald-500/90 backdrop-blur-md text-white text-[10px] font-bold shadow flex items-center gap-1">
+                <i data-lucide="check-circle" class="w-3 h-3"></i> Resmi Dipasarkan
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+              <span class="text-emerald-400 font-semibold">PRODUK HERBAL KOMERSIAL</span>
+              <span>75 ML SHEET</span>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+              Label Minyak Urut Kelapa Hijau
+            </h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed text-justify">
+              Desain label kemasan botol 75 ml yang <strong>resmi diproduksi dan dijual bebas ke konsumen</strong>. Menampilkan visual buah kelapa hijau segar, perkamen komposisi alami, lambang farmasi mangkuk Hygieia, serta format lembar cetak siap potong (*ready-to-cut packaging*).
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">Produk Beredar</span>
+          <span class="text-xs font-semibold text-emerald-400 flex items-center gap-1 cursor-pointer" onclick="openLightbox('assets/creative-gallery/minyak-farm.png', 'Label Minyak Urut Kelapa Hijau • Produk Resmi Dipasarkan')">
+            Zoom Lembar <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- ITEM 3: SPANDUK UTAMA 3x1 METER -->
+      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="banner">
+        <div>
+          <div class="relative overflow-hidden aspect-[4/3] bg-slate-950 cursor-pointer" onclick="openLightbox('assets/creative-gallery/spanduk-3x1.png', 'Desain Spanduk Resmi KKN UNIMED 2025 Desa Tomok (Ukuran 3x1 Meter) • Desain Lanskap Danau Toba & Tipografi Modern')">
+            <img 
+              src="assets/creative-gallery/spanduk-3x1.png" 
+              alt="Spanduk KKN UNIMED Desa Tomok 3x1 Meter" 
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+            
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-purple-400"></i>
+                <span>Lihat Full Resolusi</span>
+              </span>
+            </div>
+
+            <div class="absolute top-3 left-3">
+              <span class="px-2.5 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-cyan-400 border border-cyan-500/30 text-[10px] font-bold shadow">
+                Outdoor Banner • 300 x 100 cm
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+              <span>MEDIA PROMOSI OUTDOOR</span>
+              <span>TAHUN 2025</span>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
+              Spanduk Resmi KKN Desa Tomok
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed text-justify">
+              Perancangan media informasi outdoor untuk pembukaan dan penutupan kegiatan. Memadukan ilustrasi lanskap Danau Toba, ornamen gelombang modern bernuansa navy-cyan, serta hierarki tipografi formal agar pesan tema program terbaca jelas dari kejauhan.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] text-slate-300">Format 3x1 Meter</span>
+          <span class="text-xs font-semibold text-purple-400 flex items-center gap-1 cursor-pointer" onclick="openLightbox('assets/creative-gallery/spanduk-3x1.png', 'Desain Spanduk Resmi KKN UNIMED 2025 Desa Tomok (Ukuran 3x1 Meter)')">
+            Lihat Detail <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- ITEM 4: LANYARD MOCKUP PRODUKSI -->
+      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="merch">
+        <div>
+          <div class="relative overflow-hidden aspect-[4/3] bg-white cursor-pointer" onclick="openLightbox('assets/creative-gallery/lanyard-real.jpg', 'Mockup & Pola Produksi Tali Lanyard Sublimasi KKN Desa Tomok 2025 • Motif Etnik Awan & Identitas Kampus UNIMED')">
+            <img 
+              src="assets/creative-gallery/lanyard-real.jpg" 
+              alt="Desain Lanyard KKN Desa Tomok" 
+              class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-blue-400"></i>
+                <span>Lihat Mockup</span>
+              </span>
+            </div>
+
+            <div class="absolute top-3 left-3">
+              <span class="px-2.5 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-blue-400 border border-blue-500/30 text-[10px] font-bold shadow">
+                Atribut Panitia • Sublimation Strap
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+              <span>APPAREL ACCESORIES</span>
+              <span>2 CM STRAP</span>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+              Tali Lanyard Identitas Panitia
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed text-justify">
+              Pola cetak sublimasi bolak-balik (2 sisi) untuk tali ID card panitia. Menyertakan motif awan tradisional Batak, gradasi biru langit, dan logo resmi universitas yang presisi hingga tahap jahit gantungan kait metal.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] text-slate-300">Ready to Print</span>
+          <span class="text-xs font-semibold text-blue-400 flex items-center gap-1 cursor-pointer" onclick="openLightbox('assets/creative-gallery/lanyard-real.jpg', 'Mockup Tali Lanyard Sublimasi KKN Desa Tomok 2025')">
+            Zoom Mockup <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- ITEM 5: ROMPI LAPANGAN KKN (TECHNICAL APPAREL SHEET) -->
+      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="merch">
+        <div>
+          <div class="relative overflow-hidden aspect-[4/3] bg-white cursor-pointer" onclick="openLightbox('assets/creative-gallery/rompi-kkn-mockup.png', 'Lembar Teknis Desain Rompi Lapangan KKN UNIMED 2025 Desa Tomok • Detail Ukuran Patch Bordir, Saku Taktikal & Sablon Belakang')">
+            <img 
+              src="assets/creative-gallery/rompi-kkn-mockup.png" 
+              alt="Desain Rompi Lapangan KKN UNIMED" 
+              class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-indigo-400"></i>
+                <span>Lihat Lembar Teknis</span>
+              </span>
+            </div>
+
+            <div class="absolute top-3 left-3">
+              <span class="px-2.5 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-indigo-400 border border-indigo-500/30 text-[10px] font-bold shadow">
+                Field Uniform • Vest Mockup
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+              <span>TECHNICAL PRODUCTION SHEET</span>
+              <span>APPAREL</span>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white group-hover:text-indigo-400 transition-colors">
+              Rompi Lapangan Taktikal KKN
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed text-justify">
+              Spesifikasi teknis produksi pakaian lapangan (navy blue vest): penempatan 4 saku utilitas, dimensi patch bordir nama (1.5 x 7 cm), logo universitas (4 x 4 cm), serta emblem besar Rumah Bolon Batak di punggung.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] text-slate-300">Spec Konveksi</span>
+          <span class="text-xs font-semibold text-indigo-400 flex items-center gap-1 cursor-pointer" onclick="openLightbox('assets/creative-gallery/rompi-kkn-mockup.png', 'Lembar Teknis Desain Rompi Lapangan KKN')">
+            Lihat Detail <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- ITEM 6: DANBAM CHIP (COMMERCIAL SNACK PACKAGING) -->
+      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="packaging">
+        <div>
+          <div class="relative overflow-hidden aspect-[3/4] bg-slate-950 cursor-pointer" onclick="openLightbox('assets/creative-gallery/Danbam.jpg', 'Desain Kemasan Snack Makanan Ringan: DANBAM CHIP (Fresh Taste Guaranteed) • Brush Calligraphy Typography, Vektor Kentang & Photo Montage')">
+            <img 
+              src="assets/creative-gallery/Danbam.jpg" 
+              alt="Desain Kemasan DANBAM CHIP" 
+              class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span>Lihat Kemasan Full</span>
+              </span>
+            </div>
+
+            <div class="absolute top-3 left-3">
+              <span class="px-2.5 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-amber-400 border border-amber-500/30 text-[10px] font-bold shadow">
+                Commercial Packaging • F&B
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+              <span>SNACK POUCH PACKAGING</span>
+              <span>COMMERCIAL</span>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white group-hover:text-amber-400 transition-colors">
+              Desain Kemasan: DANBAM CHIP
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed text-justify">
+              Konsep kemasan standing snack pouch kentang goreng krispi (*Danbam Chip*). Memadukan tipografi kuas ekspresif, ornamen lingkaran stempel merah, ilustrasi vektor bahan baku kentang, serta komposisi foto keripik berlapis (*food photo montage*).
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] text-slate-300">Standing Pouch</span>
+          <span class="text-xs font-semibold text-amber-400 flex items-center gap-1 cursor-pointer" onclick="openLightbox('assets/creative-gallery/Danbam.jpg', 'Desain Kemasan DANBAM CHIP')">
+            Zoom Desain <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- ITEM 7: ID CARD - JHONSON (PTT) -->
+      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="idcard">
+        <div>
+          <div class="relative overflow-hidden aspect-[3/4] bg-white cursor-pointer" onclick="openLightbox('assets/creative-gallery/idcard-jhonson-ptt.png', 'ID Card Resmi Jhonson Samuel Manurung • Divisi PTT KKN Desa Tomok 2025 • Retro Pixel & Pop-out Cutout Style')">
+            <img 
+              src="assets/creative-gallery/idcard-jhonson-ptt.png" 
+              alt="ID Card Jhonson Samuel Manurung" 
+              class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/20 text-white text-xs font-semibold shadow-2xl">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-purple-400"></i>
+                <span>Klik Lihat Full</span>
+              </span>
+            </div>
+
+            <div class="absolute top-3 left-3">
+              <span class="px-2.5 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-purple-400 border border-purple-500/30 text-[10px] font-bold shadow">
+                Featured Card • Jhonson S.M.
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+              <span>DIVISI PTT</span>
+              <span>BISNIS DIGITAL 2022</span>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
+              Kartu ID: Johnson S. Manurung
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed text-justify">
+              Desain kartu tanda pengenal pribadi dengan konsep <em>Retro-Pixel Modern</em>: tipografi vertikal tebal, aksen grid digital, pop-out foto subjek, dan label miring kontemporer.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between">
+          <span class="px-2.5 py-0.5 rounded-full bg-slate-800 text-[10px] text-slate-300">Pop-out Portrait</span>
+          <span class="text-xs font-semibold text-purple-400 flex items-center gap-1 cursor-pointer" onclick="openLightbox('assets/creative-gallery/idcard-jhonson-ptt.png', 'ID Card Jhonson Samuel Manurung')">
+            Lihat Kartu <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Return Banner -->
+    <div class="mt-20 p-8 rounded-3xl bg-gradient-to-r from-purple-950/50 via-slate-900 to-indigo-950/50 border border-purple-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+      <div class="space-y-1 text-center sm:text-left">
+        <h4 class="font-heading font-bold text-lg text-white">Ingin melihat rekam jejak pengalaman kerja & sertifikasi?</h4>
+        <p class="text-xs sm:text-sm text-slate-400">Jelajahi studi kasus magang logistik, riset skripsi HAKI, dan kompetensi teknis di halaman utama.</p>
+      </div>
+      <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-xs tracking-wider uppercase shadow-lg shadow-purple-600/30 transition-all flex-shrink-0">
+        <span>Buka Halaman Utama</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ================= LIGHTBOX POPUP MODAL (FULLSCREEN) ================= -->
+  <div id="imageLightbox" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden flex-col items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300" onclick="closeLightbox(event)">
+    <button onclick="closeLightbox(null, true)" class="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition-all shadow-lg border border-white/20">
+      ✕
+    </button>
+    <div class="relative max-w-5xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+      <img id="lightboxImg" src="" alt="Popup Preview" class="max-w-full max-h-[82vh] object-contain rounded-xl shadow-2xl border border-white/10">
+      <div id="lightboxCaption" class="mt-3 text-center text-xs sm:text-sm font-medium text-slate-300 bg-slate-900/90 px-4 py-1.5 rounded-full border border-slate-700"></div>
+    </div>
+  </div>
+
+  <footer class="border-t border-slate-900 py-8 text-center text-xs font-mono text-slate-500">
+    <span>© 2026 Jhonson Samuel Manurung • Creative Design & Brand Identity Showcase</span>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Filter functionality
+    function filterGallery(category) {
+      const cards = document.querySelectorAll('.gallery-card');
+      const buttons = {
+        'all': document.getElementById('btnFilterAll'),
+        'packaging': document.getElementById('btnFilterPackaging'),
+        'banner': document.getElementById('btnFilterBanner'),
+        'merch': document.getElementById('btnFilterMerch'),
+        'idcard': document.getElementById('btnFilterIdcard')
+      };
+
+      const activeClass = "px-4 py-1.5 rounded-full text-xs font-semibold bg-purple-600 text-white shadow-lg shadow-purple-600/30 transition-all";
+      const inactiveClass = "px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-all";
+
+      Object.keys(buttons).forEach(key => {
+        if (buttons[key]) buttons[key].className = (key === category) ? activeClass : inactiveClass;
+      });
+
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Lightbox modal
+    function openLightbox(src, caption) {
+      const modal = document.getElementById('imageLightbox');
+      const img = document.getElementById('lightboxImg');
+      const cap = document.getElementById('lightboxCaption');
+      img.src = src;
+      cap.textContent = caption || '';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modal.classList.add('opacity-100');
+      }, 20);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event, force) {
+      if (force || event.target.id === 'imageLightbox') {
+        const modal = document.getElementById('imageLightbox');
+        modal.classList.remove('opacity-100');
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+          modal.classList.remove('flex');
+          modal.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }, 300);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox(null, true);
+    });
+  </script>
+</body>
+</html>
