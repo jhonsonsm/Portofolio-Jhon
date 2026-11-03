@@ -201,6 +201,19 @@
       }
     }
 
+    @keyframes heroFadeRiseUp {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, 40px);
+        filter: blur(6px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+        filter: blur(0px);
+      }
+    }
+
     .animate-hero-fade {
       opacity: 1;
     }
@@ -210,8 +223,32 @@
     }
     .animate-hero-portrait {
       opacity: 0;
-      animation: heroFadeSlideRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+      animation: heroFadeRiseUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
     }
+
+    /* Real Specular Diagonal Light Flare Keyframe */
+    @keyframes chromeSweep {
+      0% {
+        background-position: 200% center;
+      }
+      100% {
+        background-position: -200% center;
+      }
+    }
+
+    .dramatic-fade-purple {
+      background: linear-gradient(
+        180deg,
+        #c084fc 0%,
+        #9333ea 35%,
+        #581c87 65%,
+        rgba(15, 23, 42, 0.15) 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 15px 25px rgba(147, 51, 234, 0.35));
+    }
+
     html, body {
       overflow-x: hidden;
       max-width: 100%;
@@ -220,12 +257,105 @@
 
     .delay-100 { animation-delay: 0.15s; }
     .delay-200 { animation-delay: 0.3s; }
-    .delay-300 { animation-delay: 0.45s; }
-    .delay-400 { animation-delay: 0.6s; }
-    .delay-500 { animation-delay: 0.75s; }
+    /* Preloader Intro Animation Keyframes */
+    #sitePreloader {
+      transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+    }
+    #sitePreloader.preloader-hidden {
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+    @keyframes preloaderPulse {
+      0%, 100% { opacity: 0.35; transform: scale(0.98); }
+      50% { opacity: 0.85; transform: scale(1.02); }
+    }
+    .preloader-ambient-glow {
+      animation: preloaderPulse 3s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="selection:bg-slate-900 selection:text-white overflow-x-hidden w-full max-w-full">
+
+  <!-- ================= CINEMATIC PRELOADER INTRO SCREEN ================= -->
+  <div id="sitePreloader" class="fixed inset-0 z-[9999] bg-[#070A12] text-white flex flex-col justify-between p-6 sm:p-12 select-none overflow-hidden">
+    
+    <!-- Ambient Background Lighting -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="preloader-ambient-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[750px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-purple-600/20 via-indigo-600/15 to-cyan-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:24px_24px] opacity-40"></div>
+    </div>
+
+    <!-- Top Bar: Brand Monogram & Skip Button -->
+    <div class="relative z-10 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center font-heading font-bold text-sm shadow-lg shadow-purple-600/30">
+          JM
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading font-bold text-xs tracking-wider text-slate-200">JHONSON MANURUNG</span>
+          <span class="text-[10px] font-mono text-purple-400">PORTFOLIO EDITION</span>
+        </div>
+      </div>
+
+      <button onclick="dismissPreloader()" class="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 hover:border-purple-500/50 text-slate-400 hover:text-white text-xs font-mono transition-all">
+        <span>Lewati</span>
+        <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 group-hover:text-purple-300">ESC</span>
+      </button>
+    </div>
+
+    <!-- Center Stage: Iconic Pills & Kinetic Morphing Typography -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center space-y-6 my-auto">
+      
+      <!-- Minimalist Category Icons -->
+      <div id="preloaderIcons" class="inline-flex items-center gap-3 p-1.5 rounded-full bg-slate-900/90 border border-slate-800/80 shadow-inner transition-all duration-500">
+        <div class="w-8 h-8 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center shadow-sm">
+          <i data-lucide="palette" class="w-4 h-4"></i>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 flex items-center justify-center shadow-sm">
+          <i data-lucide="trending-up" class="w-4 h-4"></i>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shadow-sm">
+          <i data-lucide="globe" class="w-4 h-4"></i>
+        </div>
+      </div>
+
+      <!-- Morphing Text Container -->
+      <div class="min-h-[140px] sm:min-h-[160px] flex flex-col justify-center items-center">
+        <!-- Subtitle Prompt -->
+        <p id="preloaderSubtitle" class="text-xs sm:text-sm font-mono tracking-[0.25em] uppercase text-purple-400 transition-opacity duration-300">
+          Welcome to my
+        </p>
+        
+        <!-- Giant Kinetic Headline -->
+        <h1 id="preloaderHeadline" class="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-purple-300 transition-all duration-500 mt-2">
+          Portfolio Showcase
+        </h1>
+      </div>
+
+      <!-- Identity Domain Pill -->
+      <div class="pt-2">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-950/80 border border-purple-500/30 text-[11px] font-mono text-slate-300 shadow-xl">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>jhonsonmanurung.my.id</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Progress Track & Copyright -->
+    <div class="relative z-10 max-w-md mx-auto w-full space-y-3 pb-2">
+      <!-- Loading Bar -->
+      <div class="h-1 w-full bg-slate-800/80 rounded-full overflow-hidden p-0.5 border border-slate-700/50">
+        <div id="preloaderProgressBar" class="h-full bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 rounded-full w-0 transition-all duration-300 ease-out"></div>
+      </div>
+      
+      <div class="flex items-center justify-between text-[10px] font-mono text-slate-500">
+        <span>INITIALIZING EXPERIENCE</span>
+        <span id="preloaderPercent">0%</span>
+      </div>
+    </div>
+
+  </div>
 
   <!-- ================= TOP NAVIGATION ================= -->
   <header class="sticky top-0 z-50 bg-[#FAFAF9]/90 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300">
@@ -294,93 +424,138 @@
         </div>
       </div>
 
-      <!-- Main Dynamic 3D Hero Stage -->
-      <div id="heroStage" class="relative rounded-[28px] sm:rounded-[40px] border border-purple-500/30 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 p-5 sm:p-10 lg:p-14 shadow-2xl shadow-purple-950/60 backdrop-blur-xl overflow-hidden min-h-[500px] lg:min-h-[640px] transition-transform duration-300">
+      <!-- Main Dynamic 3D Hero Stage (FULL-WIDTH CENTERED SHOWCASE) -->
+      <div id="heroStage" class="relative rounded-[28px] sm:rounded-[40px] border border-purple-500/30 bg-gradient-to-b from-slate-950/90 via-slate-900/60 to-slate-950/95 p-6 sm:p-10 lg:p-12 shadow-2xl shadow-purple-950/60 backdrop-blur-xl overflow-hidden min-h-[580px] lg:min-h-[660px] flex flex-col justify-between items-center transition-transform duration-300">
         
-        <!-- LAYER 1 (DESKTOP ONLY): Giant Luminous 3D Kinetic Text strictly behind subject on the right -->
-        <div id="heroBackdropText" class="hidden lg:flex absolute right-4 top-8 flex-col items-end text-right pointer-events-none select-none z-0 transition-transform duration-200 ease-out animate-hero-backdrop">
-          <div class="font-display font-black text-8xl lg:text-[110px] xl:text-[125px] tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-100 to-purple-400/40 drop-shadow-[0_15px_30px_rgba(168,85,247,0.35)]">
-            JHONSON
+        <!-- Left Vertical Social Icons -->
+        <div class="hidden lg:flex absolute left-8 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-4 p-2 rounded-full bg-slate-950/80 border border-slate-700/80 backdrop-blur-md shadow-2xl">
+          <!-- LinkedIn Icon with Brand Glow & Tooltip -->
+          <a 
+            href="https://www.linkedin.com/in/jhonson-samuel-manurung-39715b439" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="group relative w-11 h-11 rounded-full bg-slate-900 border border-slate-700 hover:border-[#0A66C2] text-slate-200 hover:text-white flex items-center justify-center transition-all shadow-md hover:shadow-[0_0_20px_rgba(10,102,194,0.7)] hover:bg-[#0A66C2] hover:scale-110"
+            title="LinkedIn Profile"
+          >
+            <svg class="w-5 h-5 fill-current transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.69 1.69 0 0 0 1.69-1.68 1.7 1.7 0 0 0-1.69-1.69 1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.07v8.37h2.78z"/>
+            </svg>
+            <span class="pointer-events-none absolute left-14 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-[11px] font-mono text-slate-200 tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+              LinkedIn Profile
+            </span>
+          </a>
+
+          <!-- WhatsApp Icon with Brand Glow & Tooltip -->
+          <a 
+            href="https://wa.me/6285358977145?text=Halo%20Jhonson,%20saya%20melihat%20portofolio%20website%20Anda" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="group relative w-11 h-11 rounded-full bg-slate-900 border border-slate-700 hover:border-[#25D366] text-slate-200 hover:text-white flex items-center justify-center transition-all shadow-md hover:shadow-[0_0_20px_rgba(37,211,102,0.7)] hover:bg-[#25D366] hover:scale-110"
+            title="WhatsApp Direct"
+          >
+            <svg class="w-5 h-5 fill-current transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.4-.42-.56-.43-.14-.01-.31-.01-.47-.01-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3z"/>
+            </svg>
+            <span class="pointer-events-none absolute left-14 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-[11px] font-mono text-slate-200 tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+              WhatsApp Direct
+            </span>
+          </a>
+
+          <!-- Email Icon with Brand Glow & Tooltip -->
+          <a 
+            href="mailto:jhonsonmanurung02@gmail.com?subject=Inquiry%20via%20Portfolio" 
+            class="group relative w-11 h-11 rounded-full bg-slate-900 border border-slate-700 hover:border-amber-400 text-slate-200 hover:text-white flex items-center justify-center transition-all shadow-md hover:shadow-[0_0_20px_rgba(251,191,36,0.6)] hover:bg-gradient-to-tr hover:from-amber-500 hover:to-rose-500 hover:scale-110"
+            title="Email Direct: jhonsonmanurung02@gmail.com"
+          >
+            <svg class="w-5 h-5 fill-current transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            <span class="pointer-events-none absolute left-14 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700 text-[11px] font-mono text-slate-200 tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+              jhonsonmanurung02@gmail.com
+            </span>
+          </a>
+
+          <div class="w-0.5 h-8 bg-gradient-to-b from-purple-500/50 via-indigo-500/30 to-transparent rounded-full mt-1"></div>
+        </div>
+
+        <!-- LAYER 1: Radiant Studio Spotlight (Intense soft purple glow directly behind subject) -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] sm:w-[580px] lg:w-[720px] h-[420px] sm:h-[580px] lg:h-[720px] bg-gradient-to-tr from-purple-600/35 via-indigo-600/25 to-pink-500/15 rounded-full blur-[90px] pointer-events-none select-none z-0"></div>
+
+        <!-- LAYER 2: Giant Heavy Bold Modern Typography Backdrop (Centered 2-Tier Stack with Shimmer & Dramatic Floor Fade) -->
+        <div id="heroBackdropText" class="absolute inset-0 z-0 flex flex-col items-center justify-center pointer-events-none select-none text-center transition-transform duration-200 ease-out animate-hero-backdrop px-2">
+          <!-- Row 1: JHONSON (True Animated Specular Glint & Diamond Shine) -->
+          <div class="relative inline-block leading-none select-none">
+            <span class="font-heading font-black text-6xl sm:text-8xl md:text-9xl lg:text-[138px] xl:text-[160px] tracking-tight leading-none uppercase text-transparent bg-clip-text bg-[linear-gradient(110deg,#cbd5e1_0%,#ffffff_25%,#ffffff_40%,#38bdf8_50%,#ffffff_60%,#ffffff_75%,#94a3b8_100%)] bg-[size:200%_auto] animate-[chromeSweep_3s_linear_infinite] drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] relative z-0">
+              JHONSON
+            </span>
           </div>
-          <div class="font-display font-black text-7xl lg:text-[95px] xl:text-[108px] tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-purple-200 via-purple-400/50 to-purple-950/20 -mt-4">
+          <!-- Row 2: MANURUNG (Dramatic Purple-to-Dark Floor Fade) -->
+          <div class="font-heading font-black text-5xl sm:text-7xl md:text-8xl lg:text-[120px] xl:text-[142px] tracking-tight leading-none uppercase dramatic-fade-purple -mt-3 sm:-mt-6 lg:-mt-10">
             MANURUNG
           </div>
         </div>
 
-        <!-- LAYER 2 (DESKTOP ONLY): Cutout Portrait with Ambient Backlight Bloom & Parallax -->
-        <div id="heroSubjectLayer" class="hidden lg:block absolute right-0 lg:right-8 bottom-0 z-10 w-[340px] lg:w-[400px] pointer-events-none transition-transform duration-200 ease-out animate-hero-portrait">
-          <div class="absolute -inset-4 bg-gradient-to-t from-purple-600/35 via-indigo-500/20 to-transparent rounded-full blur-2xl"></div>
+        <!-- LAYER 3: Centered Cutout Portrait Standing In Front of Giant Name -->
+        <div id="heroSubjectLayer" class="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-[290px] sm:w-[360px] lg:w-[420px] xl:w-[460px] pointer-events-none select-none transition-transform duration-200 ease-out animate-hero-portrait">
           <img 
             src="jhonson-hero-perfect.png" 
             alt="Jhonson Samuel Manurung" 
-            class="relative z-10 w-full h-auto object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] filter brightness-[1.03]"
+            class="relative z-10 w-full h-auto object-contain object-bottom drop-shadow-[0_25px_50px_rgba(0,0,0,0.95)] filter brightness-[1.05] contrast-[1.03]"
           />
-          <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent z-20"></div>
+          <!-- Smooth Bottom Fade Blending into Base -->
+          <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950 via-slate-950/85 to-transparent z-20"></div>
         </div>
 
-        <!-- LAYER 3: Clean, Unobstructed Narrative, Title & Interactive CTAs -->
-        <div class="relative z-20 w-full max-w-lg lg:max-w-xl space-y-5 sm:space-y-6 pt-1 sm:pt-4">
-          <div class="space-y-3 sm:space-y-4">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-purple-500/20 border border-purple-500/40 text-purple-300 text-[11px] sm:text-xs font-mono font-semibold tracking-wider uppercase animate-hero-fade delay-100">
-              <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span>
-              <span>Digital Marketing & Web Strategist</span>
-            </div>
-            
-            <h1 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-snug drop-shadow-md animate-hero-fade delay-200">
-              Menghubungkan Strategi Bisnis, Konten & Logika Teknis.
-            </h1>
-
-            <!-- MOBILE-ONLY HERO PORTRAIT CARD (Clean Centered Frame, Zero Text Overlap) -->
-            <div class="lg:hidden flex justify-center py-2">
-              <div class="relative w-44 sm:w-52 aspect-[4/5] rounded-2xl overflow-hidden border border-purple-500/40 bg-gradient-to-t from-purple-950/90 via-slate-900 to-slate-950 shadow-xl shadow-purple-950/80">
-                <div class="absolute -inset-2 bg-gradient-to-t from-purple-600/30 to-transparent rounded-full blur-xl pointer-events-none"></div>
-                <img 
-                  src="jhonson-hero-perfect.png" 
-                  alt="Jhonson Samuel Manurung" 
-                  class="relative z-10 w-full h-full object-contain object-bottom filter brightness-[1.03]"
-                />
-                <div class="absolute bottom-2 left-2 right-2 z-20 px-2 py-0.5 rounded-lg bg-slate-950/85 backdrop-blur-md border border-white/10 text-center">
-                  <span class="text-[10px] font-mono font-semibold text-purple-300">Jhonson S. Manurung</span>
-                </div>
-              </div>
-            </div>
-
-            <p class="text-slate-300 text-xs sm:text-base leading-relaxed text-left sm:text-justify max-w-md drop-shadow animate-hero-fade delay-300">
-              Lulusan S1 Bisnis Digital UNIMED dengan latar belakang Rekayasa Perangkat Lunak. Berpengalaman nyata dalam manajemen media sosial B2B logistik, perancangan web WordPress instansi, digitalisasi UMKM (Google Maps), serta pemanfaatan tools AI untuk riset dan alur kerja konten.
-            </p>
+        <!-- LAYER 4: Top Floating Role Eyebrow Tag -->
+        <div class="relative z-20 pt-2 animate-hero-fade delay-100">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-purple-500/35 text-purple-300 text-xs sm:text-sm font-mono font-semibold tracking-wider uppercase shadow-xl backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>Creative Strategy & Digital Growth</span>
           </div>
+        </div>
 
-          <!-- Quick Metrics Bar -->
-          <div class="grid grid-cols-3 gap-2 sm:gap-3 p-3 sm:p-4 rounded-2xl bg-slate-950/85 border border-slate-800/90 backdrop-blur-md max-w-md shadow-lg animate-hero-fade delay-400">
+        <!-- LAYER 5: Bottom Elegant Scroll Indicator & Core Identity -->
+        <div class="relative z-20 pb-2 flex flex-col items-center gap-2 text-center animate-hero-fade delay-300">
+          <div class="text-xs sm:text-sm font-heading font-medium text-slate-300 tracking-wide drop-shadow">
+            S1 Bisnis Digital UNIMED • Digital Marketing & Web
+          </div>
+          <a href="#about-detail" class="group inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 hover:border-purple-500/50 text-slate-400 hover:text-white text-[11px] font-mono transition-all">
+            <span>Scroll Eksplorasi Profil</span>
+            <i data-lucide="arrow-down" class="w-3.5 h-3.5 text-purple-400 group-hover:translate-y-0.5 transition-transform"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- ================= SECONDARY DETAIL PANEL: NARASI & METRIK (Tersusun Anggun Tepat di Bawah Panggung) ================= -->
+      <div id="about-detail" class="mt-8 pt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        
+        <div class="lg:col-span-7 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-mono font-semibold uppercase tracking-wider">
+            <span>Core Competency</span>
+          </div>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug">
+            Menghubungkan Strategi Bisnis, Konten & Logika Teknis.
+          </h2>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed text-justify">
+            Lulusan S1 Bisnis Digital UNIMED dengan latar belakang Rekayasa Perangkat Lunak. Berpengalaman nyata dalam manajemen media sosial B2B logistik, perancangan web WordPress instansi, digitalisasi UMKM (Google Maps & QRIS), serta efisiensi alur kerja kreatif menggunakan tools AI terkini.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5">
+          <!-- Quick Metrics Bar (Clean & Elevated) -->
+          <div class="grid grid-cols-3 gap-3 p-4 sm:p-5 rounded-3xl bg-slate-950/90 border border-slate-800 shadow-xl backdrop-blur-md text-center">
             <div>
-              <div class="text-xl sm:text-2xl font-bold font-heading text-white">3.70<span class="text-xs text-purple-400 font-normal">/4.0</span></div>
-              <div class="text-[9px] sm:text-[10px] text-slate-400 mt-0.5">IPK Kelulusan</div>
+              <div class="text-2xl sm:text-3xl font-bold font-heading text-white">3.70<span class="text-xs text-purple-400 font-normal">/4.0</span></div>
+              <div class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">IPK Kelulusan</div>
             </div>
             <div class="border-x border-slate-800 px-2 sm:px-3">
-              <div class="text-xl sm:text-2xl font-bold font-heading text-white">25+</div>
-              <div class="text-[9px] sm:text-[10px] text-slate-400 mt-0.5">Aset Konten</div>
+              <div class="text-2xl sm:text-3xl font-bold font-heading text-white">25+</div>
+              <div class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">Aset Konten</div>
             </div>
             <div>
-              <div class="text-xl sm:text-2xl font-bold font-heading text-white">2 Portal</div>
-              <div class="text-[9px] sm:text-[10px] text-slate-400 mt-0.5">Web Dinas</div>
-            </div>
-          </div>
-
-          <!-- Interactive Action Buttons -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-2 animate-hero-fade delay-500">
-            <a href="#experience" class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-xs uppercase tracking-wider shadow-lg shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all text-center">
-              <span>Eksplorasi Pengalaman</span>
-              <i data-lucide="arrow-down" class="w-4 h-4"></i>
-            </a>
-            <div class="flex items-center gap-2.5">
-              <a href="CV_Jhonson_Samuel_Manurung.pdf" download class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-slate-800/90 hover:bg-slate-700 text-white border border-slate-700 font-semibold text-xs tracking-wider transition-all shadow text-center">
-                <i data-lucide="file-down" class="w-4 h-4 text-purple-400"></i>
-                <span>Unduh CV</span>
-              </a>
-              <a href="https://wa.me/6285358977145?text=Halo%20Jhonson,%20saya%20melihat%20portofolio%20website%20Anda" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-semibold transition-all text-center">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span>WhatsApp</span>
-              </a>
+              <div class="text-2xl sm:text-3xl font-bold font-heading text-white">2 Portal</div>
+              <div class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">Web Dinas</div>
             </div>
           </div>
         </div>
@@ -1821,6 +1996,77 @@
   <script>
     lucide.createIcons();
 
+    // ================= 0. CINEMATIC PRELOADER INTRO LOGIC =================
+    const sitePreloader = document.getElementById('sitePreloader');
+    const preloaderSubtitle = document.getElementById('preloaderSubtitle');
+    const preloaderHeadline = document.getElementById('preloaderHeadline');
+    const preloaderProgressBar = document.getElementById('preloaderProgressBar');
+    const preloaderPercent = document.getElementById('preloaderPercent');
+
+    let preloaderDismissed = false;
+
+    // Skip preloader if already visited in this session
+    if (sessionStorage.getItem('hero_preloader_seen')) {
+      if (sitePreloader) sitePreloader.style.display = 'none';
+      preloaderDismissed = true;
+    }
+
+    function dismissPreloader() {
+      if (preloaderDismissed || !sitePreloader) return;
+      preloaderDismissed = true;
+      sessionStorage.setItem('hero_preloader_seen', 'true');
+      sitePreloader.classList.add('preloader-hidden');
+      setTimeout(() => {
+        sitePreloader.style.display = 'none';
+      }, 900);
+    }
+
+    // Dismiss on ESC key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') dismissPreloader();
+    });
+
+    // Run Preloader Sequence (3.3s total - Extended by 1s)
+    if (sitePreloader) {
+      // Step 1: Smooth progress increment across 3.3s
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        if (progress < 90) {
+          progress += Math.floor(Math.random() * 5) + 3;
+          if (progress > 90) progress = 90;
+          if (preloaderProgressBar) preloaderProgressBar.style.width = progress + '%';
+          if (preloaderPercent) preloaderPercent.innerText = progress + '%';
+        }
+      }, 100);
+
+      // Step 2: at 1200ms, kinetic morph headline to "Creative Strategy & Digital Growth"
+      setTimeout(() => {
+        if (preloaderHeadline && preloaderSubtitle) {
+          preloaderHeadline.style.opacity = '0';
+          preloaderHeadline.style.transform = 'translateY(12px) scale(0.96)';
+          
+          setTimeout(() => {
+            preloaderSubtitle.innerText = "Welcome to my portfolio";
+            preloaderHeadline.innerHTML = 'Creative Strategy <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300">&</span> Digital Growth';
+            preloaderHeadline.style.opacity = '1';
+            preloaderHeadline.style.transform = 'translateY(0px) scale(1)';
+          }, 300);
+        }
+      }, 1200);
+
+      // Step 3: at 2900ms finish progress to 100%
+      setTimeout(() => {
+        clearInterval(progressInterval);
+        if (preloaderProgressBar) preloaderProgressBar.style.width = '100%';
+        if (preloaderPercent) preloaderPercent.innerText = '100%';
+      }, 2900);
+
+      // Step 4: at 3350ms smoothly slide curtain away
+      setTimeout(() => {
+        dismissPreloader();
+      }, 3350);
+    }
+
     // 0. Infinity Logistics Tab Switcher & Dynamic Lightbox Source (3 Tabs: Depot, Office, Instagram)
     let currentInfinitySrc = "assets/infinity/infinity-yard-portrait.jpg";
     let currentInfinityCaption = "Dokumentasi Operasional Lapangan di Depo Kontainer Infinity Logistics • Belawan, Medan";
@@ -2015,22 +2261,24 @@
     const heroBackdropText = document.getElementById('heroBackdropText');
     const heroSubjectLayer = document.getElementById('heroSubjectLayer');
 
-    if (heroStage && heroBackdropText && heroSubjectLayer) {
+    if (heroStage && heroSubjectLayer) {
       heroStage.addEventListener('mousemove', (e) => {
         const rect = heroStage.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
         const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-        // Background Text Parallax (moves slightly opposite to mouse)
-        heroBackdropText.style.transform = `translate(${x * -28}px, ${y * -18}px)`;
-
-        // Subject Layer (moves subtly with mouse depth)
-        heroSubjectLayer.style.transform = `translate(${x * 16}px, ${y * 10}px) scale(1.01)`;
+        // Subtle 3D tilt: background moves opposite, subject tracks with mouse
+        if (heroBackdropText) {
+          heroBackdropText.style.transform = `translate(${x * -24}px, ${y * -16}px)`;
+        }
+        if (heroSubjectLayer) {
+          heroSubjectLayer.style.transform = `translate(calc(-50% + ${x * 16}px), ${y * 10}px) scale(1.01)`;
+        }
       });
 
       heroStage.addEventListener('mouseleave', () => {
-        heroBackdropText.style.transform = 'translate(0px, 0px)';
-        heroSubjectLayer.style.transform = 'translate(0px, 0px) scale(1)';
+        if (heroBackdropText) heroBackdropText.style.transform = 'translate(0px, 0px)';
+        if (heroSubjectLayer) heroSubjectLayer.style.transform = 'translate(-50%, 0px) scale(1)';
       });
     }
 

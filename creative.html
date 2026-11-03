@@ -72,6 +72,18 @@
         <span>Kembali ke Portofolio Utama</span>
       </a>
 
+      <!-- Quick Navigation Anchor Links -->
+      <div class="hidden md:flex items-center gap-2">
+        <a href="#design-section" class="px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:border-purple-500/40 transition-all flex items-center gap-1.5">
+          <i data-lucide="palette" class="w-3.5 h-3.5 text-purple-400"></i>
+          <span>Desain Grafis</span>
+        </a>
+        <a href="#photography-section" class="px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:border-cyan-500/40 transition-all flex items-center gap-1.5">
+          <i data-lucide="camera" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span>Galeri Fotografi</span>
+        </a>
+      </div>
+
       <!-- Identity Breadcrumb -->
       <div class="flex items-center gap-2.5">
         <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center font-heading font-bold text-xs shadow-md">
@@ -91,8 +103,10 @@
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-24 relative z-10">
 
-    <!-- Header Section -->
-    <div class="max-w-3xl mb-12 sm:mb-16">
+    <!-- ================= SECTION 1: DESAIN GRAFIS & IDENTITAS VISUAL ================= -->
+    <section id="design-section">
+      <!-- Header Section -->
+      <div class="max-w-3xl mb-12 sm:mb-16">
       <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-4">
         <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
         <span>Visual Identity & Creative Works</span>
@@ -484,6 +498,130 @@
       </div>
 
     </div>
+    </section>
+
+    <!-- ================= SECTION 2: GALERI FOTOGRAFI & VISUAL STORYTELLING ================= -->
+    <section id="photography-section" class="pt-24 mt-20 border-t border-slate-800/80">
+      
+      <!-- Section Header -->
+      <div class="max-w-3xl mb-8 sm:mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-4">
+          <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+          <span>Photography & Visual Exploration</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
+          Kolase Fotografi & Visual Storytelling
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-3 leading-relaxed">
+          Koleksi jepretan lensa mandiri: eksplorasi lanskap alam, tekstur geometri industrial, dan sudut pandang visual. Klik foto untuk melihat detail resolusi tinggi.
+        </p>
+      </div>
+
+      <!-- Photography Modern Bento Collage Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5">
+
+        <!-- COLLAGE ITEM 1: KAPAL DANAU TOBA (Left Hero Tile - 7 Cols) -->
+        <div 
+          class="md:col-span-7 group relative rounded-2xl overflow-hidden cursor-pointer border border-slate-800/80 bg-slate-900 shadow-xl hover:border-cyan-500/50 transition-all duration-300 aspect-[16/10] md:aspect-auto md:min-h-[360px]"
+          onclick="openLightbox('assets/creative-gallery/photo-kapal-toba.jpg', 'Kapal Kayu Tradisional di Teluk Danau Toba, Samosir • Natural Framing & Nuansa Bahari')"
+        >
+          <img 
+            src="assets/creative-gallery/photo-kapal-toba.jpg" 
+            alt="Perahu Tradisional Danau Toba" 
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+
+          <!-- Top Badge -->
+          <div class="absolute top-3 left-3">
+            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-emerald-400 border border-emerald-500/30 text-[10px] font-bold shadow flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-3 h-3"></i> Danau Toba • Samosir
+            </span>
+          </div>
+
+          <!-- Bottom Caption Overlay -->
+          <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
+            <div>
+              <p class="text-[10px] font-mono text-cyan-400 uppercase tracking-wider">Natural Framing & Boats</p>
+              <h4 class="font-heading font-bold text-sm sm:text-base text-white group-hover:text-cyan-300 transition-colors">
+                Warna Bahari di Kaki Bukit Toba
+              </h4>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-slate-900/80 border border-white/20 flex items-center justify-center text-white opacity-80 group-hover:opacity-100 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all flex-shrink-0 shadow-lg">
+              <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLLAGE ITEM 2: CONTAINER CANYON (Right Tile - 5 Cols) -->
+        <div 
+          class="md:col-span-5 group relative rounded-2xl overflow-hidden cursor-pointer border border-slate-800/80 bg-slate-900 shadow-xl hover:border-blue-500/50 transition-all duration-300 aspect-[4/3] md:aspect-auto md:min-h-[360px]"
+          onclick="openLightbox('assets/creative-gallery/photo-container-canyon.jpg', 'Tumpukan Kontainer Kargo • Sudut Rendah (Worm-Eye View) Menegaskan Tekstur Baja & Skala Logistik')"
+        >
+          <img 
+            src="assets/creative-gallery/photo-container-canyon.jpg" 
+            alt="Kontainer Logistik Low Angle" 
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+
+          <!-- Top Badge -->
+          <div class="absolute top-3 left-3">
+            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-blue-400 border border-blue-500/30 text-[10px] font-bold shadow flex items-center gap-1">
+              <i data-lucide="aperture" class="w-3 h-3"></i> Low Angle
+            </span>
+          </div>
+
+          <!-- Bottom Caption Overlay -->
+          <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
+            <div>
+              <p class="text-[10px] font-mono text-blue-400 uppercase tracking-wider">Industrial Geometry</p>
+              <h4 class="font-heading font-bold text-sm sm:text-base text-white group-hover:text-blue-300 transition-colors">
+                Monolit Baja Logistik
+              </h4>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-slate-900/80 border border-white/20 flex items-center justify-center text-white opacity-80 group-hover:opacity-100 group-hover:bg-blue-500 group-hover:text-slate-950 transition-all flex-shrink-0 shadow-lg">
+              <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLLAGE ITEM 3: FORKLIFT HEAVY HANDLER (Bottom Wide Tile - 12 Cols) -->
+        <div 
+          class="md:col-span-12 group relative rounded-2xl overflow-hidden cursor-pointer border border-slate-800/80 bg-slate-900 shadow-xl hover:border-purple-500/50 transition-all duration-300 aspect-[16/9] sm:aspect-[21/9] md:min-h-[260px]"
+          onclick="openLightbox('assets/creative-gallery/photo-forklift-terminal.jpg', 'Alat Berat Empty Container Handler & Pantulan Cermin Air Hujan di Depo Kargo')"
+        >
+          <img 
+            src="assets/creative-gallery/photo-forklift-terminal.jpg" 
+            alt="Alat Berat Handler dan Refleksi Genangan Air" 
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+
+          <!-- Top Badge -->
+          <div class="absolute top-3 left-3">
+            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-purple-400 border border-purple-500/30 text-[10px] font-bold shadow flex items-center gap-1">
+              <i data-lucide="shield" class="w-3 h-3"></i> Heavy Equipment & Water Mirror
+            </span>
+          </div>
+
+          <!-- Bottom Caption Overlay -->
+          <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
+            <div>
+              <p class="text-[10px] font-mono text-purple-400 uppercase tracking-wider">Depot Operation & Reflection</p>
+              <h4 class="font-heading font-bold text-sm sm:text-lg text-white group-hover:text-purple-300 transition-colors">
+                Raksasa Angkat & Skala Operasi Depo
+              </h4>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-slate-900/80 border border-white/20 flex items-center justify-center text-white opacity-80 group-hover:opacity-100 group-hover:bg-purple-500 group-hover:text-slate-950 transition-all flex-shrink-0 shadow-lg">
+              <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
 
     <!-- Bottom Return Banner -->
     <div class="mt-20 p-8 rounded-3xl bg-gradient-to-r from-purple-950/50 via-slate-900 to-indigo-950/50 border border-purple-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
