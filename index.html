@@ -65,18 +65,45 @@
       opacity: 1;
     }
 
-    /* Lanyard sway physics */
-    @keyframes lanyardSway {
-      0%, 100% { transform: rotate(-2.5deg); }
-      50% { transform: rotate(2.5deg); }
+    /* Lanyard Interactive Canvas & Card Styles */
+    .lanyard-anchor-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 480px;
+      overflow: visible;
     }
-    .lanyard-rig {
-      transform-origin: 50% -60px;
-      animation: lanyardSway 5.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
-      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+
+    #lanyardCanvas {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 440px;
+      height: 480px;
+      pointer-events: none;
+      z-index: 10;
     }
-    .lanyard-rig:hover {
-      animation-play-state: paused;
+
+    .lanyard-card-assembly {
+      position: absolute;
+      top: 110px;
+      left: 50%;
+      margin-left: -112px; /* Center 224px (w-56) */
+      width: 224px;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      z-index: 20;
+      will-change: transform;
+      transform-origin: 50% -20px;
+    }
+
+    .lanyard-card-assembly:active,
+    .lanyard-card-assembly.is-dragging {
+      cursor: grabbing !important;
     }
 
     /* 3D Flip Card for Lanyard */
@@ -670,26 +697,39 @@
 
         <div class="pt-1 flex items-center justify-center md:justify-start gap-2 text-xs text-slate-400 font-mono">
           <span class="text-purple-400">✦</span>
-          <span>Interaksi Kartu: Klik ID Pass untuk melihat verifikasi & kode QR.</span>
+          <span>Interaksi Kartu: Tarik kartu untuk menggoyangkannya, atau klik untuk Flip 3D.</span>
         </div>
       </div>
 
-      <!-- Suspended 3D Lanyard Interactive Rig (Seamlessly Anchored to Marquee Line) -->
-      <div class="relative flex justify-center pt-0 pb-2">
-        <div class="lanyard-rig cursor-pointer select-none" id="lanyardTrigger" title="Klik untuk membalikkan kartu (Flip 3D)">
-          <!-- Woven Strap flush anchored to the bottom border of the running text -->
-          <div class="w-6 h-16 bg-gradient-to-b from-slate-950 via-slate-800 to-slate-900 mx-auto shadow-2xl relative overflow-hidden border-x border-slate-700/60 -mt-1">
-            <div class="absolute inset-y-0 left-1 w-0.5 bg-purple-500/80"></div>
-            <div class="absolute inset-y-0 right-1 w-0.5 bg-purple-500/80"></div>
-            <div class="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_2px,rgba(255,255,255,0.06)_2px,rgba(255,255,255,0.06)_4px)]"></div>
+      <!-- Suspended 3D Lanyard Interactive Rig (Always Anchored to Top Mount) -->
+      <div class="lanyard-anchor-wrapper pt-0 pb-4">
+        
+        <!-- Top Anchor Fixed Ring Mount (Absolute center, never moves) -->
+        <div class="absolute top-0 z-30 flex flex-col items-center pointer-events-none">
+          <div class="w-8 h-2.5 rounded-full bg-slate-950 border border-slate-700 shadow-xl"></div>
+          <div class="w-4 h-4 -mt-1 rounded-full border-2 border-slate-400 bg-slate-800 shadow-md flex items-center justify-center">
+            <div class="w-1.5 h-1.5 rounded-full bg-slate-950"></div>
           </div>
-          <!-- Metallic Swivel Clasp -->
-          <div class="w-8 h-4 bg-gradient-to-r from-slate-400 via-white to-slate-500 mx-auto rounded-sm shadow-md relative z-10 border border-slate-400 flex items-center justify-center">
-            <div class="w-2 h-1 bg-slate-600 rounded-full"></div>
+        </div>
+
+        <!-- Dynamic Continuous Lanyard Rope Canvas (Anchored at 220, 10) -->
+        <canvas id="lanyardCanvas" width="440" height="480"></canvas>
+
+        <!-- Interactive Draggable ID Card Assembly (Anchored via Clasp to Rope) -->
+        <div class="lanyard-card-assembly select-none" id="lanyardTrigger" title="Tarik kartu untuk mengayunkannya atau klik untuk membalikkan (Flip 3D)">
+          
+          <!-- Chrome Metallic Swivel Clasp & D-Ring (Attached directly to top of card) -->
+          <div class="flex flex-col items-center -mb-1 relative z-20 pointer-events-none">
+            <!-- Steel Ring Loop -->
+            <div class="w-4 h-2.5 rounded-sm border-2 border-slate-300 bg-slate-800 shadow-inner"></div>
+            <!-- Swivel Clip Body -->
+            <div class="w-7 h-4 bg-gradient-to-r from-slate-400 via-white to-slate-500 rounded-sm shadow-md border border-slate-400 flex items-center justify-center">
+              <div class="w-2 h-1 bg-slate-700 rounded-full"></div>
+            </div>
           </div>
 
           <!-- Flip Card Container -->
-          <div class="flip-card w-56 h-80 mt-1">
+          <div class="flip-card w-56 h-80 mt-1 shadow-2xl">
             <div class="flip-card-inner">
               
               <!-- FRONT SIDE: Photo ID Pass -->
@@ -783,13 +823,13 @@
           </p>
         </div>
 
-        <!-- 8 Neon Tiles Grid (4x2 on desktop, 2x4 on mobile) -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Ultra-Sleek Micro-Chips Grid (4x2 on Desktop, 2x4 on Mobile) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-4">
 
-          <!-- 1. FIGMA -->
-          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #F24E1E; --neon-glow: rgba(242, 78, 30, 0.35);">
-            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform">
-              <svg viewBox="0 0 38 57" class="w-9 h-9 fill-current" xmlns="http://www.w3.org/2000/svg">
+          <!-- 1. FIGMA (MICRO-CHIP) -->
+          <div class="neon-tile p-2.5 sm:p-3 rounded-xl flex items-center gap-3 group cursor-pointer" style="--neon-color: #F24E1E; --neon-glow: rgba(242, 78, 30, 0.3);">
+            <div class="w-8 h-8 rounded-lg bg-slate-900/90 border border-white/10 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg viewBox="0 0 38 57" class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
                 <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
                 <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
@@ -797,93 +837,177 @@
                 <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/>
               </svg>
             </div>
-            <div class="font-heading font-bold text-sm tracking-wide text-white">FIGMA</div>
-            <div class="text-[11px] font-medium text-rose-400 mt-1">UI/UX & Wireframing</div>
-          </div>
-
-          <!-- 2. CORELDRAW -->
-          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #10B981; --neon-glow: rgba(16, 185, 129, 0.35);">
-            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-emerald-400">
-              <i data-lucide="pen-tool" class="w-8 h-8"></i>
+            <div class="min-w-0 text-left">
+              <div class="font-heading font-bold text-xs tracking-wide text-white truncate">FIGMA</div>
+              <div class="text-[10px] text-rose-400 font-medium truncate">UI/UX & Wireframe</div>
             </div>
-            <div class="font-heading font-bold text-sm tracking-wide text-white">CORELDRAW</div>
-            <div class="text-[11px] font-medium text-emerald-400 mt-1">Vector & Print Layout</div>
           </div>
 
-          <!-- 3. CANVA PRO -->
-          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #06B6D4; --neon-glow: rgba(6, 182, 212, 0.35);">
-            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-cyan-400">
-              <i data-lucide="palette" class="w-8 h-8"></i>
+          <!-- 2. ADOBE CREATIVE (MICRO-CHIP) -->
+          <div class="neon-tile p-2.5 sm:p-3 rounded-xl flex items-center gap-3 group cursor-pointer" style="--neon-color: #FA0F00; --neon-glow: rgba(250, 15, 0, 0.3);">
+            <div class="w-8 h-8 rounded-lg bg-slate-900/90 border border-white/10 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current text-[#FA0F00]" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.966 22h3.036L24 2h-6.284l-3.75 11.233zm-3.932 0H6.998L0 2h6.284l3.75 11.233zM12 7.747L15.344 18h-2.928l-1.096-3.35H9.68z"/>
+              </svg>
             </div>
-            <div class="font-heading font-bold text-sm tracking-wide text-white">CANVA PRO</div>
-            <div class="text-[11px] font-medium text-cyan-400 mt-1">Social Feed & Carousel</div>
-          </div>
-
-          <!-- 4. CAPCUT -->
-          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #38BDF8; --neon-glow: rgba(56, 189, 248, 0.35);">
-            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-sky-400">
-              <i data-lucide="film" class="w-8 h-8"></i>
+            <div class="min-w-0 text-left">
+              <div class="font-heading font-bold text-xs tracking-wide text-white truncate">ADOBE CREATIVE</div>
+              <div class="text-[10px] text-red-400 font-medium truncate">Photoshop & Suite</div>
             </div>
-            <div class="font-heading font-bold text-sm tracking-wide text-white">CAPCUT</div>
-            <div class="text-[11px] font-medium text-sky-400 mt-1">Video Editing & Reels</div>
           </div>
 
-          <!-- 5. WORDPRESS -->
-          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #2563EB; --neon-glow: rgba(37, 99, 235, 0.35);">
-            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-blue-400">
-              <i data-lucide="globe" class="w-8 h-8"></i>
+          <!-- 3. CORELDRAW (MICRO-CHIP) -->
+          <div class="neon-tile p-2.5 sm:p-3 rounded-xl flex items-center gap-3 group cursor-pointer" style="--neon-color: #10B981; --neon-glow: rgba(16, 185, 129, 0.3);">
+            <div class="w-8 h-8 rounded-lg bg-slate-900/90 border border-white/10 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-110 transition-transform text-emerald-400">
+              <i data-lucide="pen-tool" class="w-4 h-4"></i>
             </div>
-            <div class="font-heading font-bold text-sm tracking-wide text-white">WORDPRESS</div>
-            <div class="text-[11px] font-medium text-blue-400 mt-1">CMS & Web Architecture</div>
-          </div>
-
-          <!-- 6. GOOGLE WORKSPACE -->
-          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #F59E0B; --neon-glow: rgba(245, 158, 11, 0.35);">
-            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-amber-400">
-              <i data-lucide="file-spreadsheet" class="w-8 h-8"></i>
+            <div class="min-w-0 text-left">
+              <div class="font-heading font-bold text-xs tracking-wide text-white truncate">CORELDRAW</div>
+              <div class="text-[10px] text-emerald-400 font-medium truncate">Vector & Print</div>
             </div>
-            <div class="font-heading font-bold text-sm tracking-wide text-white">WORKSPACE</div>
-            <div class="text-[11px] font-medium text-amber-400 mt-1">Docs, Sheets & Slides</div>
           </div>
 
-          <!-- 7. GOOGLE MAPS -->
-          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #EF4444; --neon-glow: rgba(239, 68, 68, 0.35);">
-            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center p-3 mb-4 group-hover:scale-110 transition-transform text-red-400">
-              <i data-lucide="map-pin" class="w-8 h-8"></i>
+          <!-- 4. CANVA PRO (MICRO-CHIP) -->
+          <div class="neon-tile p-2.5 sm:p-3 rounded-xl flex items-center gap-3 group cursor-pointer" style="--neon-color: #06B6D4; --neon-glow: rgba(6, 182, 212, 0.3);">
+            <div class="w-8 h-8 rounded-lg bg-slate-900/90 border border-white/10 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-110 transition-transform text-cyan-400">
+              <i data-lucide="palette" class="w-4 h-4"></i>
             </div>
-            <div class="font-heading font-bold text-sm tracking-wide text-white">GOOGLE MAPS</div>
-            <div class="text-[11px] font-medium text-red-400 mt-1">Local Business & SEO</div>
+            <div class="min-w-0 text-left">
+              <div class="font-heading font-bold text-xs tracking-wide text-white truncate">CANVA PRO</div>
+              <div class="text-[10px] text-cyan-400 font-medium truncate">Feed & Carousel</div>
+            </div>
           </div>
 
-          <!-- 8. AI WORKFLOW & PRODUCTIVITY STACK -->
-          <div class="neon-tile p-6 rounded-2xl flex flex-col items-center text-center group cursor-pointer" style="--neon-color: #A855F7; --neon-glow: rgba(168, 85, 247, 0.4);">
-            <!-- Multi-Logo Container Box (Notion, Antigravity, ChatGPT/OpenAI, Claude/Gemini) -->
-            <div class="w-16 h-16 rounded-xl bg-slate-900/90 border border-purple-500/30 p-2 mb-4 group-hover:scale-110 transition-transform shadow-inner flex flex-col justify-between">
-              <div class="flex items-center justify-around">
-                <!-- Notion Logo -->
-                <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current text-white hover:text-purple-300 transition-colors" title="Notion AI Workspace" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.047-.326L17.86 1.64c-.466-.373-1.166-.7-2.333-.606L2.965 2.06c-.373.047-.466.326-.326.606l1.82 1.542zm1.26 3.733v13.68c0 .84.42 1.12 1.354 1.073l13.635-.793c.933-.047 1.12-.56 1.12-1.354V6.96c0-.746-.373-1.073-1.12-1.026L7.073 6.773c-.887.047-1.354.42-1.354 1.168zm12.607.747c.094.42 0 .84-.42.887l-.98.187v9.427c-.466.28-1.026.466-1.586.466-.98 0-1.446-.373-2.193-1.307l-4.76-7.373v7.373l1.493.326c0 .42-.326.793-.793.84l-3.36.187c-.094-.373.094-.793.513-.887l1.073-.233V8.873l-1.354-.14c-.093-.373.14-.84.606-.887l3.78-.233 4.947 7.513V8.64l-1.26-.14c-.093-.42.187-.84.606-.887l3.687-.233z"/>
-                </svg>
-                <!-- Antigravity Logo Icon (Rocket / Warp) -->
-                <div class="w-5 h-5 flex items-center justify-center text-purple-400 hover:text-purple-200 transition-colors" title="Antigravity AI">
-                  <i data-lucide="orbit" class="w-4 h-4"></i>
+          <!-- 5. CAPCUT (MICRO-CHIP) -->
+          <div class="neon-tile p-2.5 sm:p-3 rounded-xl flex items-center gap-3 group cursor-pointer" style="--neon-color: #38BDF8; --neon-glow: rgba(56, 189, 248, 0.3);">
+            <div class="w-8 h-8 rounded-lg bg-slate-900/90 border border-white/10 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-110 transition-transform text-sky-400">
+              <i data-lucide="film" class="w-4 h-4"></i>
+            </div>
+            <div class="min-w-0 text-left">
+              <div class="font-heading font-bold text-xs tracking-wide text-white truncate">CAPCUT</div>
+              <div class="text-[10px] text-sky-400 font-medium truncate">Video & Reels</div>
+            </div>
+          </div>
+
+          <!-- 6. WORDPRESS (MICRO-CHIP) -->
+          <div class="neon-tile p-2.5 sm:p-3 rounded-xl flex items-center gap-3 group cursor-pointer" style="--neon-color: #2563EB; --neon-glow: rgba(37, 99, 235, 0.3);">
+            <div class="w-8 h-8 rounded-lg bg-slate-900/90 border border-white/10 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-110 transition-transform text-blue-400">
+              <i data-lucide="globe" class="w-4 h-4"></i>
+            </div>
+            <div class="min-w-0 text-left">
+              <div class="font-heading font-bold text-xs tracking-wide text-white truncate">WORDPRESS</div>
+              <div class="text-[10px] text-blue-400 font-medium truncate">CMS Architecture</div>
+            </div>
+          </div>
+
+          <!-- 7. GOOGLE WORKSPACE (MICRO-CHIP) -->
+          <div class="neon-tile p-2.5 sm:p-3 rounded-xl flex items-center gap-3 group cursor-pointer" style="--neon-color: #F59E0B; --neon-glow: rgba(245, 158, 11, 0.3);">
+            <div class="w-8 h-8 rounded-lg bg-slate-900/90 border border-white/10 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-110 transition-transform text-amber-400">
+              <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+            </div>
+            <div class="min-w-0 text-left">
+              <div class="font-heading font-bold text-xs tracking-wide text-white truncate">WORKSPACE</div>
+              <div class="text-[10px] text-amber-400 font-medium truncate">Docs, Sheets, Slides</div>
+            </div>
+          </div>
+
+          <!-- 8. LOCAL SEO (MICRO-CHIP - REPLACES GOOGLE MAPS) -->
+          <div class="neon-tile p-2.5 sm:p-3 rounded-xl flex items-center gap-3 group cursor-pointer" style="--neon-color: #EF4444; --neon-glow: rgba(239, 68, 68, 0.3);">
+            <div class="w-8 h-8 rounded-lg bg-slate-900/90 border border-white/10 flex items-center justify-center p-1.5 flex-shrink-0 group-hover:scale-110 transition-transform text-red-400">
+              <i data-lucide="target" class="w-4 h-4"></i>
+            </div>
+            <div class="min-w-0 text-left">
+              <div class="font-heading font-bold text-xs tracking-wide text-white truncate">LOCAL SEO</div>
+              <div class="text-[10px] text-red-400 font-medium truncate">Google Profile & Rank</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- FEATURED BENTO CARD: AI & AUTOMATION WORKFLOW (LARGE HIGHLIGHT CARD) -->
+        <div class="w-full rounded-2xl border border-purple-500/35 bg-gradient-to-r from-purple-950/40 via-slate-900/90 to-indigo-950/50 p-5 sm:p-6 shadow-2xl relative overflow-hidden group hover:border-purple-400/60 transition-all duration-300">
+          
+          <!-- Ambient Glow Blob in Card -->
+          <div class="absolute -right-20 -top-20 w-72 h-72 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -left-20 -bottom-20 w-72 h-72 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+            
+            <!-- Left Content & Narrative -->
+            <div class="max-w-xl space-y-2">
+              <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-300 text-[11px] font-mono font-semibold uppercase tracking-wider">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span>
+                <span>Automated Productivity & Workflow Engine</span>
+              </div>
+              
+              <h3 class="font-heading font-bold text-lg sm:text-xl text-white group-hover:text-purple-300 transition-colors">
+                AI & Automation Workflow Stack
+              </h3>
+              
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed text-justify">
+                Mengintegrasikan otomatisasi skenario <strong>Make.com</strong> (webhooks & multi-app triggers), basis data riset <strong>Notion</strong>, serta akselerasi <strong>LLMs (ChatGPT, Claude, Gemini & Antigravity)</strong> untuk riset pasar instan, otomatisasi konten media sosial, dan efisiensi kerja digital hingga 10x lebih terukur.
+              </p>
+
+              <!-- Ecosystem Tag Pills -->
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="px-2 py-0.5 rounded-md bg-slate-950/80 border border-purple-500/30 text-[10px] font-mono text-purple-300">#MakeAutomation</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-950/80 border border-slate-700 text-[10px] font-mono text-slate-300">#NotionWorkspace</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-950/80 border border-slate-700 text-[10px] font-mono text-slate-300">#PromptEngineering</span>
+                <span class="px-2 py-0.5 rounded-md bg-slate-950/80 border border-slate-700 text-[10px] font-mono text-slate-300">#LocalSEOResearch</span>
+              </div>
+            </div>
+
+            <!-- Right Visual Tools Showcase (Make, Notion, Antigravity, LLMs) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-2.5 flex-shrink-0">
+              
+              <!-- Sub-card: Make.com -->
+              <div class="p-3 rounded-xl bg-slate-950/85 border border-purple-500/30 flex items-center gap-2.5 hover:border-purple-400 hover:scale-105 transition-all shadow-md group/item">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-700 text-white flex items-center justify-center font-heading font-black text-[11px] shadow">
+                  make
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white group-hover/item:text-purple-300 transition-colors">Make.com</div>
+                  <div class="text-[9px] font-mono text-purple-400">Webhooks Flow</div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-around border-t border-slate-800 pt-1">
-                <!-- OpenAI / ChatGPT Sparkle Icon -->
-                <div class="w-5 h-5 flex items-center justify-center text-emerald-400 hover:text-emerald-300 transition-colors" title="ChatGPT & Claude">
+              <!-- Sub-card: Notion -->
+              <div class="p-3 rounded-xl bg-slate-950/85 border border-slate-800 flex items-center gap-2.5 hover:border-slate-700 hover:scale-105 transition-all shadow-md group/item">
+                <div class="w-8 h-8 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-center text-white shadow">
+                  <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.047-.326L17.86 1.64c-.466-.373-1.166-.7-2.333-.606L2.965 2.06c-.373.047-.466.326-.326.606l1.82 1.542zm1.26 3.733v13.68c0 .84.42 1.12 1.354 1.073l13.635-.793c.933-.047 1.12-.56 1.12-1.354V6.96c0-.746-.373-1.073-1.12-1.026L7.073 6.773c-.887.047-1.354.42-1.354 1.168zm12.607.747c.094.42 0 .84-.42.887l-.98.187v9.427c-.466.28-1.026.466-1.586.466-.98 0-1.446-.373-2.193-1.307l-4.76-7.373v7.373l1.493.326c0 .42-.326.793-.793.84l-3.36.187c-.094-.373.094-.793.513-.887l1.073-.233V8.873l-1.354-.14c-.093-.373.14-.84.606-.887l3.78-.233 4.947 7.513V8.64l-1.26-.14c-.093-.42.187-.84.606-.887l3.687-.233z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white group-hover/item:text-slate-300 transition-colors">Notion AI</div>
+                  <div class="text-[9px] font-mono text-slate-400">Database & Wiki</div>
+                </div>
+              </div>
+
+              <!-- Sub-card: LLMs (ChatGPT & Claude) -->
+              <div class="p-3 rounded-xl bg-slate-950/85 border border-slate-800 flex items-center gap-2.5 hover:border-emerald-500/40 hover:scale-105 transition-all shadow-md group/item">
+                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shadow">
                   <i data-lucide="bot" class="w-4 h-4"></i>
                 </div>
-                <!-- Sparkles / GenAI Core -->
-                <div class="w-5 h-5 flex items-center justify-center text-amber-400 hover:text-amber-300 transition-colors" title="AI Content Engine">
-                  <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <div>
+                  <div class="text-xs font-bold text-white group-hover/item:text-emerald-300 transition-colors">LLMs Engine</div>
+                  <div class="text-[9px] font-mono text-emerald-400">ChatGPT • Claude</div>
                 </div>
               </div>
+
+              <!-- Sub-card: Antigravity AI -->
+              <div class="p-3 rounded-xl bg-slate-950/85 border border-slate-800 flex items-center gap-2.5 hover:border-cyan-500/40 hover:scale-105 transition-all shadow-md group/item">
+                <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shadow">
+                  <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white group-hover/item:text-cyan-300 transition-colors">GenAI Tools</div>
+                  <div class="text-[9px] font-mono text-cyan-400">Antigravity • Prompts</div>
+                </div>
+              </div>
+
             </div>
 
-            <div class="font-heading font-bold text-sm tracking-wide text-white">AI WORKFLOW</div>
-            <div class="text-[11px] font-medium text-purple-400 mt-1">Notion • Antigravity • LLMs</div>
           </div>
 
         </div>
@@ -1747,6 +1871,74 @@
         </div>
       </section>
 
+      <!-- ================= CREATIVE & PHOTOGRAPHY SHOWCASE (WITH CUTOUT) ================= -->
+      <section class="mb-32">
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-950/70 via-slate-900 to-indigo-950/70 border border-purple-500/35 shadow-2xl group hover:border-purple-400/60 transition-all duration-500">
+          
+          <!-- Ambient Backlight Studio Glow (Behind the figure) -->
+          <div class="absolute right-10 -top-20 w-96 h-96 bg-purple-600/25 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute right-40 bottom-0 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -left-20 -bottom-20 w-72 h-72 bg-purple-900/20 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 items-center">
+            
+            <!-- Left Column: Copywriting & Action (Span 7) -->
+            <div class="md:col-span-7 p-7 sm:p-10 lg:p-12 space-y-4 text-left">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-semibold uppercase tracking-wider">
+                <i data-lucide="palette" class="w-3.5 h-3.5 text-purple-400"></i>
+                <span>Galeri Visual & Fotografi Mandiri</span>
+              </div>
+
+              <h3 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                Eksplorasi Desain Grafis & Storytelling Visual
+              </h3>
+
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-xl text-justify">
+                Koleksi karya kreatif mandiri: mulai dari label produk komersial terverifikasi (<em>Hand Sanitizer Duo & Minyak Urut</em>), atribut apparel KKN Tomok, hingga dokumentasi fotografi arsitektur kolonial cagar budaya dan <em>human interest</em> beresolusi tinggi.
+              </p>
+
+              <!-- Highlight Micro Pills -->
+              <div class="flex flex-wrap gap-2 pt-1 pb-2">
+                <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-purple-500/30 text-[10px] font-mono text-purple-300">✦ Commercial Label Design</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-slate-800 text-[10px] font-mono text-slate-300">✦ Heritage Photography</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-slate-800 text-[10px] font-mono text-slate-300">✦ Street & Human Interest</span>
+              </div>
+
+              <div class="pt-2">
+                <a href="creative.html" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-xl shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all">
+                  <span>Buka Galeri Desain & Foto</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Column: Photographed Persona Cutout (Span 5) -->
+            <div class="md:col-span-5 relative flex items-end justify-center md:justify-end h-[360px] sm:h-[420px] md:h-[460px] overflow-hidden pt-4 pr-0 md:pr-6">
+              
+              <!-- Character Cutout -->
+              <picture class="relative z-10 h-full flex items-end">
+                <source srcset="assets/creative-gallery/jhonson-photographer-cutout.webp" type="image/webp">
+                <img 
+                  src="assets/creative-gallery/jhonson-photographer-cutout.png" 
+                  alt="Jhonson Samuel Manurung - Fotografer & Creative Designer" 
+                  class="h-full w-auto object-contain object-bottom drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] filter contrast-[1.03] brightness-[1.02] group-hover:scale-[1.02] transition-transform duration-700"
+                />
+              </picture>
+
+              <!-- Subtle bottom fade mask to blend legs into card base -->
+              <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent z-20 pointer-events-none"></div>
+
+              <!-- Floating Micro-Badge on photo -->
+              <div class="absolute bottom-5 right-4 z-30 px-3 py-1.5 rounded-xl bg-slate-950/90 border border-purple-500/40 backdrop-blur-md shadow-lg flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-[10px] font-mono text-purple-200 font-semibold">Behind The Lens • On Field</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       <!-- ================= KARYA TULIS SKRIPSI & HAK CIPTA (HAKI) ================= -->
       <section id="skripsi" class="mb-32">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal-on-scroll">
@@ -1920,28 +2112,6 @@
             </div>
 
           </div>
-        </div>
-      </section>
-
-      <!-- ================= CREATIVE GALLERY TEASER BANNER ================= -->
-      <section class="mb-32">
-        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-950/60 via-slate-900 to-indigo-950/60 border border-purple-500/30 p-8 sm:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 group">
-          <div class="space-y-3 text-center md:text-left max-w-xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold uppercase tracking-wider">
-              <i data-lucide="palette" class="w-3.5 h-3.5 text-purple-400"></i>
-              <span>Galeri Visual Mandiri</span>
-            </div>
-            <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">
-              Eksplorasi Desain Grafis & Brand Identity
-            </h3>
-            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-              Lihat koleksi karya desain grafis mandiri: spanduk outdoor 3x1 meter, atribut lanyard sublimasi, technical sheet rompi lapangan, dan kartu identitas berkonsep <em>Retro-Pixel</em>.
-            </p>
-          </div>
-          <a href="creative.html" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-xl shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all flex-shrink-0">
-            <span>Buka Galeri Desain</span>
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
         </div>
       </section>
 
@@ -2247,13 +2417,273 @@
       }
     }
 
-    // 1. Flip Card Interaction for Suspended Lanyard
+    // 1. Interactive Real-Physics Lanyard Rope (Anchored Canvas + Card Spring Physics)
     const lanyardTrigger = document.getElementById('lanyardTrigger');
+    const lanyardCanvas = document.getElementById('lanyardCanvas');
     const flipCard = document.querySelector('.flip-card');
-    if (lanyardTrigger && flipCard) {
-      lanyardTrigger.addEventListener('click', () => {
-        flipCard.classList.toggle('flipped');
-      });
+
+    if (lanyardTrigger && lanyardCanvas && flipCard) {
+      const ctx = lanyardCanvas.getContext('2d');
+
+      // Top anchor position fixed on canvas (width 440, height 480)
+      const anchorX = 220;
+      const anchorY = 6;
+
+      // Card initial resting position relative to wrapper: top=110px, centered
+      // Clasp attach point is at top-center of card: (0, 0) in card local space
+      let isDragging = false;
+      let startMouseX = 0;
+      let startMouseY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let targetRot = 0;
+      let hasDraggedSignificantly = false;
+
+      // Spring physics state
+      let springAnimId = null;
+      let posX = 0;
+      let posY = 0;
+      let posRot = 0;
+      let velX = 0;
+      let velY = 0;
+      let velRot = 0;
+
+      // Idle ambient sway physics
+      let idleTime = 0;
+      let isIdleRunning = true;
+
+      function renderLanyardRope(cardX, cardY, angleDeg) {
+        ctx.clearRect(0, 0, lanyardCanvas.width, lanyardCanvas.height);
+
+        // Clasp point in canvas coordinates:
+        // Default card top center is at (220, 110). With card displacement (cardX, cardY):
+        const claspX = 220 + cardX;
+        const claspY = 110 + cardY;
+
+        // Draw dynamic woven strap from fixed anchor (anchorX, anchorY) to clasp (claspX, claspY)
+        const dx = claspX - anchorX;
+        const dy = claspY - anchorY;
+        const dist = Math.hypot(dx, dy);
+        const angle = Math.atan2(dy, dx);
+
+        // Normal perpendicular vector for ribbon width (ribbon width = 22px)
+        const halfWidth = 11;
+        const nx = -Math.sin(angle) * halfWidth;
+        const ny = Math.cos(angle) * halfWidth;
+
+        ctx.save();
+
+        // 1. Drop shadow behind the ribbon
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.65)';
+        ctx.shadowBlur = 12;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 6;
+
+        // 2. Main Ribbon Body (Dark Woven Canvas Gradient)
+        const ribbonGrad = ctx.createLinearGradient(anchorX + nx, anchorY + ny, anchorX - nx, anchorY - ny);
+        ribbonGrad.addColorStop(0, '#090d16');
+        ribbonGrad.addColorStop(0.3, '#1e293b');
+        ribbonGrad.addColorStop(0.7, '#1e293b');
+        ribbonGrad.addColorStop(1, '#090d16');
+
+        ctx.beginPath();
+        ctx.moveTo(anchorX + nx, anchorY + ny);
+        ctx.lineTo(claspX + nx, claspY + ny);
+        ctx.lineTo(claspX - nx, claspY - ny);
+        ctx.lineTo(anchorX - nx, anchorY - ny);
+        ctx.closePath();
+        ctx.fillStyle = ribbonGrad;
+        ctx.fill();
+
+        // Reset shadow for crisp inner details
+        ctx.shadowColor = 'transparent';
+
+        // 3. Dual Neon-Violet Pinstripe Tracks
+        const pinstripeDist = 7;
+        const pnx = -Math.sin(angle) * pinstripeDist;
+        const pny = Math.cos(angle) * pinstripeDist;
+
+        ctx.lineWidth = 1.8;
+        ctx.strokeStyle = 'rgba(168, 85, 247, 0.9)'; // Vivid purple
+        ctx.beginPath();
+        ctx.moveTo(anchorX + pnx, anchorY + pny);
+        ctx.lineTo(claspX + pnx, claspY + pny);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(anchorX - pnx, anchorY - pny);
+        ctx.lineTo(claspX - pnx, claspY - pny);
+        ctx.stroke();
+
+        // 4. Subtle Outer Border Stroke
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+        ctx.beginPath();
+        ctx.moveTo(anchorX + nx, anchorY + ny);
+        ctx.lineTo(claspX + nx, claspY + ny);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(anchorX - nx, anchorY - ny);
+        ctx.lineTo(claspX - nx, claspY - ny);
+        ctx.stroke();
+
+        // 5. Tension Glow when stretched
+        if (dist > 120) {
+          const glowAlpha = Math.min(0.4, (dist - 120) / 200);
+          ctx.lineWidth = 6;
+          ctx.strokeStyle = `rgba(168, 85, 247, ${glowAlpha})`;
+          ctx.beginPath();
+          ctx.moveTo(anchorX, anchorY);
+          ctx.lineTo(claspX, claspY);
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      }
+
+      function updateCardTransform(x, y, rot) {
+        lanyardTrigger.style.transform = `translate(${x.toFixed(2)}px, ${y.toFixed(2)}px) rotate(${rot.toFixed(2)}deg)`;
+        renderLanyardRope(x, y, rot);
+      }
+
+      // Idle natural breathing sway
+      function idleLoop() {
+        if (!isIdleRunning || isDragging) return;
+        idleTime += 0.024;
+        const idleRot = Math.sin(idleTime) * 4.5;
+        const idleX = Math.sin(idleTime) * 12;
+        const idleY = (1 - Math.cos(idleTime)) * 2;
+        updateCardTransform(idleX, idleY, idleRot);
+        requestAnimationFrame(idleLoop);
+      }
+
+      function runSpringPhysics() {
+        // High quality damped spring oscillator
+        const springK = 0.038;
+        const damping = 0.935;
+
+        const forceX = -springK * posX;
+        velX = (velX + forceX) * damping;
+        posX += velX;
+
+        const forceY = -springK * posY;
+        velY = (velY + forceY) * damping;
+        posY += velY;
+
+        // Angle calculated naturally from displacement + rotational inertia
+        const targetAngle = Math.max(-38, Math.min(38, posX * 0.28));
+        const forceRot = -springK * (posRot - targetAngle * 0.4);
+        velRot = (velRot + forceRot) * damping;
+        posRot += velRot;
+
+        updateCardTransform(posX, posY, posRot);
+
+        if (Math.abs(posX) < 0.15 && Math.abs(velX) < 0.15 &&
+            Math.abs(posY) < 0.15 && Math.abs(velY) < 0.15 &&
+            Math.abs(posRot) < 0.1 && Math.abs(velRot) < 0.1) {
+          posX = 0;
+          posY = 0;
+          posRot = 0;
+          isIdleRunning = true;
+          idleLoop();
+        } else {
+          springAnimId = requestAnimationFrame(runSpringPhysics);
+        }
+      }
+
+      function onPointerDown(e) {
+        isDragging = true;
+        isIdleRunning = false;
+        hasDraggedSignificantly = false;
+        if (springAnimId) {
+          cancelAnimationFrame(springAnimId);
+          springAnimId = null;
+        }
+        lanyardTrigger.classList.add('is-dragging');
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        startMouseX = clientX;
+        startMouseY = clientY;
+      }
+
+      function onPointerMove(e) {
+        if (!isDragging) return;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        
+        const deltaX = clientX - startMouseX;
+        const deltaY = clientY - startMouseY;
+
+        if (Math.hypot(deltaX, deltaY) > 5) {
+          hasDraggedSignificantly = true;
+        }
+
+        // Fluid interactive dragging: max bounds
+        currentX = deltaX * 0.78;
+        // Allows stretching up to 180px down, -40px up
+        currentY = Math.max(-40, Math.min(180, deltaY * 0.7));
+        targetRot = Math.max(-42, Math.min(42, deltaX * 0.32));
+
+        updateCardTransform(currentX, currentY, targetRot);
+      }
+
+      function onPointerUp(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        lanyardTrigger.classList.remove('is-dragging');
+
+        if (!hasDraggedSignificantly) {
+          // Fast tap / click: flip card 3D
+          flipCard.classList.toggle('flipped');
+          isIdleRunning = true;
+          idleLoop();
+        } else {
+          // Dragged and released: execute fluid spring bounce!
+          posX = currentX;
+          posY = currentY;
+          posRot = targetRot;
+          velX = -currentX * 0.14;
+          velY = -currentY * 0.18;
+          velRot = -targetRot * 0.22;
+          if (springAnimId) cancelAnimationFrame(springAnimId);
+          springAnimId = requestAnimationFrame(runSpringPhysics);
+        }
+      }
+
+      // Initial render & drop animation
+      let dropTriggered = false;
+      const lanyardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !dropTriggered) {
+            dropTriggered = true;
+            // Initial drop bounce
+            posX = -30;
+            posY = -90;
+            posRot = -18;
+            velX = 12;
+            velY = 25;
+            velRot = 16;
+            isIdleRunning = false;
+            runSpringPhysics();
+          }
+        });
+      }, { threshold: 0.2 });
+      lanyardObserver.observe(lanyardTrigger);
+
+      // Start initial frame
+      updateCardTransform(0, 0, 0);
+      idleLoop();
+
+      // Mouse Listeners
+      lanyardTrigger.addEventListener('mousedown', onPointerDown);
+      window.addEventListener('mousemove', onPointerMove);
+      window.addEventListener('mouseup', onPointerUp);
+
+      // Touch Listeners
+      lanyardTrigger.addEventListener('touchstart', onPointerDown, { passive: true });
+      window.addEventListener('touchmove', onPointerMove, { passive: true });
+      window.addEventListener('touchend', onPointerUp, { passive: true });
     }
 
     // 1.5. Interactive 3D Parallax & Magnetic Tracking for Hero Section
