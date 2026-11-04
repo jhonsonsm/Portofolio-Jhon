@@ -58,6 +58,63 @@
       border-color: rgba(168, 85, 247, 0.45);
       box-shadow: 0 20px 40px -15px rgba(168, 85, 247, 0.2);
     }
+
+    /* Staggered Cinematic Reveal Keyframes */
+    @keyframes galleryHeaderReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(35px);
+        filter: blur(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0px);
+      }
+    }
+
+    @keyframes galleryCardWaterfall {
+      0% {
+        opacity: 0;
+        transform: translateY(45px) scale(0.96);
+        filter: blur(6px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+      }
+    }
+
+    .animate-gallery-header {
+      opacity: 0;
+      animation: galleryHeaderReveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    }
+
+    .waterfall-card {
+      opacity: 0;
+      animation: galleryCardWaterfall 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .delay-card-1 { animation-delay: 0.25s; }
+    .delay-card-2 { animation-delay: 0.4s; }
+    .delay-card-3 { animation-delay: 0.55s; }
+    .delay-card-4 { animation-delay: 0.7s; }
+    .delay-card-5 { animation-delay: 0.85s; }
+    .delay-card-6 { animation-delay: 1.0s; }
+    .delay-card-7 { animation-delay: 1.15s; }
+
+    /* Scroll Reveal for Photography Section */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .scroll-reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body class="selection:bg-purple-600 selection:text-white">
@@ -106,7 +163,7 @@
     <!-- ================= SECTION 1: DESAIN GRAFIS & IDENTITAS VISUAL ================= -->
     <section id="design-section">
       <!-- Header Section -->
-      <div class="max-w-3xl mb-12 sm:mb-16">
+      <div class="max-w-3xl mb-12 sm:mb-16 animate-gallery-header">
       <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-4">
         <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
         <span>Visual Identity & Creative Works</span>
@@ -162,7 +219,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="galleryGrid">
 
       <!-- ITEM 1: ANTISEPTIC HAND SANITIZER LABEL DUO (COMMERCIALLY MARKETED) -->
-      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group md:col-span-2" data-category="packaging">
+      <div class="gallery-card waterfall-card delay-card-1 bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group md:col-span-2" data-category="packaging">
         <div>
           <div class="relative overflow-hidden aspect-[21/10] bg-white cursor-pointer" onclick="openLightbox('assets/creative-gallery/Antiseptic Hand Sanitizer Label Duo.png', 'Desain Label Botol 100 ml: Antiseptic Hand Sanitizer Duo (Depan & Belakang) • Produk Resmi Beredar & Dipasarkan Komersial • Farmasi SMK Bintang Timur Pematangsiantar')">
             <img 
@@ -216,7 +273,7 @@
       </div>
 
       <!-- ITEM 2: MINYAK URUT AROMATHERAPY KELAPA HIJAU (COMMERCIALLY MARKETED) -->
-      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="packaging">
+      <div class="gallery-card waterfall-card delay-card-2 bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="packaging">
         <div>
           <div class="relative overflow-hidden aspect-[4/3] bg-white cursor-pointer" onclick="openLightbox('assets/creative-gallery/minyak-farm.png', 'Lembar Cetak Stiker Botol: Minyak Urut Aromatherapy Kelapa Hijau 75 ml • Produk Resmi Dipasarkan Komersial • Farmasi SMK Bintang Timur')">
             <img 
@@ -263,7 +320,7 @@
       </div>
 
       <!-- ITEM 3: SPANDUK UTAMA 3x1 METER -->
-      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="banner">
+      <div class="gallery-card waterfall-card delay-card-3 bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="banner">
         <div>
           <div class="relative overflow-hidden aspect-[4/3] bg-slate-950 cursor-pointer" onclick="openLightbox('assets/creative-gallery/spanduk-3x1.png', 'Desain Spanduk Resmi KKN UNIMED 2025 Desa Tomok (Ukuran 3x1 Meter) • Desain Lanskap Danau Toba & Tipografi Modern')">
             <img 
@@ -310,7 +367,7 @@
       </div>
 
       <!-- ITEM 4: LANYARD MOCKUP PRODUKSI -->
-      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="merch">
+      <div class="gallery-card waterfall-card delay-card-4 bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="merch">
         <div>
           <div class="relative overflow-hidden aspect-[4/3] bg-white cursor-pointer" onclick="openLightbox('assets/creative-gallery/lanyard-real.jpg', 'Mockup & Pola Produksi Tali Lanyard Sublimasi KKN Desa Tomok 2025 • Motif Etnik Awan & Identitas Kampus UNIMED')">
             <img 
@@ -357,7 +414,7 @@
       </div>
 
       <!-- ITEM 5: ROMPI LAPANGAN KKN (TECHNICAL APPAREL SHEET) -->
-      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="merch">
+      <div class="gallery-card waterfall-card delay-card-5 bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="merch">
         <div>
           <div class="relative overflow-hidden aspect-[4/3] bg-white cursor-pointer" onclick="openLightbox('assets/creative-gallery/rompi-kkn-mockup.png', 'Lembar Teknis Desain Rompi Lapangan KKN UNIMED 2025 Desa Tomok • Detail Ukuran Patch Bordir, Saku Taktikal & Sablon Belakang')">
             <img 
@@ -404,7 +461,7 @@
       </div>
 
       <!-- ITEM 6: DANBAM CHIP (COMMERCIAL SNACK PACKAGING) -->
-      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="packaging">
+      <div class="gallery-card waterfall-card delay-card-6 bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="packaging">
         <div>
           <div class="relative overflow-hidden aspect-[3/4] bg-slate-950 cursor-pointer" onclick="openLightbox('assets/creative-gallery/Danbam.jpg', 'Desain Kemasan Snack Makanan Ringan: DANBAM CHIP (Fresh Taste Guaranteed) • Brush Calligraphy Typography, Vektor Kentang & Photo Montage')">
             <img 
@@ -451,7 +508,7 @@
       </div>
 
       <!-- ITEM 7: ID CARD - JHONSON (PTT) -->
-      <div class="gallery-card bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="idcard">
+      <div class="gallery-card waterfall-card delay-card-7 bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group" data-category="idcard">
         <div>
           <div class="relative overflow-hidden aspect-[3/4] bg-white cursor-pointer" onclick="openLightbox('assets/creative-gallery/idcard-jhonson-ptt.png', 'ID Card Resmi Jhonson Samuel Manurung • Divisi PTT KKN Desa Tomok 2025 • Retro Pixel & Pop-out Cutout Style')">
             <img 
@@ -504,7 +561,7 @@
     <section id="photography-section" class="pt-24 mt-20 border-t border-slate-800/80">
       
       <!-- Section Header -->
-      <div class="max-w-3xl mb-8 sm:mb-12">
+      <div class="max-w-3xl mb-8 sm:mb-12 scroll-reveal">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-4">
           <i data-lucide="camera" class="w-3.5 h-3.5"></i>
           <span>Photography & Visual Exploration</span>
@@ -518,7 +575,7 @@
       </div>
 
       <!-- Photography Modern Bento Collage Grid (Curated 9 Photos with Pos Indonesia Featured Front) -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5 scroll-reveal">
 
         <!-- PHOTO 1: KANTOR POS INDONESIA (FEATURED IN FRONT AS REQUESTED) -->
         <div 
@@ -912,6 +969,17 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLightbox(null, true);
     });
+
+    // Scroll Reveal Intersection Observer for Photography Section
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => scrollObserver.observe(el));
   </script>
 </body>
 </html>
